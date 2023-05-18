@@ -1,0 +1,13 @@
+query {
+  github {
+    organizations {
+      metadata {
+        id
+      }
+      defaultRepositoryPermission
+      canMembersForkPrivateRepositories
+      canMembersCreatePublicRepositories
+      canMembersCreatePublicPages
+    }
+  }
+}

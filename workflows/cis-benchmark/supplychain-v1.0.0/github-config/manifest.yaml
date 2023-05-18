@@ -1,0 +1,70 @@
+version: 0.1.0
+
+id: "prebundle-workflow-github-configurations"
+name: "Prebundle: Review GitHub Configurations"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: review-2fa-setup
+    name: Review 2FA Setup
+    decide:
+      rego: !include review-2fa-setup/policy.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include review-2fa-setup/query.graphql
+
+  - id: review-org-default-permissions
+    name: Review Default Permissions for Organization Members
+    decide:
+      rego: !include review-org-default-permissions/policy.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include review-org-default-permissions/query.graphql
+
+  - id: review-org-owners-number
+    name: Review the Number of Organization Owners
+    decide:
+      rego: !include review-org-owners-number/policy.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include review-org-owners-number/query.graphql
+
+  - id: review-repository-configurations
+    name: Review Per-Repository Configurations
+    decide:
+      rego: !include review-repository-configurations/policy.rego
+      with:
+        archived_repositories_riskiness:
+          type: string
+          description: |
+            Whether to regard archived repositories as riskful if they violate the policy.
+            The value "riskful" represents that archived repositories are riskful in the case.
+          value: "not-riskful"
+          oneof:
+            - "riskful"
+            - "not-riskful"
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include review-repository-configurations/query.graphql

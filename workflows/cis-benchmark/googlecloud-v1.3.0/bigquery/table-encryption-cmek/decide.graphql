@@ -1,0 +1,20 @@
+{
+  googleCloud {
+    projects {
+      id
+      bigQuery {
+        datasets {
+          tables {
+            metadata {
+              id
+            }
+            name
+            encryptionConfiguration {
+              kmsKeyName
+            }
+          }
+        }
+      }
+    }
+  }
+}

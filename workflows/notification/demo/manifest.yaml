@@ -1,0 +1,30 @@
+version: 0.1.0
+
+id: "demo-notification"
+name: "DEMO: Send notifications to various channels"
+
+triggers: {}
+
+jobs:
+  - id: group
+    name: Send to notification groups
+    notify:
+      rego: !include group/notify.rego
+      input:
+        schema: !include group/notify.graphql
+      with:
+        group:
+          type: notification_target
+          description: The notification group to send.
+          value: ""
+  - id: slack
+    name: Send to a slack channel
+    notify:
+      rego: !include slack/notify.rego
+      input:
+        schema: !include slack/notify.graphql
+      with:
+        channel:
+          type: slack_channel
+          description: The slack channel to send.
+          value: ""

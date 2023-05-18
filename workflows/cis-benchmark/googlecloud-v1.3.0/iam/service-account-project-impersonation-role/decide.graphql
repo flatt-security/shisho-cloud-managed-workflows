@@ -1,0 +1,18 @@
+query {
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+
+      iamPolicy {
+        bindings {
+          members {
+            id
+          }
+          role
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+version: 0.1.0
+
+id: "prebundle-aws-iam"
+name: "Prebundle: Review AWS IAM posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: credentials-inventory
+    name: Review the credentials
+    decide:
+      rego: !include credentials-inventory/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include credentials-inventory/decide.graphql
+  - id: key-rotation
+    name: Review the status of access keys for the rotation
+    decide:
+      rego: !include key-rotation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include key-rotation/decide.graphql
+  - id: password-length
+    name: Review the configuration of the minimum password length
+    decide:
+      rego: !include password-length/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include password-length/decide.graphql
+  - id: password-reuse
+    name: Review the configuration for the password reuse
+    decide:
+      rego: !include password-reuse/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include password-reuse/decide.graphql
+  - id: permissive-policy-limitation
+    name: Review the policy configuration
+    decide:
+      rego: !include permissive-policy-limitation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include permissive-policy-limitation/decide.graphql
+  - id: root-user-hardware-mfa
+    name: Review the usage of Hardware MFA devices for the roor user
+    decide:
+      rego: !include root-user-hardware-mfa/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include root-user-hardware-mfa/decide.graphql
+  - id: root-user-key
+    name: Review the access keys of users
+    decide:
+      rego: !include root-user-key/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include root-user-key/decide.graphql
+  - id: root-user-mfa
+    name: Review the usage of MFA devices
+    decide:
+      rego: !include root-user-mfa/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include root-user-mfa/decide.graphql
+  - id: root-user-usage
+    name: Review the status of the root user's usage
+    decide:
+      rego: !include root-user-usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include root-user-usage/decide.graphql

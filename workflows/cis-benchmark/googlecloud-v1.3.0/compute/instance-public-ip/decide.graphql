@@ -1,0 +1,30 @@
+query {
+  googleCloud {
+    projects {
+      id
+      computeEngine {
+        instances {
+          metadata {
+            id
+          }
+          name
+          labels {
+            key
+            value
+          }
+          networkInterfaces {
+            ipv4AccessConfig {
+              name
+              natIp
+            }
+            ipv6AccessConfig {
+              name
+              externalIpv6
+              externalIpv6PrefixLength
+            }
+          }
+        }
+      }
+    }
+  }
+}

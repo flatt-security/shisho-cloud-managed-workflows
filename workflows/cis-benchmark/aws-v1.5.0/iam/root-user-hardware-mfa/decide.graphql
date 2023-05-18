@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      id
+      metadata {
+        id
+      }
+      iam {
+        accountSummary {
+          summaryMap {
+            key
+            value
+          }
+        }
+        virtualMfaDevices {
+          serialNumber
+        }
+      }
+    }
+  }
+}

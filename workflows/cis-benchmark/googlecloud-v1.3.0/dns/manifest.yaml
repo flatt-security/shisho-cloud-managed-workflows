@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-dns"
+name: "Prebundle: Review Google Cloud DNS posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: dnssec
+    name: Review the DNSEC configuration
+    decide:
+      rego: !include dnssec/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include dnssec/decide.graphql
+  - id: dnssec-ksk-algorithm
+    name: Review DNSSEC KSK algorithm
+    decide:
+      rego: !include dnssec-ksk-algorithm/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include dnssec-ksk-algorithm/decide.graphql
+  - id: dnssec-zsk-algorithm
+    name: Review DNSSEC ZSK algorithm
+    decide:
+      rego: !include dnssec-zsk-algorithm/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include dnssec-zsk-algorithm/decide.graphql

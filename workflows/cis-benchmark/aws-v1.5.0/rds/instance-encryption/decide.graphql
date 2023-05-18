@@ -1,0 +1,64 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          ... on AWSRDSGenericDatabaseInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+            }
+            storageEncrypted
+          }
+        }
+      }
+    }
+  }
+}

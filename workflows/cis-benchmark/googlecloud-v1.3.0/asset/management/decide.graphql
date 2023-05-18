@@ -1,0 +1,12 @@
+query {
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+      services {
+        name
+      }
+    }
+  }
+}

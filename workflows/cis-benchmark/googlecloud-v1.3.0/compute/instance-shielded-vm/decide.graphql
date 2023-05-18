@@ -1,0 +1,19 @@
+query {
+  googleCloud {
+    projects {
+      id
+      computeEngine {
+        instances {
+          metadata {
+            id
+          }
+          shieldedInstanceConfiguration {
+            enableIntegrityMonitoring
+            enableSecureBoot
+            enableVtpm
+          }
+        }
+      }
+    }
+  }
+}

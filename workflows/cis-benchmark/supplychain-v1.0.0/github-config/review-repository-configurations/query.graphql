@@ -1,0 +1,49 @@
+query {
+  github {
+    organizations {
+      name
+      repositories {
+        metadata {
+          id
+        }
+        name
+
+        isArchived
+
+        defaultBranchRef {
+          name
+        }
+
+        collaborators {
+          login
+          permission
+        }
+
+        branchProtections {
+          allowsDeletions
+          allowsForcePushes
+          blocksCreations
+          hasConflicts
+          isForcePushProtectionBypassable
+          hasBypassableActors
+          dismissesStaleReviews
+          isAdminEnforced
+          pattern
+
+          isPushProtectionBypassable
+          requiredApprovingReviewCount
+          requiredStatusCheckContexts
+          requiresApprovingReviews
+          requiresCodeOwnerReviews
+          requiresCommitSignatures
+          requiresConversationResolution
+          requiresLinearHistory
+          requiresStatusChecks
+          requiresStrictStatusChecks
+          restrictsPushes
+          restrictsReviewDismissals
+        }
+      }
+    }
+  }
+}

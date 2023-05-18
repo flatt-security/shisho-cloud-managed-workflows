@@ -1,0 +1,16 @@
+{
+  aws {
+    accounts {
+      iam {
+        policies {
+          metadata {
+            id
+          }
+          defaultVersion {
+            rawDocument
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+query {
+  googleCloud {
+    projects {
+      id
+      metadata {
+        id
+      }
+      iam {
+        serviceAccounts {
+          metadata {
+            id
+          }
+          name
+          keys {
+            name
+            origin
+            type
+          }
+        }
+      }
+    }
+  }
+}

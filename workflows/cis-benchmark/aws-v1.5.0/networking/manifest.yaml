@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-aws-networking"
+name: "Prebundle: Review AWS Networking posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: acl-ingress
+    name: Review the flow log configuration
+    decide:
+      rego: !include acl-ingress/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include acl-ingress/decide.graphql
+  - id: sg-ingress-v4
+    name: Review the security group configuration
+    decide:
+      rego: !include sg-ingress-v4/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include sg-ingress-v4/decide.graphql
+  - id: sg-ingress-v6
+    name: Review the default security group configuration
+    decide:
+      rego: !include sg-ingress-v6/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include sg-ingress-v6/decide.graphql

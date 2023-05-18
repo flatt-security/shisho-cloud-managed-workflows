@@ -1,0 +1,24 @@
+{
+    "aws": {
+        "accounts": [
+          {
+            "rds": {
+              "instances": [
+                {
+                  "resourceId": "aws-rds-db-instance|ap-northeast-1|test-aurora-1-instance-1",
+                  "autoMinorVersionUpgrade": true
+                },
+                {
+                  "resourceId": "aws-rds-db-instance|ap-northeast-1|tftestmysql1",
+                  "autoMinorVersionUpgrade": true
+                },
+                {
+                  "resourceId": "aws-rds-db-instance|ap-northeast-1|tftestpostgres1",
+                  "autoMinorVersionUpgrade": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+}

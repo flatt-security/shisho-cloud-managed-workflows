@@ -1,0 +1,16 @@
+{
+  googleCloud {
+    projects {
+      cloudStorage {
+        buckets {
+          metadata {
+            id
+          }
+          uniformBucketLevelAccess {
+            enabled
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+query {
+  shisho {
+    event {
+      __typename
+      ... on ShishoTriageStatusEvent {
+        type
+        status
+
+        target {
+          apiVersion
+          kind
+
+          subject {
+            displayName
+            parentDisplayName
+            viewer
+          }
+
+          severity
+          viewer
+
+          explanation(locale: JA_JP) {
+            title
+            description
+          }
+
+          createdBy {
+            name
+            viewer
+          }
+        }
+      }
+    }
+  }
+}

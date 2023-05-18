@@ -1,0 +1,23 @@
+query {
+  googleCloud {
+    projects {
+      id
+      network {
+        vpcNetworks {
+          metadata {
+            id
+          }
+          subnetworks {
+            logConfiguration {
+              filterExpression
+              aggregationInterval
+              enable
+              flowSampling
+              metadata
+            }
+          }
+        }
+      }
+    }
+  }
+}

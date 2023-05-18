@@ -1,0 +1,15 @@
+query {
+  googleCloud {
+    projects {
+      id
+      metadata {
+        id
+      }
+      network {
+        vpcNetworks {
+          name
+        }
+      }
+    }
+  }
+}

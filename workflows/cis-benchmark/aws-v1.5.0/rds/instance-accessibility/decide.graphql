@@ -1,0 +1,154 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          ... on AWSRDSGenericDatabaseInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

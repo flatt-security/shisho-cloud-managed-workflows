@@ -1,0 +1,22 @@
+version: 0.1.0
+
+id: "prebundle-aws-efs"
+name: "Prebundle: Review AWS EFS posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: volume-encryption
+    name: Review the volume encryption
+    decide:
+      rego: !include volume-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include volume-encryption/decide.graphql

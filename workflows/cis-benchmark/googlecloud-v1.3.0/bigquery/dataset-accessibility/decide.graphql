@@ -1,0 +1,30 @@
+{
+  googleCloud {
+    projects {
+      id
+      bigQuery {
+        datasets {
+          metadata {
+            id
+          }
+          access {
+            __typename
+
+            ... on GoogleCloudBigQueryDatasetAccessSpecialGroup {
+              role {
+                id
+              }
+              name
+            }
+            ... on GoogleCloudBigQueryDatasetAccessIamMember {
+              role {
+                id
+              }
+              memberType
+            }
+          }
+        }
+      }
+    }
+  }
+}

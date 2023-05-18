@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-aws-rds"
+name: "Prebundle: Review AWS RDS posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: instance-accessibility
+    name: Review the accessibility of the DB instances
+    decide:
+      rego: !include instance-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-accessibility/decide.graphql
+  - id: instance-auto-upgrade
+    name: Review the auto upgrade configuration
+    decide:
+      rego: !include instance-auto-upgrade/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-auto-upgrade/decide.graphql
+  - id: instance-encryption
+    name: Review the encryption configuration
+    decide:
+      rego: !include instance-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-encryption/decide.graphql

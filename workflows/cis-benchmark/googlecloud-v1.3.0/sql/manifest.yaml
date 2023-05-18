@@ -1,0 +1,58 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-sql"
+name: "Prebundle: Review Google Cloud SQL posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: instance-accessibility
+    name: Review the accessibility of instances
+    decide:
+      rego: !include instance-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-accessibility/decide.graphql
+  - id: instance-backup
+    name: Review the backup configuration
+    decide:
+      rego: !include instance-backup/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-backup/decide.graphql
+  - id: instance-connection
+    name: Review the configuration of the SSL connection
+    decide:
+      rego: !include instance-connection/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-connection/decide.graphql
+  - id: instance-public-ip
+    name: Review the configuration of the public IP address
+    decide:
+      rego: !include instance-public-ip/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-public-ip/decide.graphql

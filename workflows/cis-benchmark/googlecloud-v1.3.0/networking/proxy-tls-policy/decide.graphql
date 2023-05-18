@@ -1,0 +1,50 @@
+query {
+  googleCloud {
+    projects {
+      id
+      network {
+        targetHttpsProxies {
+          metadata {
+            id
+          }
+
+          sslPolicy {
+            metadata {
+              id
+            }
+            minimumTlsVersion
+            profile
+            enabledFeatures
+            selfLink
+          }
+        }
+
+        targetSslProxies {
+          metadata {
+            id
+          }
+
+          sslPolicy {
+            metadata {
+              id
+            }
+            minimumTlsVersion
+            profile
+            enabledFeatures
+            selfLink
+          }
+        }
+
+        sslPolicies {
+          metadata {
+            id
+          }
+          minimumTlsVersion
+          profile
+          enabledFeatures
+          selfLink
+        }
+      }
+    }
+  }
+}

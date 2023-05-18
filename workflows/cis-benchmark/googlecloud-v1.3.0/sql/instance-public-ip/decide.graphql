@@ -1,0 +1,50 @@
+{
+  googleCloud {
+    projects {
+      cloudSql {
+        instances {
+          ... on GoogleCloudSQLMySQLInstance {
+            metadata {
+              id
+            }
+            instanceType
+            ipAddresses {
+              ipAddress
+              ipAddressType
+            }
+          }
+          ... on GoogleCloudSQLPostgreSQLInstance {
+            metadata {
+              id
+            }
+            instanceType
+            ipAddresses {
+              ipAddress
+              ipAddressType
+            }
+          }
+          ... on GoogleCloudSQLSQLServerInstance {
+            metadata {
+              id
+            }
+            instanceType
+            ipAddresses {
+              ipAddress
+              ipAddressType
+            }
+          }
+          ... on GoogleCloudSQLUnspecifiedInstance {
+            metadata {
+              id
+            }
+            instanceType
+            ipAddresses {
+              ipAddress
+              ipAddressType
+            }
+          }
+        }
+      }
+    }
+  }
+}

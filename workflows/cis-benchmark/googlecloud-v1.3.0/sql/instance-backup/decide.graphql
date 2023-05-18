@@ -1,0 +1,50 @@
+{
+  googleCloud {
+    projects {
+      cloudSql {
+        instances {
+          ... on GoogleCloudSQLMySQLInstance {
+            metadata {
+              id
+            }
+            s1: settings {
+              backupConfiguration {
+                enabled
+              }
+            }
+          }
+          ... on GoogleCloudSQLPostgreSQLInstance {
+            metadata {
+              id
+            }
+            s2: settings {
+              backupConfiguration {
+                enabled
+              }
+            }
+          }
+          ... on GoogleCloudSQLSQLServerInstance {
+            metadata {
+              id
+            }
+            s3: settings {
+              backupConfiguration {
+                enabled
+              }
+            }
+          }
+          ... on GoogleCloudSQLUnspecifiedInstance {
+            metadata {
+              id
+            }
+            s4: settings {
+              backupConfiguration {
+                enabled
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+          }
+          policy {
+            rawDocument
+          }
+        }
+      }
+    }
+  }
+}

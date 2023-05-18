@@ -1,0 +1,23 @@
+query {
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+
+      iamPolicy {
+        bindings {
+          members {
+            __typename
+
+            ... on GoogleCloudIAMPrincipalServiceAccount {
+              email
+              deleted
+            }
+          }
+          role
+        }
+      }
+    }
+  }
+}

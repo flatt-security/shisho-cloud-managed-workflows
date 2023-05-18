@@ -1,0 +1,28 @@
+query {
+  googleCloud {
+    projects {
+      id
+      network {
+        vpcNetworks {
+          metadata {
+            id
+          }
+
+          selfLink
+        }
+
+        dnsPolicies {
+          metadata {
+            id
+          }
+          name
+          enableLogging
+
+          networks {
+            url
+          }
+        }
+      }
+    }
+  }
+}

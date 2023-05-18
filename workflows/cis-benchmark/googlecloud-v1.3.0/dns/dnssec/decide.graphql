@@ -1,0 +1,17 @@
+query {
+  googleCloud {
+    projects {
+      id
+      network {
+        dnsManagedZones {
+          metadata {
+            id
+          }
+          dnssecConfiguration {
+            state
+          }
+        }
+      }
+    }
+  }
+}

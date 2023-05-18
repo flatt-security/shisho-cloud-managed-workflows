@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-compute-engine"
+name: "Prebundle: Review Google Cloud Compute Engine posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: instance-service-account
+    name: Review service accounts attached to instances
+    decide:
+      rego: !include instance-service-account/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-service-account/decide.graphql
+  - id: instance-oauth2-scope
+    name: Review OAuth2 scopes
+    decide:
+      rego: !include instance-oauth2-scope/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-oauth2-scope/decide.graphql
+  - id: instance-project-wide-key-management
+    name: Review whether "project-wide SSH keys" is not enabled
+    decide:
+      rego: !include instance-project-wide-key-management/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-project-wide-key-management/decide.graphql

@@ -1,0 +1,62 @@
+{
+  googleCloud {
+    projects {
+      cloudSql {
+        instances {
+          ... on GoogleCloudSQLMySQLInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                authorizedNetworks {
+                  name
+                  value
+                }
+              }
+            }
+          }
+          ... on GoogleCloudSQLPostgreSQLInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                authorizedNetworks {
+                  name
+                  value
+                }
+              }
+            }
+          }
+          ... on GoogleCloudSQLSQLServerInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                authorizedNetworks {
+                  name
+                  value
+                }
+              }
+            }
+          }
+          ... on GoogleCloudSQLUnspecifiedInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                authorizedNetworks {
+                  name
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

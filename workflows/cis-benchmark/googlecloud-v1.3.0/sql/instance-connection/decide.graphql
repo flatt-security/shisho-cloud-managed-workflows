@@ -1,0 +1,50 @@
+{
+  googleCloud {
+    projects {
+      cloudSql {
+        instances {
+          ... on GoogleCloudSQLMySQLInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                requireSsl
+              }
+            }
+          }
+          ... on GoogleCloudSQLPostgreSQLInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                requireSsl
+              }
+            }
+          }
+          ... on GoogleCloudSQLSQLServerInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                requireSsl
+              }
+            }
+          }
+          ... on GoogleCloudSQLUnspecifiedInstance {
+            metadata {
+              id
+            }
+            settings {
+              ipConfiguration {
+                requireSsl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

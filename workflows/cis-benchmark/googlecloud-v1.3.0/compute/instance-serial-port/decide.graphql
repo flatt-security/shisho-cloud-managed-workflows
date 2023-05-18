@@ -1,0 +1,20 @@
+query {
+  googleCloud {
+    projects {
+      id
+      computeEngine {
+        instances {
+          metadata {
+            id
+          }
+          metadata {
+            items {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

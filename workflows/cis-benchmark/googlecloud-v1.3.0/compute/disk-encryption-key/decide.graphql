@@ -1,0 +1,23 @@
+query {
+  googleCloud {
+    projects {
+      number
+      computeEngine {
+        instances {
+          metadata {
+            id
+          }
+          name
+          disks {
+            deviceName
+            diskEncryptionKey {
+              kmsKeyName
+              kmsKeyServiceAccount
+              sha256
+            }
+          }
+        }
+      }
+    }
+  }
+}

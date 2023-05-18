@@ -1,0 +1,14 @@
+query {
+  github {
+    organizations {
+      metadata {
+        id
+      }
+
+      members {
+        login
+        role
+      }
+    }
+  }
+}

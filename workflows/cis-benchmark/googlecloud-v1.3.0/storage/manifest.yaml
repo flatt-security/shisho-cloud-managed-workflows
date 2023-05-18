@@ -1,0 +1,34 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-storage"
+name: "Prebundle: Review Google Cloud Storage posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: bucket-accessibility
+    name: Review buckets' accessibility
+    decide:
+      rego: !include bucket-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include bucket-accessibility/decide.graphql
+  - id: bucket-uniform-access
+    name: Review buckets' uniform bucket level access
+    decide:
+      rego: !include bucket-uniform-bucket-level-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include bucket-uniform-bucket-level-access/decide.graphql

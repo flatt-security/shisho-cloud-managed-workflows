@@ -1,0 +1,28 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          metadata {
+            id
+          }
+          acls {
+            id
+
+            entries {
+              cidrBlock
+              ipv6CidrBlock
+              ruleAction
+              type
+
+              portRange {
+                from
+                to
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

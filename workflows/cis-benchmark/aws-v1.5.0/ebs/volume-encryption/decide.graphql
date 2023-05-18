@@ -1,0 +1,15 @@
+query {
+  aws {
+    accounts {
+      metadata {
+        id
+      }
+      ec2 {
+        defaultEbsEncryptions {
+          region
+          enabled
+        }
+      }
+    }
+  }
+}

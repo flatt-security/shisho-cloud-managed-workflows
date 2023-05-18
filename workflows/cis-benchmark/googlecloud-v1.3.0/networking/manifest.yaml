@@ -1,0 +1,82 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-networking"
+name: "Prebundle: Review Google Cloud Networking posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: default-network
+    name: Review the default network
+    decide:
+      rego: !include default-network/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include default-network/decide.graphql
+  - id: dns-log
+    name: Review the DNS log configuration
+    decide:
+      rego: !include dns-log/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include dns-log/decide.graphql
+  - id: proxy-tls-policy
+    name: Review proxy TLS policy
+    decide:
+      rego: !include proxy-tls-policy/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include proxy-tls-policy/decide.graphql
+  - id: rdp-access
+    name: Review the availability of the RDS access
+    decide:
+      rego: !include rdp-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include rdp-access/decide.graphql
+  - id: ssh-access
+    name: Review the availability of the SSH access
+    decide:
+      rego: !include ssh-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include ssh-access/decide.graphql
+  - id: vpc-flow-log
+    name: Review the VPC log configuration
+    decide:
+      rego: !include vpc-flow-log/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include vpc-flow-log/decide.graphql

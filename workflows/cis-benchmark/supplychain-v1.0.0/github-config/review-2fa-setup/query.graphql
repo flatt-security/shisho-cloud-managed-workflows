@@ -1,0 +1,10 @@
+query {
+  github {
+    organizations {
+      requiresTwoFactorAuthentication
+      metadata {
+        id
+      }
+    }
+  }
+}

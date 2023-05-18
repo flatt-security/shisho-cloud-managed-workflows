@@ -1,0 +1,22 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-asset"
+name: "Prebundle: Review Google Cloud Asset posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: management
+    name: Review the availablity
+    decide:
+      rego: !include management/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include management/decide.graphql

@@ -1,0 +1,18 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+      iamPolicy {
+        auditConfigurations {
+          service
+          configurations {
+            type
+            exemptedMembers
+          }
+        }
+      }
+    }
+  }
+}

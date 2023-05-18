@@ -1,0 +1,64 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          ... on AWSRDSGenericDatabaseInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+            }
+            autoMinorVersionUpgrade
+          }
+        }
+      }
+    }
+  }
+}

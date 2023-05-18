@@ -1,0 +1,36 @@
+{
+    "googleCloud": {
+        "projects": [
+          {
+            "resourceId": "googlecloud-project|514893259785",
+            "iamPolicy": {
+              "auditConfigurations": []
+            }
+          },
+          {
+            "resourceId": "googlecloud-project|924052224636",
+            "iamPolicy": {
+              "auditConfigurations": [
+                {
+                  "service": "storage.googleapis.com",
+                  "configurations": [
+                    {
+                      "type": "ADMIN_READ",
+                      "exemptedMembers": []
+                    },
+                    {
+                      "type": "DATA_READ",
+                      "exemptedMembers": []
+                    },
+                    {
+                      "type": "DATA_WRITE",
+                      "exemptedMembers": []
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+}

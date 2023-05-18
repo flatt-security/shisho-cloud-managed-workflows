@@ -1,0 +1,26 @@
+{
+  googleCloud {
+    projects {
+      cloudStorage {
+        buckets {
+          metadata {
+            id
+          }
+          name
+          acl {
+            entity
+            role
+          }
+          iamPolicy {
+            bindings {
+              role
+              members {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

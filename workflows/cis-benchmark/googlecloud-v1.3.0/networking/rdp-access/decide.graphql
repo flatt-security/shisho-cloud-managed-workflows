@@ -1,0 +1,26 @@
+query {
+  googleCloud {
+    projects {
+      id
+      network {
+        vpcNetworks {
+          metadata {
+            id
+          }
+          firewallRules {
+            allowed {
+              ipProtocol
+              ports {
+                from
+                to
+              }
+            }
+            direction
+            sourceRanges
+            network
+          }
+        }
+      }
+    }
+  }
+}
