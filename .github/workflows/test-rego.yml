@@ -1,0 +1,23 @@
+name: "Test Rego Policies"
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [latest]
+    steps:
+      - name: Setup OPA
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: ${{ matrix.version }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+      - name: Run OPA tests
+        run: |
+          opa test -v .
