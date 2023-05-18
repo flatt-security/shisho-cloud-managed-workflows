@@ -1,0 +1,3 @@
+[submodule "sdk/rego"]
+	path = sdk/rego
+	url = https://github.com/flatt-security/shisho-cloud-rego-libraries.git
