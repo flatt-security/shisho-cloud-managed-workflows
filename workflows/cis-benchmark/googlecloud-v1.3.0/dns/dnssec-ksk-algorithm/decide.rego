@@ -20,9 +20,7 @@ has_algorithm_rsasha1(defaultKeySpecs) {
 	spec := defaultKeySpecs[_]
 
 	spec.algorithm == "RSASHA1"
-} else = false {
-	true
-}
+} else = false
 
 algorithms(defaultKeySpecs) := x {
 	x := [algorithm |

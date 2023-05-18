@@ -23,9 +23,7 @@ is_public_principal(p) {
 	p == "allAuthenticatedUsers"
 } else {
 	p == "allUsers"
-} else = false {
-	true
-}
+} else = false
 
 is_public_entity(p) := is_public_principal(p)
 
@@ -37,9 +35,7 @@ public_acl_rules(acl) := x {
 		a := acl[_]
 		is_public_entity(a.entity)
 	]
-} else := [] {
-	true
-}
+} else := []
 
 public_policy_bindings(bindings) := x {
 	x := [{
@@ -50,6 +46,4 @@ public_policy_bindings(bindings) := x {
 		member := binding.members[_]
 		is_public_principal(member.id)
 	]
-} else := [] {
-	true
-}
+} else := []

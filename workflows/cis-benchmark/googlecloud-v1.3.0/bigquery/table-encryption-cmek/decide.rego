@@ -19,12 +19,8 @@ decisions[d] {
 
 uses_default_key(ec) {
 	key_name_or_empty(ec) == ""
-} else = false {
-	true
-}
+} else = false
 
 key_name_or_empty(ec) := ec.kmsKeyName {
 	ec != null
-} else := "" {
-	true
-}
+} else := ""

@@ -5,9 +5,7 @@ import data.shisho
 excludes_gke_nodes := data.params.excludes_gke_nodes {
 	data.params != null
 	data.params.excludes_gke_nodes != null
-} else := true {
-	true
-}
+} else := true
 
 decisions[d] {
 	project := input.googleCloud.projects[_]
@@ -45,9 +43,7 @@ uses_unpermitted_default_account(project_number, instance_name, email, labels) {
 	email == default_service_account(project_number)
 
 	not excludes_gke_nodes
-} else = false {
-	true
-}
+} else = false
 
 # a Google Compute Engine instance created by GKE should be excluded.
 is_gke_node(instance_name, labels) {
@@ -57,9 +53,7 @@ is_gke_node(instance_name, labels) {
 		l := labels[_]
 		l.value == "goog-gke-node"
 	]) > 0
-} else = false {
-	true
-}
+} else = false
 
 # return an email of the default service account 
 # the format of default service account is '[PROJECT_NUMBER]-compute@developer.gserviceaccount.com'

@@ -19,6 +19,4 @@ exist_default(vpcNetworks) {
 
 	# the default network name is always "default"
 	vpcNetwork.name == "default"
-} else = false {
-	true
-}
+} else = false

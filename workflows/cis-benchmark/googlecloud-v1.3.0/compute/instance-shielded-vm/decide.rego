@@ -20,27 +20,19 @@ decisions[d] {
 is_allowed(cfg) {
 	integrity_monitoring_enabled(cfg)
 	vtpm_enabled(cfg)
-} else = false {
-	true
-}
+} else = false
 
 integrity_monitoring_enabled(cfg) {
 	cfg != null
 	cfg.enableIntegrityMonitoring
-} else = false {
-	true
-}
+} else = false
 
 secure_boot_enabled(cfg) {
 	cfg != null
 	cfg.enableSecureBoot
-} else = false {
-	true
-}
+} else = false
 
 vtpm_enabled(cfg) {
 	cfg != null
 	cfg.enableVtpm
-} else = false {
-	true
-}
+} else = false

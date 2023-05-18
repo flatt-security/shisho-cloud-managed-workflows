@@ -73,12 +73,8 @@ uses_secure_tls_policy(policy) {
 	not has_feature(policy.enabledFeatures, "TLS_RSA_WITH_AES_128_CBC_SHA")
 	not has_feature(policy.enabledFeatures, "TLS_RSA_WITH_AES_256_CBC_SHA")
 	not has_feature(policy.enabledFeatures, "TLS_RSA_WITH_3DES_EDE_CBC_SHA")
-} else = false {
-	true
-}
+} else = false
 
 has_feature(features, feature) {
 	features[_] == feature
-} else = false {
-	true
-}
+} else = false

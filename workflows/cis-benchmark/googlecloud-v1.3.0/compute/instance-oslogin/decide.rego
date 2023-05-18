@@ -23,6 +23,4 @@ is_oslogin_enabled(metadata) {
 	item := metadata.items[_]
 	item.key == "enable-oslogin"
 	lower(item.value) == "true"
-} else = false {
-	true
-}
+} else = false

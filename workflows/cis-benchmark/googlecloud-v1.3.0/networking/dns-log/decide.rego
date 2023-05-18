@@ -43,12 +43,8 @@ dns_policies := {n.url: {"enableLogging": policy.enableLogging} |
 is_log_enabled(network) {
 	p := dns_policies[network.selfLink]
 	p.enableLogging
-} else = false {
-	true
-}
+} else = false
 
 has_attached_policy(network) {
 	dns_policies[network.selfLink] != null
-} else = false {
-	true
-}
+} else = false

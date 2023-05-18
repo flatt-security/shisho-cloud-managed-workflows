@@ -21,9 +21,7 @@ has_algorithm_rsasha1_and_zone_key(defaultKeySpecs) {
 
 	spec.algorithm == "RSASHA1"
 	spec.type == "ZONE_SIGNING"
-} else = false {
-	true
-}
+} else = false
 
 algorithms(defaultKeySpecs) := x {
 	x := [algorithm |

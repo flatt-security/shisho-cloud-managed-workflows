@@ -20,6 +20,4 @@ decisions[d] {
 allows_public_traffic(authorized_networks) {
 	network := authorized_networks[_]
 	network.value == "0.0.0.0/0"
-} else = false {
-	true
-}
+} else = false

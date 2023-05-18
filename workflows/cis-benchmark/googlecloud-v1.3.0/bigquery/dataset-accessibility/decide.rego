@@ -22,9 +22,7 @@ decisions[d] {
 is_allowed(authenticated, all) {
 	count(authenticated) == 0
 	count(all) == 0
-} else = false {
-	true
-}
+} else = false
 
 all_authenticated_users_roles(access) = x {
 	x := [a.role |
@@ -32,9 +30,7 @@ all_authenticated_users_roles(access) = x {
 		a.__typename == "GoogleCloudBigQueryDatasetAccessSpecialGroup"
 		a.name == "allAuthenticatedUsers"
 	]
-} else = [] {
-	true
-}
+} else = []
 
 all_users_roles(access) = x {
 	x := [a.role |
@@ -42,6 +38,4 @@ all_users_roles(access) = x {
 		a.__typename == "GoogleCloudBigQueryDatasetAccessIamMember"
 		a.memberType == "allUsers"
 	]
-} else = [] {
-	true
-}
+} else = []

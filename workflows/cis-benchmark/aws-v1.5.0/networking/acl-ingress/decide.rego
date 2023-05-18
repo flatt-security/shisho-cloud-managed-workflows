@@ -26,9 +26,7 @@ insecure_nacls(nacls) := x {
 		nacl := nacls[_]
 		has_insecure_entry(nacl)
 	]
-} else := [] {
-	true
-}
+} else := []
 
 has_insecure_entry(nacl) {
 	p := ports_to_deny[_]
@@ -44,9 +42,7 @@ has_insecure_entry(nacl) {
 	e.type == "INGRESS"
 	e.ruleAction == "ALLOW"
 	port_range_includes(e.portRange, p)
-} else = false {
-	true
-}
+} else = false
 
 port_range_includes(r, port) {
 	r.from == 0
@@ -54,6 +50,4 @@ port_range_includes(r, port) {
 } else {
 	r.from <= port
 	port <= r.to
-} else = false {
-	true
-}
+} else = false

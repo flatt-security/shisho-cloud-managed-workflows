@@ -18,9 +18,7 @@ decisions[d] {
 backup_enabled(i) {
 	s := setting(i)
 	s.backupConfiguration.enabled
-} else = false {
-	true
-}
+} else = false
 
 setting(i) := i.s1 {
 	i.s1 != null
@@ -30,6 +28,4 @@ setting(i) := i.s1 {
 	i.s3 != null
 } else := i.s4 {
 	i.s4 != null
-} else := null {
-	true
-}
+} else := null

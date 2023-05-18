@@ -21,6 +21,4 @@ blocks_public_access(config) {
 	config.blockPublicPolicy == true
 	config.ignorePublicAcls == true
 	config.restrictPublicBuckets == true
-} else = false {
-	true
-}
+} else = false

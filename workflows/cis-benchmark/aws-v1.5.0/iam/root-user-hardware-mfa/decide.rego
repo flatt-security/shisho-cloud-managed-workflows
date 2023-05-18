@@ -25,15 +25,11 @@ find_hardware_mfa_field(summary, account_id, mfa_devices) {
 	field.value == 1
 
 	has_virtual_mfa_device(account_id, mfa_devices) == false
-} else = false {
-	true
-}
+} else = false
 
 has_virtual_mfa_device(account_id, mfa_devices) {
 	virtual_device_serial := sprintf("arn:aws:iam::%s:mfa/root-account-mfa-device", [account_id])
 
 	device := mfa_devices[_]
 	device.serialNumber == virtual_device_serial
-} else = false {
-	true
-}
+} else = false

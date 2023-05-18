@@ -22,6 +22,4 @@ find_root_access_key_field(summary) {
 	field.key == "AccountAccessKeysPresent"
 
 	field.value > 0
-} else = false {
-	true
-}
+} else = false

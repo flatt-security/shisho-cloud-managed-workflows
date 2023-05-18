@@ -6,9 +6,7 @@ import data.shisho.notification.slack
 minimum_severity := severity_intl(data.params.minimum_severity) {
 	data.params
 	data.params.minimum_severity != ""
-} else := shisho.decision.severity_critical {
-	true
-}
+} else := shisho.decision.severity_critical
 
 severity_intl(x) := shisho.decision.severity_info {
 	x == "INFO"
@@ -20,9 +18,7 @@ severity_intl(x) := shisho.decision.severity_info {
 	x == "HIGH"
 } else := shisho.decision.severity_critical {
 	x == "CRITICAL"
-} else := shisho.decision.severity_low {
-	true
-}
+} else := shisho.decision.severity_low
 
 severity_string(x) := "参考情報（info）" {
 	x == shisho.decision.severity_info
@@ -34,9 +30,7 @@ severity_string(x) := "参考情報（info）" {
 	x == shisho.decision.severity_high
 } else := "緊急（critical）" {
 	x == shisho.decision.severity_critical
-} else := x {
-	true
-}
+} else := x
 
 severity_emoji(x) := ":information_source:" {
 	x == shisho.decision.severity_info
@@ -48,9 +42,7 @@ severity_emoji(x) := ":information_source:" {
 	x == shisho.decision.severity_high
 } else := ":sos:" {
 	x == shisho.decision.severity_critical
-} else := ":memo:" {
-	true
-}
+} else := ":memo:"
 
 triage_status(x) := "要レビュー" {
 	x == "AWAITING_REVIEW"
@@ -62,9 +54,7 @@ triage_status(x) := "要レビュー" {
 	x == "SECURE"
 } else := "削除済" {
 	x == "DELETED"
-} else := x {
-	true
-}
+} else := x
 
 triage_status_emoji(x) := ":eyes:" {
 	x == "AWAITING_REVIEW"
@@ -76,18 +66,14 @@ triage_status_emoji(x) := ":eyes:" {
 	x == "SECURE"
 } else := ":wastebasket:" {
 	x == "DELETED"
-} else := ":memo:" {
-	true
-}
+} else := ":memo:"
 
 headline(type, status) := "*新たなポリシー違反が検出されました。*\n対応を検討しましょう。" {
 	type == "CREATED"
 } else := "*ポリシー違反が解決されました* :tada:" {
 	type == "UPDATED"
 	status == "SECURE"
-} else := "*ポリシーに違反した設定の対応状況が変化しました。*\n引き続き対応を進めましょう。" {
-	true
-}
+} else := "*ポリシーに違反した設定の対応状況が変化しました。*\n引き続き対応を進めましょう。"
 
 title(explanation, api_version, kind) := explanation.title {
 	explanation

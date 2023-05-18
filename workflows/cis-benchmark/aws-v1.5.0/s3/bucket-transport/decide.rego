@@ -27,6 +27,4 @@ is_allowed(raw_document) {
 	# check if the value is false
 	# the key "aws:SecureTransport" might have a string value or an array of string values
 	contains(json.marshal(config_value), "false")
-} else = false {
-	true
-}
+} else = false

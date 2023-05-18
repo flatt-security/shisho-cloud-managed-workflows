@@ -17,6 +17,4 @@ decisions[d] {
 includes_cloudasset_api(services) {
 	service := services[_]
 	service.name == "cloudasset.googleapis.com"
-} else = false {
-	true
-}
+} else = false

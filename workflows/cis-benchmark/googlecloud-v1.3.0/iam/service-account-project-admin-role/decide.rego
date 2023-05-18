@@ -25,9 +25,7 @@ permissive_project_bindings(bindings) := x {
 		member.__typename == "GoogleCloudIAMPrincipalServiceAccount"
 		member.email != null
 	]
-} else := [] {
-	true
-}
+} else := []
 
 is_suspicious_role(role) {
 	contains(role, "Admin")
@@ -37,6 +35,4 @@ is_suspicious_role(role) {
 	role == "roles/editor"
 } else {
 	role == "roles/owner"
-} else = false {
-	true
-}
+} else = false

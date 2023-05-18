@@ -19,6 +19,4 @@ find_mfa_field(summary) {
 	field := summary[_]
 	field.key == "AccountMFAEnabled"
 	field.value == 1
-} else = false {
-	true
-}
+} else = false

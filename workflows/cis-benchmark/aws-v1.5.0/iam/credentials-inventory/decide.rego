@@ -40,17 +40,13 @@ last_used_at(user) := x {
 		# The timestamp the user's access keys were last used
 		keys_last_used_at(user),
 	])
-} else := 0 {
-	true
-}
+} else := 0
 
 # The last timestamp a user's access keys were used
 keys_last_used_at(user) := x {
 	count(user.accessKeys) > 0
 	x := max([key_last_used_at(key) | key := user.accessKeys[_]])
-} else := 0 {
-	true
-}
+} else := 0
 
 # The last timestamp an access key was used
 key_last_used_at(key) := x {
@@ -62,15 +58,11 @@ key_last_used_at(key) := x {
 		timestamp_ns(key.createdAt),
 		timestamp_ns(key.lastUsed.lastUsedAt),
 	])
-} else := 0 {
-	true
-}
+} else := 0
 
 timestamp_ns(t) := 0 {
 	t == null
-} else := time.parse_rfc3339_ns(t) {
-	true
-}
+} else := time.parse_rfc3339_ns(t)
 
 used_within_recent_days(ts, d) {
 	now := time.now_ns()
@@ -79,6 +71,4 @@ used_within_recent_days(ts, d) {
 
 	# True if the difference is less than `d` days
 	diff_ns < (((1000000000 * 60) * 60) * 24) * d
-} else = false {
-	true
-}
+} else = false

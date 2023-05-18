@@ -24,6 +24,4 @@ required_length(password_policy) := 8 {
 	# `password_policy == null` means the account uses a default policy, and the default policy uses 8 characters as the minimum length.
 	# https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html#default-policy-details
 	password_policy == null
-} else := password_policy.minimumPasswordLength {
-	true
-}
+} else := password_policy.minimumPasswordLength

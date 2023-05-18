@@ -23,6 +23,4 @@ has_public_ip(instance_type, ip_addresses) {
 	# "PRIMARY" represents a public IP in this context.
 	# https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances#sqlipaddresstype
 	ip_address.ipAddressType == "PRIMARY"
-} else = false {
-	true
-}
+} else = false

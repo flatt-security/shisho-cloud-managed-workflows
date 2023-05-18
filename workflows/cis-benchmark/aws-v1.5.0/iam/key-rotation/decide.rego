@@ -34,9 +34,7 @@ keys_requiring_rotation(keys) := x {
 		key := keys[_]
 		needs_rotation(key)
 	]
-} else := [] {
-	true
-}
+} else := []
 
 # the key needs rotation...
 needs_rotation(key) {
@@ -53,6 +51,4 @@ needs_rotation(key) {
 
 	t := time.parse_rfc3339_ns(key.lastUsed.lastUsedAt)
 	now - t > (((1000000000 * 60) * 60) * 24) * days_of_accepted_age
-} else = false {
-	true
-}
+} else = false

@@ -41,26 +41,20 @@ uses_unpermitted_scope(
 
 	# Exception: GKE-managed instances will have the cloud-platform scope.
 	not is_gke_node(instance_name, labels)
-} else = false {
-	true
-}
+} else = false
 
 # a Google Compute Engine instance created by GKE should be excluded.
 is_gke_node(instance_name, labels) {
 	startswith(instance_name, "gke-")
 	contains_gke_labels(labels)
-} else = false {
-	true
-}
+} else = false
 
 contains_gke_labels(labels) {
 	count([l.value |
 		l := labels[_]
 		l.value == "goog-gke-node"
 	]) > 0
-} else = false {
-	true
-}
+} else = false
 
 # return an email of the default service account 
 # the format of default service account is '[PROJECT_NUMBER]-compute@developer.gserviceaccount.com'
@@ -72,6 +66,4 @@ default_service_account(project_number) = x {
 contains_cloud_platform_scope(scopes) {
 	scope := scopes[_]
 	scope == "https://www.googleapis.com/auth/cloud-platform"
-} else = false {
-	true
-}
+} else = false

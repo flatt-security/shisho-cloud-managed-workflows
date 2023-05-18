@@ -25,9 +25,7 @@ is_allowed(rules) {
 		rule.encryptionByDefault.sseAlgorithm == "SSE_KMS",
 		rule.encryptionByDefault.sseAlgorithm == "SSE_S3",
 	])
-} else = false {
-	true
-}
+} else = false
 
 get_algorithms(rules) = x {
 	x := [rule.encryptionByDefault.sseAlgorithm |

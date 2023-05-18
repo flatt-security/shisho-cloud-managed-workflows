@@ -22,6 +22,4 @@ is_allowed(publicly_accessible, route_tables) {
 	route := table.routes[_]
 	startswith(route.gatewayId, "igw-")
 	route.destinationCidrBlock == "0.0.0.0/0"
-} else = false {
-	true
-}
+} else = false

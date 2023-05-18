@@ -8,30 +8,22 @@ import future.keywords.in
 archived_repositories_riskful {
 	data.params != null
 	data.params.archived_repositories_riskiness == "riskful"
-} else = false {
-	true
-}
+} else = false
 
 allow_if_excluded_or(is_archived, allowed) {
 	# if the archived repo is not included, and the repo is archived, then it must be allowed forcibly
 	not archived_repositories_riskful
 	is_archived
-} else = allowed {
-	true
-}
+} else = allowed
 
 pattern_match(pattern, name) {
 	pattern == name
-} else = false {
-	true
-}
+} else = false
 
 bpr_match(rules, name) {
 	some r in rules
 	pattern_match(r.pattern, name)
-} else = false {
-	true
-}
+} else = false
 
 # Review the status of branch protection rules for default branches
 ###################################

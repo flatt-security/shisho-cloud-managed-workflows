@@ -25,21 +25,16 @@ has_item_to_block_keys(metadata_items) {
 	i := metadata_items[_]
 	i.key == "block-project-ssh-keys"
 	lower(i.value) == "true"
-} else = false {
-	true
-}
+} else = false
 
 severity(metadata_items) := shisho.decision.severity_medium {
 	has_ssh_keys(metadata_items)
-} else := null {
-	# NOTE: null means to use the default severity
-	true
-}
+} else := null
+
+# NOTE: null means to use the default severity
 
 has_ssh_keys(metadata_items) {
 	i := metadata_items[_]
 	i.key == "ssh-keys"
 	i.value != ""
-} else = false {
-	true
-}
+} else = false

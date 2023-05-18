@@ -25,9 +25,7 @@ has_insecure_rule(rules) {
 		allows(rule.fromPort, rule.toPort, 22),
 		allows(rule.fromPort, rule.toPort, 3389),
 	])
-} else = false {
-	true
-}
+} else = false
 
 allows(from, to, port) {
 	from <= port
@@ -35,6 +33,4 @@ allows(from, to, port) {
 } else {
 	from == 0
 	to == 0
-} else = false {
-	true
-}
+} else = false

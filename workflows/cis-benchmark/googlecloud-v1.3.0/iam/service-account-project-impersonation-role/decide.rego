@@ -22,14 +22,10 @@ permissive_principals(bindings) := x {
 
 		member := binding.members[_]
 	]
-} else := [] {
-	true
-}
+} else := []
 
 can_impersonate_or_attach(role) {
 	role == "roles/iam.serviceAccountUser"
 } else {
 	role == "roles/iam.serviceAccountTokenCreator"
-} else = false {
-	true
-}
+} else = false

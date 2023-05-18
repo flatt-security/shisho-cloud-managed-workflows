@@ -28,25 +28,19 @@ has_logging_configs(audit_configurations) {
 
 	# check whether the configs include `DATA_WRITE`
 	has_data_write(audit_config.configurations)
-} else = false {
-	true
-}
+} else = false
 
 has_data_read(configurations) {
 	config := configurations[_]
 	config.type == "DATA_READ"
 	count(config.exemptedMembers) == 0
-} else = false {
-	true
-}
+} else = false
 
 has_data_write(configurations) {
 	config := configurations[_]
 	config.type == "DATA_WRITE"
 	count(config.exemptedMembers) == 0
-} else = false {
-	true
-}
+} else = false
 
 # `ADMAIN_READ` is mandaroty but check whether exempted members are empty
 has_admin_read(configurations) {
@@ -54,9 +48,7 @@ has_admin_read(configurations) {
 
 	config.type == "ADMIN_READ"
 	count(config.exemptedMembers) == 0
-} else = false {
-	true
-}
+} else = false
 
 audit_logging_configs(audit_configurations) := x {
 	x := [{
@@ -82,6 +74,4 @@ log_type(t) = shisho.decision.googlecloud.logging.AUDIT_LOG_CONFIG_LOG_TYPE_ADMI
 	t == "DATA_WRITE"
 } else = shisho.decision.googlecloud.logging.AUDIT_LOG_CONFIG_LOG_TYPE_DATA_WRITE {
 	t == "DATA_READ"
-} else = shisho.decision.googlecloud.logging.AUDIT_LOG_CONFIG_LOG_TYPE_LOG_TYPE_UNSPECIFIED {
-	true
-}
+} else = shisho.decision.googlecloud.logging.AUDIT_LOG_CONFIG_LOG_TYPE_LOG_TYPE_UNSPECIFIED

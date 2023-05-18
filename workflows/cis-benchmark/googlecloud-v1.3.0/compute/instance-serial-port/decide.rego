@@ -21,6 +21,4 @@ is_serial_port_enabled(metadata) {
 	item := metadata.items[_]
 	item.key == "serial-port-enable"
 	any([item.value == "1", lower(item.value) == "true"])
-} else = false {
-	true
-}
+} else = false

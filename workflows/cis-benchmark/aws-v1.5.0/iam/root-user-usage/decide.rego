@@ -28,15 +28,11 @@ last_used_at(contents) := x {
 		timestamp_ns(content.accessKey1LastUsedAt),
 		timestamp_ns(content.accessKey2LastUsedAt),
 	])
-} else := 0 {
-	true
-}
+} else := 0
 
 timestamp_ns(t) := 0 {
 	t == null
-} else := time.parse_rfc3339_ns(t) {
-	true
-}
+} else := time.parse_rfc3339_ns(t)
 
 used_within_recent_days(ts, d) {
 	now := time.now_ns()
@@ -45,6 +41,4 @@ used_within_recent_days(ts, d) {
 
 	# True if the difference is less than `d` days
 	diff_ns < (((1000000000 * 60) * 60) * 24) * d
-} else = false {
-	true
-}
+} else = false

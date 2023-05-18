@@ -24,6 +24,4 @@ reuse_prevention(policy) := 0 {
 	# `policy == null` means the account uses a default policy, and the default policy does not enforce password history policy.
 	# https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html#default-policy-details
 	policy == null
-} else := policy.passwordReusePrevention {
-	true
-}
+} else := policy.passwordReusePrevention

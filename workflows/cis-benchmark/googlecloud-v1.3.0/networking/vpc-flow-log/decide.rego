@@ -36,6 +36,4 @@ is_allowed(subnetworks) {
 
 	# check whether the metadata configuration is set as `INCLUDE_ALL_METADATA` to include all metadata
 	log_config.metadata == "INCLUDE_ALL_METADATA"
-} else = false {
-	true
-}
+} else = false

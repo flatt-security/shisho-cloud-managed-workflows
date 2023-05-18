@@ -24,9 +24,7 @@ non_csek_keys(disks) := x {
 		key_type := encryption_key_type(disk.diskEncryptionKey)
 		key_type != shisho.decision.googlecloud.compute.ENCRYPTION_KEY_TYPE_ENCRYPTION_KEY_TYPE_CUSTOMER_SUPPLIED
 	]
-} else := [] {
-	true
-}
+} else := []
 
 # key.kmsKeyName: The name of the encryption key that is stored in Google Cloud KMS
 # key.kmsKeyServiceAccount: /The service account being used for the encryption request for the given KMS key
@@ -60,6 +58,4 @@ encryption_key_type(key) = shisho.decision.googlecloud.compute.ENCRYPTION_KEY_TY
 
 	# If this is not empty, this is the customer-supplied encryption key
 	key.sha256 != ""
-} else = shisho.decision.googlecloud.compute.ENCRYPTION_KEY_TYPE_ENCRYPTION_KEY_TYPE_UNKNOWN {
-	true
-}
+} else = shisho.decision.googlecloud.compute.ENCRYPTION_KEY_TYPE_ENCRYPTION_KEY_TYPE_UNKNOWN

@@ -11,9 +11,7 @@ import data.shisho
 excludes_gke_nodes := data.params.excludes_gke_nodes {
 	data.params != null
 	data.params.excludes_gke_nodes != null
-} else := true {
-	true
-}
+} else := true
 
 decisions[d] {
 	project := input.googleCloud.projects[_]
@@ -44,9 +42,7 @@ v4_addresses(networkInterfaces, instance_name, labels) := x {
 		interface.ipv4AccessConfig.natIp != null
 		interface.ipv4AccessConfig.natIp != ""
 	]
-} else := [] {
-	true
-}
+} else := []
 
 v6_addresses(networkInterfaces, instance_name, labels) := x {
 	x := [sprintf("%s/%s", [interface.ipv6AccessConfig.externalIpv6, interface.ipv6AccessConfig.externalIpv6PrefixLength]) |
@@ -59,18 +55,14 @@ v6_addresses(networkInterfaces, instance_name, labels) := x {
 		interface.ipv6AccessConfig.externalIpv6 != null
 		interface.ipv6AccessConfig.externalIpv6 != ""
 	]
-} else := [] {
-	true
-}
+} else := []
 
 is_exception(instance_name, labels) {
 	excludes_gke_nodes
 	is_gke_node(instance_name, labels)
 } else {
 	not excludes_gke_nodes
-} else = false {
-	true
-}
+} else = false
 
 is_gke_node(instance_name, labels) {
 	startswith(instance_name, "gke-")
@@ -78,6 +70,4 @@ is_gke_node(instance_name, labels) {
 		l := labels[_]
 		l.value == "goog-gke-node"
 	]) > 0
-} else = false {
-	true
-}
+} else = false

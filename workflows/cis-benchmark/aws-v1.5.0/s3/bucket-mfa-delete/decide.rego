@@ -18,6 +18,4 @@ decisions[d] {
 versioning_needs_mfa(v) {
 	v.status == "ENABLED"
 	v.mfaDelete == "ENABLED"
-} else = false {
-	true
-}
+} else = false

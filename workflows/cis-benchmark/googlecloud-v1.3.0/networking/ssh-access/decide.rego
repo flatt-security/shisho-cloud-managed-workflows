@@ -24,17 +24,13 @@ ssh_access_surfaces(firewallRules) := x {
 		allows_ssh_protocol(item.ipProtocol)
 		allows_ssh_default_port(item.ports)
 	]
-} else := [] {
-	true
-}
+} else := []
 
 # review the given set of ranges includes is "0.0.0.0/0"
 allows_public_traffic(source_ranges) {
 	range := source_ranges[_]
 	range == "0.0.0.0/0"
-} else = false {
-	true
-}
+} else = false
 
 # NOTE: a firewall rule without any port ranges specified allows all ports
 allows_ssh_default_port(ports) {
@@ -42,9 +38,7 @@ allows_ssh_default_port(ports) {
 	range_includes(port, 22)
 } else {
 	count(ports) == 0
-} else = false {
-	true
-}
+} else = false
 
 range_includes(r, p) {
 	r.from == p
@@ -61,6 +55,4 @@ allows_ssh_protocol(protocol) {
 	protocol == "all"
 } else {
 	protocol == "tcp"
-} else = false {
-	true
-}
+} else = false

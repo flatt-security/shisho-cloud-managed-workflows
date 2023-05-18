@@ -21,6 +21,4 @@ has_administrative_statement(document) {
 	statement.Effect == "Allow"
 	statement.Action == "*"
 	statement.Resource == "*"
-} else = false {
-	true
-}
+} else = false
