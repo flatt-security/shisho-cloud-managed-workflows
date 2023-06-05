@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-aws-elb"
+name: "Prebundle: Review AWS ELB posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: alb-logging
+    name: Review logging
+    decide:
+      rego: !include logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include logging/decide.graphql
+  - id: deletion-protection
+    name: Review delete protection
+    decide:
+      rego: !include deletion-protection/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include deletion-protection/decide.graphql
+  - id: alb-header
+    name: Review ALB header handling
+    decide:
+      rego: !include alb-header/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include alb-header/decide.graphql

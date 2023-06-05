@@ -1,0 +1,22 @@
+query {
+  aws {
+    accounts {
+      elb {
+        loadBalancers(condition: { types: [APPLICATION] }) {
+          ... on AWSELBApplicationLoadBalancer {
+            metadata {
+              id
+            }
+
+            name
+            dnsName
+
+            attributes {
+              enabledDeletionProtection
+            }
+          }
+        }
+      }
+    }
+  }
+}

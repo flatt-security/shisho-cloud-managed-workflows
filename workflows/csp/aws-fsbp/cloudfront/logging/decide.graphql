@@ -1,0 +1,19 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+
+          config {
+            logging {
+              bucketId
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+          origins {
+            id
+            domainName
+
+            backend {
+              __typename
+              ... on AWSCloudFrontDistributionOriginBackendHttpEndpoint {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendS3Website {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendEC2Instance {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendAPIGateway {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendELBLoadBalancer {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendMediaStoreContainer {
+                protocolPolicy
+                sslProtocols
+              }
+              ... on AWSCloudFrontDistributionOriginBackendMediaPackageEndpoint {
+                protocolPolicy
+                sslProtocols
+              }
+            }
+          }
+          defaultCacheBehavior {
+            targetOriginId
+            viewerProtocolPolicy
+          }
+          cacheBehaviors {
+            pathPattern
+            targetOriginId
+            viewerProtocolPolicy
+          }
+        }
+      }
+    }
+  }
+}
