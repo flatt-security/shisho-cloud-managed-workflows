@@ -1,0 +1,22 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+          defaultCacheBehavior {
+            targetOriginId
+            viewerProtocolPolicy
+          }
+          cacheBehaviors {
+            pathPattern
+            targetOriginId
+            viewerProtocolPolicy
+          }
+        }
+      }
+    }
+  }
+}

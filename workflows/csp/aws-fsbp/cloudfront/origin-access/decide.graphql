@@ -1,0 +1,25 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+          origins {
+            id
+            domainName
+
+            accessControlId
+            backend {
+              __typename
+              ... on AWSCloudFrontDistributionOriginBackendS3Bucket {
+                accessIdentityId
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

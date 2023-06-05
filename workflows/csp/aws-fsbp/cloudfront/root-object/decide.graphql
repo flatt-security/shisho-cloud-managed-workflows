@@ -1,0 +1,16 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+          config {
+            defaultRootObject
+          }
+        }
+      }
+    }
+  }
+}

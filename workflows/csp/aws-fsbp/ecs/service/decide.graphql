@@ -1,0 +1,33 @@
+query {
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          services {
+            name
+
+            launchType
+            capacityProviderStrategy {
+              name
+            }
+
+            metadata {
+              id
+            }
+            networkConfiguration {
+              vpcConfiguration {
+                subnets {
+                  id
+                }
+                securityGroups {
+                  id
+                }
+                assignPublicIp
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

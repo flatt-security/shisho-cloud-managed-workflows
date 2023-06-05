@@ -1,0 +1,34 @@
+version: 0.1.0
+
+id: "prebundle-aws-ecs"
+name: "Prebundle: Review AWS ECS posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: service
+    name: Review each service
+    decide:
+      rego: !include service/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include service/decide.graphql
+  - id: task
+    name: Review each task
+    decide:
+      rego: !include task/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include task/decide.graphql

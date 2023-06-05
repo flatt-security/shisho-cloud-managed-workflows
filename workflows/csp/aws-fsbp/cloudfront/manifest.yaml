@@ -1,0 +1,70 @@
+version: 0.1.0
+
+id: "prebundle-aws-cloudfront"
+name: "Prebundle: Review AWS CloudFront posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: "logging"
+    name: Review logging configuration
+    decide:
+      rego: !include logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include logging/decide.graphql
+  - id: "origin-transport"
+    name: Review origin transport configuration
+    decide:
+      rego: !include origin-transport/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include origin-transport/decide.graphql
+  - id: "origin-access-control"
+    name: Review origin access control configuration
+    decide:
+      rego: !include origin-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include origin-access/decide.graphql
+  - id: "root-object"
+    name: Review default root object configuration
+    decide:
+      rego: !include root-object/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include root-object/decide.graphql
+  - id: "transport"
+    name: Review transport configuration
+    decide:
+      rego: !include transport/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include transport/decide.graphql

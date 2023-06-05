@@ -1,0 +1,30 @@
+query {
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          services {
+            metadata {
+              id
+            }
+            taskDefinition {
+              containerDefinitions {
+                __typename
+                ... on AWSECSLinuxContainerDefinition {
+                  name
+                  privileged
+                  readonlyRootFilesystem
+                }
+                ... on AWSECSWindowsContainerDefinition {
+                  name
+                  privileged
+                  readonlyRootFilesystem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
