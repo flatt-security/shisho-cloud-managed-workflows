@@ -95,3 +95,31 @@ test_no_s3_origins_will_be_denied if {
 		}],
 	}]}}]}}
 }
+
+test_tag_exception_works if {
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"cloudFront": {"distributions": [{
+		"metadata": {"id": "aws-cloudfront-distribution|E6M4TFOSOK0BL"},
+		"origins": [
+			{
+				"id": "test-alb-2-795120637.ap-northeast-1.elb.amazonaws.com",
+				"domainName": "test-alb-2-795120637.ap-northeast-1.elb.amazonaws.com",
+				"accessControlId": null,
+				"backend": {"__typename": "AWSCloudFrontDistributionOriginBackendELBLoadBalancer"},
+			},
+			{
+				"id": "test-shisho-bucket-3.s3.ap-northeast-1.amazonaws.com",
+				"domainName": "test-shisho-bucket-3.s3.ap-northeast-1.amazonaws.com",
+				"accessControlId": null,
+				"backend": {
+					"__typename": "AWSCloudFrontDistributionOriginBackendS3Bucket",
+					"accessIdentityId": "this-value-is-set",
+				},
+			},
+		],
+		"tags": [{"key": "foo", "value": "bar=piyo"}],
+	}]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
+}

@@ -15,7 +15,7 @@ decisions[d] {
 	allowed := count(keys) == 0
 
 	d := shisho.decision.aws.iam.key_rotation({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, user),
 		"subject": user.metadata.id,
 		"payload": shisho.decision.aws.iam.key_rotation_payload({
 			"keys_requiring_rotation": keys,
@@ -52,3 +52,17 @@ needs_rotation(key) {
 	t := time.parse_rfc3339_ns(key.lastUsed.lastUsedAt)
 	now - t > (((1000000000 * 60) * 60) * 24) * days_of_accepted_age
 } else = false
+
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed

@@ -34,3 +34,22 @@ test_configured_default_root_object_will_be_allowed if {
 		},
 	]}}]}}
 }
+
+test_tag_exception_works if {
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"cloudFront": {"distributions": [
+		{
+			"metadata": {"id": "aws-cloudfront-distribution|E26BBBQKUHTIWJ"},
+			"config": {"defaultRootObject": null},
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-cloudfront-distribution|E26AAAQKUHTIWJ"},
+			"config": {"defaultRootObject": null},
+			"tags": [{"key": "foo", "value": "unrelated"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
+}

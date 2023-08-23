@@ -185,3 +185,29 @@ test_origin_with_match_viewer_dependenet_protocol if {
 		"cacheBehaviors": [],
 	}]}}]}}
 }
+
+test_tag_exception_works if {
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+		d.header.kind == shisho.decision.aws.cloudfront.origin_transport_kind
+	]) == 1 with input as {"aws": {"accounts": [{"cloudFront": {"distributions": [{
+		"metadata": {"id": "aws-cloudfront-distribution|E6MAAAOSOK0BL"},
+		"origins": [{
+			"id": "test-alb-2-795120637.ap-northeast-1.elb.amazonaws.com",
+			"domainName": "test-alb-2-795120637.ap-northeast-1.elb.amazonaws.com",
+			"backend": {
+				"__typename": "AWSCloudFrontDistributionOriginBackendELBLoadBalancer",
+				"protocolPolicy": "MATCH_VIEWER",
+				"sslProtocols": [],
+			},
+		}],
+		"defaultCacheBehavior": {
+			"targetOriginId": "test-shisho-bucket-3.s3.ap-northeast-1.amazonaws.com",
+			"viewerProtocolPolicy": "ALLOW_ALL",
+		},
+		"cacheBehaviors": [],
+		"tags": [{"key": "foo", "value": "bar=piyo"}],
+	}]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
+}

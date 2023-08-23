@@ -41,4 +41,22 @@ test_whether_auto_minor_version_upgrade_is_enabled_for_rds_instances if {
 			"autoMinorVersionUpgrade": false,
 		},
 	]}}]}}
+
+	# check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"rds": {"instances": [
+		{
+			"metadata": {"id": "aws-rds-db-instance|ap-northeast-1|test-aurora-1-instance-1"},
+			"autoMinorVersionUpgrade": false,
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-rds-db-instance|ap-northeast-1|tftestmysql1"},
+			"autoMinorVersionUpgrade": false,
+			"tags": [{"key": "foo", "value": "unrelated"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

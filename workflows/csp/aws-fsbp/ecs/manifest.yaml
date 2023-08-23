@@ -18,6 +18,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include service/decide.graphql
   - id: task
@@ -29,6 +34,11 @@ jobs:
           type: resource_exception
           multiple: true
           description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
           values: []
       input:
         schema: !include task/decide.graphql

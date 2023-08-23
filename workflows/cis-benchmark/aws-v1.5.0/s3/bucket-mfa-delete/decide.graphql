@@ -10,6 +10,11 @@
             mfaDelete
             status
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

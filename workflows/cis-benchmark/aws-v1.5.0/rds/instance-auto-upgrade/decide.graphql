@@ -8,18 +8,33 @@
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSMySQLInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSPostgreSQLInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSSQLServerInstance {
             metadata {
@@ -32,30 +47,55 @@
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSMariaDBInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraMySQLInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraPostgreSQLInstance {
             metadata {
               id
             }
             autoMinorVersionUpgrade
+
+            tags {
+              key
+              value
+            }
           }
         }
       }

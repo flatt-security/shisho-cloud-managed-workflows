@@ -18,6 +18,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include bucket-access-logging/decide.graphql
   - id: bucket-encryption
@@ -29,6 +34,11 @@ jobs:
           type: resource_exception
           multiple: true
           description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
           values: []
       input:
         schema: !include bucket-encryption/decide.graphql
@@ -42,6 +52,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include bucket-mfa-delete/decide.graphql
   - id: bucket-public-access
@@ -54,6 +69,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include bucket-public-access/decide.graphql
   - id: bucket-transport
@@ -65,6 +85,11 @@ jobs:
           type: resource_exception
           multiple: true
           description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
           values: []
       input:
         schema: !include bucket-transport/decide.graphql
