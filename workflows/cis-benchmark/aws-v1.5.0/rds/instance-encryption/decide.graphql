@@ -8,54 +8,90 @@
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSMySQLInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSPostgreSQLInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSSQLServerInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSOracleInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSMariaDBInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraMySQLInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
           ... on AWSRDSAuroraPostgreSQLInstance {
             metadata {
               id
             }
             storageEncrypted
+            tags {
+              key
+              value
+            }
           }
         }
       }

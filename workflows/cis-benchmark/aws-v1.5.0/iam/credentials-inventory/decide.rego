@@ -3,7 +3,7 @@ package policy.aws.iam.credentials_inventory
 import data.shisho
 
 # this policy checks if the credentials are created/used within the last 45 days
-# please adjust the `days_of_accepted_age` variable depending on your needs
+# please adjust the `must_alert_if_unused_for` variable depending on your needs
 must_alert_if_unused_for := 45
 
 decisions[d] {
@@ -20,7 +20,7 @@ decisions[d] {
 	allowed := active
 
 	d := shisho.decision.aws.iam.credentials_inventory({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, user),
 		"subject": user.metadata.id,
 		"payload": shisho.decision.aws.iam.credentials_inventory_payload({
 			"last_used_at": time.format(lat),
@@ -72,3 +72,17 @@ used_within_recent_days(ts, d) {
 	# True if the difference is less than `d` days
 	diff_ns < (((1000000000 * 60) * 60) * 24) * d
 } else = false
+
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed

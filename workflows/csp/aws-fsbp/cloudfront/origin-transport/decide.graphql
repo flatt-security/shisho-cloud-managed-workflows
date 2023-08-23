@@ -51,6 +51,11 @@ query {
             targetOriginId
             viewerProtocolPolicy
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

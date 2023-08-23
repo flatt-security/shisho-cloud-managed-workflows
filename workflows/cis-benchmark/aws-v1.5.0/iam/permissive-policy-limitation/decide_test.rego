@@ -33,4 +33,22 @@ test_whether_the_policies_are_limited_properly if {
 			"defaultVersion": {"rawDocument": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"*\",\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"cloudwatch:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"autoscaling:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"iam:CreateServiceLinkedRole\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"iam:AWSServiceName\": [\n            \"autoscaling.amazonaws.com\",\n            \"ec2scheduled.amazonaws.com\",\n            \"elasticloadbalancing.amazonaws.com\",\n            \"spot.amazonaws.com\",\n            \"spotfleet.amazonaws.com\",\n            \"transitgateway.amazonaws.com\"\n          ]\n        }\n      }\n    }\n  ]\n}"},
 		},
 	]}}]}}
+
+	# check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"iam": {"policies": [
+		{
+			"metadata": {"id": "aws-iam-policy|ANPAI3VAJF5ZCRZ722222"},
+			"defaultVersion": {"rawDocument": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"*\",\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"cloudwatch:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"autoscaling:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"iam:CreateServiceLinkedRole\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"iam:AWSServiceName\": [\n            \"autoscaling.amazonaws.com\",\n            \"ec2scheduled.amazonaws.com\",\n            \"elasticloadbalancing.amazonaws.com\",\n            \"spot.amazonaws.com\",\n            \"spotfleet.amazonaws.com\",\n            \"transitgateway.amazonaws.com\"\n          ]\n        }\n      }\n    }\n  ]\n}"},
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-iam-policy|ANPAI3VAJF5ZCRZ733333"},
+			"defaultVersion": {"rawDocument": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"*\",\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"cloudwatch:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"autoscaling:*\",\n      \"Resource\": \"*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"iam:CreateServiceLinkedRole\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"iam:AWSServiceName\": [\n            \"autoscaling.amazonaws.com\",\n            \"ec2scheduled.amazonaws.com\",\n            \"elasticloadbalancing.amazonaws.com\",\n            \"spot.amazonaws.com\",\n            \"spotfleet.amazonaws.com\",\n            \"transitgateway.amazonaws.com\"\n          ]\n        }\n      }\n    }\n  ]\n}"},
+			"tags": [{"key": "foo", "value": "unrelated"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

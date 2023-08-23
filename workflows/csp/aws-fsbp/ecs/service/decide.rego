@@ -9,7 +9,7 @@ decisions[d] {
 
 	allowed := service_has_automatic_ip_assignment(service) == false
 	d := shisho.decision.aws.ecs.service_public_ip({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, service),
 		"subject": service.metadata.id,
 		"payload": shisho.decision.aws.ecs.service_public_ip_payload({
 			"public_ip_assigned": service_public_assignment(service),
@@ -55,3 +55,17 @@ service_subnets(s) := [sb.id | sb := s.networkConfiguration.vpcConfiguration.sub
 	s.networkConfiguration != null
 	s.networkConfiguration.vpcConfiguration != null
 } else := []
+
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed

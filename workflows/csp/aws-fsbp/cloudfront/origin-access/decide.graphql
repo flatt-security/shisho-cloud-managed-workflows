@@ -18,6 +18,11 @@ query {
               }
             }
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

@@ -26,6 +26,11 @@ query {
               }
             }
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

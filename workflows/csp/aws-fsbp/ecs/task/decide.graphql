@@ -23,6 +23,11 @@ query {
               }
             }
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

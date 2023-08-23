@@ -8,7 +8,7 @@ decisions[d] {
 
 	allowed := has_logging_bucket(dist.config)
 	d := shisho.decision.aws.cloudfront.logging({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
 		"payload": shisho.decision.aws.cloudfront.logging_payload({"bucket_id": logging_bucket_id(dist.config)}),
 	})
@@ -22,3 +22,17 @@ logging_bucket_id(cfg) := cfg.logging.bucketId {
 	cfg.logging != null
 	cfg.logging.bucketId != ""
 } else := ""
+
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed

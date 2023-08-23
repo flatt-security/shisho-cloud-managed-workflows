@@ -5,31 +5,19 @@ import future.keywords
 
 now_ns := time.now_ns()
 
-now := time.date(now_ns)
+today_string := date_string(now_ns)
 
-today_string := sprintf("%d-%s-%sT00:00:00Z", [now[0], get_month(now[1]), get_day(now[2])])
+five_months_ago_string := date_string(time.add_date(now_ns, 0, -5, 0))
 
-five_months_ago_ns := time.add_date(now_ns, 0, -5, -0)
-
-five_months_ago := time.date(five_months_ago_ns)
-
-five_months_ago_string := sprintf("%d-%s-%sT00:00:00Z", [five_months_ago[0], get_month(five_months_ago[1]), get_day(five_months_ago[2])])
-
-get_month(month) = month_string if {
-	month <= 10
-	month_string := sprintf("0%d", [month])
-} else = month_string if {
-	month > 10
-	month_string := sprintf("%d", [month])
+date_string(date_ns) := date_as_string if {
+	date := time.date(date_ns)
+	date_as_string := sprintf("%d-%s-%sT00:00:00Z", [date[0], format_digit(date[1]), format_digit(date[2])])
 }
 
-get_day(day) := day_string if {
-	day <= 10
-	day_string := sprintf("0%d", [day])
-} else := day_string if {
-	day > 10
-	day_string := sprintf("%d", [day])
-}
+format_digit(digit) = formatted_digit if {
+	digit < 10
+	formatted_digit := sprintf("0%d", [digit])
+} else = sprintf("%d", [digit])
 
 test_whether_the_root_user_is_used if {
 	# check if the root user is not used

@@ -13,7 +13,7 @@ decisions[d] {
 	origins := origin_transports(dist)
 	allowed := includes_unallowed_origin_transport(dist, origins) == false
 	d := shisho.decision.aws.cloudfront.origin_transport({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
 		"payload": shisho.decision.aws.cloudfront.origin_transport_payload({"origins": origins}),
 	})
@@ -48,6 +48,20 @@ includes_unallowed_origin_transport(dist, origins) {
 	viewer_can_use_http(dist)
 } else := false
 
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed
+
 ###########################
 # origin_transport_version
 ###########################
@@ -59,7 +73,7 @@ decisions[d] {
 	origins := origin_transports(dist)
 	allowed := includes_unallowed_origin_transport_version(dist, origins) == false
 	d := shisho.decision.aws.cloudfront.origin_transport_version({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
 		"payload": shisho.decision.aws.cloudfront.origin_transport_version_payload({"origins": origins}),
 	})

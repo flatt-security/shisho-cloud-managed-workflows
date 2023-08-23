@@ -10,6 +10,11 @@ query {
             targetBucket
             targetPrefix
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

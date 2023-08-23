@@ -12,6 +12,11 @@ query {
               bucketId
             }
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

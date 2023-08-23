@@ -41,4 +41,22 @@ test_whether_storage_encryption_is_enabled_for_rds_instances if {
 			"storageEncrypted": false,
 		},
 	]}}]}}
+
+	# check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"rds": {"instances": [
+		{
+			"metadata": {"id": "aws-rds-db-instance|ap-northeast-1|test-aurora-1-instance-1"},
+			"storageEncrypted": false,
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-rds-db-instance|ap-northeast-1|tftestmysql1"},
+			"storageEncrypted": false,
+			"tags": [{"key": "foo", "value": "unrelated"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

@@ -9,6 +9,11 @@
           policy {
             rawDocument
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

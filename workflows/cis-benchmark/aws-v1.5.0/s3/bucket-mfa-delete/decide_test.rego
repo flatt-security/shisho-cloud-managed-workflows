@@ -45,4 +45,28 @@ test_whether_the_mfa_delete_is_enabled_for_aws_s3_buckets if {
 			},
 		},
 	]}}]}}
+
+	# Check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"s3": {"buckets": [
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-1"},
+			"versioning": {
+				"mfaDelete": "ENABLED",
+				"status": "DISABLED",
+			},
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-2"},
+			"versioning": {
+				"mfaDelete": "DISABLED",
+				"status": "ENABLED",
+			},
+			"tags": [{"key": "foo", "value": "invalid"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

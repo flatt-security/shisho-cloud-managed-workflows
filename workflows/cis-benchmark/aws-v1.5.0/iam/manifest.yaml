@@ -18,6 +18,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include credentials-inventory/decide.graphql
   - id: key-rotation
@@ -29,6 +34,11 @@ jobs:
           type: resource_exception
           multiple: true
           description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
           values: []
       input:
         schema: !include key-rotation/decide.graphql
@@ -66,6 +76,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
       input:
         schema: !include permissive-policy-limitation/decide.graphql
   - id: root-user-hardware-mfa
@@ -81,7 +96,7 @@ jobs:
       input:
         schema: !include root-user-hardware-mfa/decide.graphql
   - id: root-user-key
-    name: Review the access keys of users
+    name: Review the access keys of the roor user
     decide:
       rego: !include root-user-key/decide.rego
       with:
@@ -93,7 +108,7 @@ jobs:
       input:
         schema: !include root-user-key/decide.graphql
   - id: root-user-mfa
-    name: Review the usage of MFA devices
+    name: Review the usage of MFA devices of the roor user
     decide:
       rego: !include root-user-mfa/decide.rego
       with:

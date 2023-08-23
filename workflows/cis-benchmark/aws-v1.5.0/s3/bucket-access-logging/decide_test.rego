@@ -39,4 +39,21 @@ test_whether_the_access_logging_is_enabled_for_aws_s3_buckets if {
 			"logging": null,
 		},
 	]}}]}}
+
+	# Check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"s3": {"buckets": [
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|shisho-cloud-tfstate-1"},
+			"logging": null,
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|tf-test-s3-bucket"},
+			"logging": null,
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

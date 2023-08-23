@@ -10,7 +10,7 @@ decisions[d] {
 	containers := service_container_privilege_configs(service)
 	allowed := has_privileged_containers(containers) == false
 	d := shisho.decision.aws.ecs.container_privilege({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, service),
 		"subject": service.metadata.id,
 		"payload": shisho.decision.aws.ecs.container_privilege_payload({"containers": containers}),
 	})
@@ -28,6 +28,20 @@ has_privileged_containers(containers) {
 	c.privileged
 } else := false
 
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed
+
 decisions[d] {
 	account := input.aws.accounts[_]
 	cluster := account.ecs.clusters[_]
@@ -36,7 +50,7 @@ decisions[d] {
 	containers := service_container_filesystem_configs(service)
 	allowed := has_writeable_root_fs(containers) == false
 	d := shisho.decision.aws.ecs.container_fs_permission({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, service),
 		"subject": service.metadata.id,
 		"payload": shisho.decision.aws.ecs.container_fs_permission_payload({"containers": containers}),
 	})

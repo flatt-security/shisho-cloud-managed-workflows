@@ -9,6 +9,11 @@ query {
           config {
             defaultRootObject
           }
+
+          tags {
+            key
+            value
+          }
         }
       }
     }

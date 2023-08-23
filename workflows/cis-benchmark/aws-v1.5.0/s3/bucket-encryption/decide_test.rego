@@ -45,4 +45,28 @@ test_whether_the_bucket_encryption_is_enabled_for_aws_s3_buckets if {
 			}]},
 		},
 	]}}]}}
+
+	# Check tag_exceptions works
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 1 with input as {"aws": {"accounts": [{"s3": {"buckets": [
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-1"},
+			"encryptionConfiguration": {"rules": [{
+				"encryptionByDefault": {"sseAlgorithm": "AES256"},
+				"keyEnabled": false,
+			}]},
+			"tags": [{"key": "foo", "value": "bar=piyo"}],
+		},
+		{
+			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-2"},
+			"encryptionConfiguration": {"rules": [{
+				"encryptionByDefault": {"sseAlgorithm": "INSECURE_ALGORITHM"},
+				"keyEnabled": true,
+			}]},
+			"tags": [{"key": "foo", "value": "diff"}],
+		},
+	]}}]}}
+		with data.params as {"tag_exceptions": ["foo=bar=piyo"]}
 }

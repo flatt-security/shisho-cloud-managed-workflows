@@ -9,7 +9,7 @@ decisions[d] {
 	origins := s3_backend_origins(dist)
 	allowed := includes_unallowed_origins(origins) == false
 	d := shisho.decision.aws.cloudfront.origin_access_control({
-		"allowed": allowed,
+		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
 		"payload": shisho.decision.aws.cloudfront.origin_access_control_payload({"origins": origins}),
 		"severity": custom_severity(origins),
@@ -49,3 +49,17 @@ custom_severity_of(o) := shisho.decision.severity_low {
 	o.origin_access_control_configured == ""
 	o.origin_access_identity_configured != ""
 } else := null
+
+allow_if_excluded(allowed, r) {
+	data.params != null
+
+	tag := data.params.tag_exceptions[_]
+	elements := split(tag, "=")
+
+	tag_key := elements[0]
+	tag_value := concat("=", array.slice(elements, 1, count(elements)))
+
+	t := r.tags[_]
+	t.key == tag_key
+	t.value == tag_value
+} else := allowed
