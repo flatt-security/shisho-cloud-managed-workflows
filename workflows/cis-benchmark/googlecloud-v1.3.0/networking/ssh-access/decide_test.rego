@@ -12,7 +12,7 @@ test_whether_ssh_is_disabled_by_firewall_policies if {
 			"id": "test-project-1",
 			"network": {"vpcNetworks": [
 				{
-					# allowed (the ingerss is allowed, but tcp/22 itself is not allowed)
+					# allowed (the ingress is allowed, but tcp & sctp/22 itself is not allowed)
 					"metadata": {"id": "googlecloud-nw-vpc-network|514893255555|56580586120417777"},
 					"firewallRules": [
 						{
@@ -113,6 +113,15 @@ test_whether_ssh_is_disabled_by_firewall_policies if {
 						"direction": "INGRESS",
 						"sourceRanges": ["35.235.240.0/20"],
 					},
+					{
+						"network": "https://www.googleapis.com/compute/v1/projects/test-project-2/global/networks/test-3",
+						"allowed": [{
+							"ipProtocol": "sctp",
+							"ports": [{"from": 22, "to": 22}],
+						}],
+						"direction": "INGRESS",
+						"sourceRanges": ["35.235.240.0/20"],
+					},
 				],
 			}]},
 		},
@@ -121,7 +130,7 @@ test_whether_ssh_is_disabled_by_firewall_policies if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 4 with input as {"googleCloud": {"projects": [
 		{
 			"id": "test-project-1",
 			"network": {"vpcNetworks": [{
@@ -172,6 +181,47 @@ test_whether_ssh_is_disabled_by_firewall_policies if {
 						"sourceRanges": ["0.0.0.0/0"],
 					},
 				],
+			}]},
+		},
+		{
+			"id": "test-project-3",
+			"network": {"vpcNetworks": [{
+				"metadata": {"id": "googlecloud-nw-vpc-network|514893255555|56580586120433333"},
+				"firewallRules": [
+					{
+						"network": "https://www.googleapis.com/compute/v1/projects/test-project-3/global/networks/test-1",
+						"allowed": [{
+							"ipProtocol": "sctp",
+							"ports": [{"from": 22, "to": 22}],
+						}],
+						"direction": "INGRESS",
+						"sourceRanges": ["0.0.0.0/0"],
+					},
+					{
+						"network": "https://www.googleapis.com/compute/v1/projects/test-project-1/global/networks/test-2",
+						"allowed": [{
+							"ipProtocol": "sctp",
+							"ports": [{"from": 0, "to": 22}],
+						}],
+						"direction": "INGRESS",
+						"sourceRanges": ["0.0.0.0/0"],
+					},
+				],
+			}]},
+		},
+		{
+			"id": "test-project-4",
+			"network": {"vpcNetworks": [{
+				"metadata": {"id": "googlecloud-nw-vpc-network|514893255555|56580586120444444"},
+				"firewallRules": [{
+					"network": "https://www.googleapis.com/compute/v1/projects/test-project-4/global/networks/test-1",
+					"allowed": [{
+						"ipProtocol": "sctp",
+						"ports": [],
+					}],
+					"direction": "INGRESS",
+					"sourceRanges": ["0.0.0.0/0"],
+				}],
 			}]},
 		},
 	]}}

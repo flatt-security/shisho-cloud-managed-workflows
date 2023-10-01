@@ -56,3 +56,207 @@ jobs:
           values: []
       input:
         schema: !include instance-public-ip/decide.graphql
+  - id: instance-sqlserver-cross-db-ownership-chaining
+    name: Review that the cross_db_ownership_chaining_state database flag for a Cloud SQL for SQL Server instance is set to off
+    decide:
+      rego: !include instance-sqlserver-cross-db-ownership-chaining/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-cross-db-ownership-chaining/decide.graphql
+  - id: instance-postgresql-log-statement
+    name: Review that the log_statement database flag for a Cloud SQL for PostgreSQL instance is set appropriately
+    decide:
+      rego: !include instance-postgresql-log-statement/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-statement/decide.graphql
+  - id: instance-mysql-local-infile
+    name: Review that the local_infile database flag for a Cloud SQL for MySQL instance is set to off
+    decide:
+      rego: !include instance-mysql-local-infile/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-mysql-local-infile/decide.graphql
+  - id: instance-postgresql-log-min-error-statement
+    name: Review that the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is set to error or stricter
+    decide:
+      rego: !include instance-postgresql-log-min-error-statement/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-min-error-statement/decide.graphql
+  - id: instance-sqlserver-external-scripts
+    name: Review that the external_scripts_state enabled database flag for a Cloud SQL for SQL Server instance is set to off
+    decide:
+      rego: !include instance-sqlserver-external-scripts/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-external-scripts/decide.graphql
+  - id: instance-sqlserver-contained-db-authentication
+    name: Review that the contained_db_authentication_state database flag for a Cloud SQL for SQL Server instance is set to off
+    decide:
+      rego: !include instance-sqlserver-contained-db-authentication/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-contained-db-authentication/decide.graphql
+  - id: instance-sqlserver-3625-trace-flag
+    name: Review that the 3625 (trace flag) database flag for all Cloud SQL for SQL Server instances is set to off
+    decide:
+      rego: !include instance-sqlserver-3625-trace-flag/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-3625-trace-flag/decide.graphql
+  - id: instance-postgresql-log-disconnections
+    name: Review that the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is set to On
+    decide:
+      rego: !include instance-postgresql-log-disconnections/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-disconnections/decide.graphql
+  - id: instance-postgresql-log-min-duration-statement
+    name: Review that the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is set to -1
+    decide:
+      rego: !include instance-postgresql-log-min-duration-statement/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-min-duration-statement/decide.graphql
+  - id: instance-sqlserver-user-connections
+    name: Review that the maximum_user_connections database flag for a Cloud SQL for SQL Server instance is set to a non-limiting value
+    decide:
+      rego: !include instance-sqlserver-user-connections/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-user-connections/decide.graphql
+  - id: instance-postgresql-log-connections
+    name: Review that the log_connections database flag for a Cloud SQL for PostgreSQL instance is set to On
+    decide:
+      rego: !include instance-postgresql-log-connections/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-connections/decide.graphql
+  - id: instance-postgresql-log-error-verbosity
+    name: Review that the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is set to DEFAULT or stricter
+    decide:
+      rego: !include instance-postgresql-log-error-verbosity/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-error-verbosity/decide.graphql
+  - id: instance-sqlserver-user-options
+    name: Review that the user_options_configured database flag for a Cloud SQL for SQL Server instance is not configured
+    decide:
+      rego: !include instance-sqlserver-user-options/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-user-options/decide.graphql
+  - id: instance-postgresql-log-hostname
+    name: Review log_hostname database flag for a Cloud SQL for PostgreSQL instance is set to on
+    decide:
+      rego: !include instance-postgresql-log-hostname/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-hostname/decide.graphql
+  - id: instance-sqlserver-remote-access
+    name: Review that the remote_access_state database flag for a Cloud SQL for SQL Server instance is set to off
+    decide:
+      rego: !include instance-sqlserver-remote-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-sqlserver-remote-access/decide.graphql
+  - id: instance-mysql-show-database
+    name: Review that the skip_show_database database flag for a Cloud SQL for MySQL instance is set to on
+    decide:
+      rego: !include instance-mysql-show-database/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-mysql-show-database/decide.graphql
+  - id: instance-postgresql-log-min-messages
+    name: Review that the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is set to at least warning
+    decide:
+      rego: !include instance-postgresql-log-min-messages/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-postgresql-log-min-messages/decide.graphql

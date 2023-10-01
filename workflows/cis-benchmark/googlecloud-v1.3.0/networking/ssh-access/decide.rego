@@ -50,9 +50,11 @@ range_includes(r, p) {
 	false
 }
 
-# if the IP protocol is "all" or "tcp", return true
+# if the IP protocol is "all", "tcp", "sctp" return true
 allows_ssh_protocol(protocol) {
 	protocol == "all"
 } else {
 	protocol == "tcp"
+} else {
+	protocol == "sctp"
 } else = false

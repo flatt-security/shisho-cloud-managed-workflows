@@ -1,0 +1,16 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+        displayName
+      }
+      iam {
+        accessAnalyzers {
+          region
+          name
+        }
+      }
+    }
+  }
+}

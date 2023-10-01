@@ -24,36 +24,13 @@ test_whether_all_access_keys_are_rotated_within_90_days if {
 	count([d |
 		decisions[d]
 		shisho.decision.is_allowed(d)
-	]) == 3 with input as {"aws": {"accounts": [{"iam": {"users": [
+	]) == 2 with input as {"aws": {"accounts": [{"iam": {"users": [
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73AAAAAAAAAA"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": today_string,
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-				{
-					"id": "2",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
-		},
-		{
-			"metadata": {"id": "aws-iam-user|AIDA3K53E73BBBBBBBBBB"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": today_string,
-					"lastUsed": null,
-				},
-				{
-					"id": "2",
-					"createdAt": "2022-03-20T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
+			"accessKeys": [{
+				"id": "1",
+				"createdAt": today_string,
+			}],
 		},
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73CCCCCCCCCC"},
@@ -65,51 +42,26 @@ test_whether_all_access_keys_are_rotated_within_90_days if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 3 with input as {"aws": {"accounts": [{"iam": {"users": [
+	]) == 2 with input as {"aws": {"accounts": [{"iam": {"users": [
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73AAAAAAAAAA"},
 			"accessKeys": [
 				{
 					"id": "1",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": four_months_ago_string},
+					"createdAt": four_months_ago_string,
 				},
 				{
 					"id": "2",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
+					"createdAt": today_string,
 				},
 			],
 		},
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73BBBBBBBBBB"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": four_months_ago_string,
-					"lastUsed": null,
-				},
-				{
-					"id": "2",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
-		},
-		{
-			"metadata": {"id": "aws-iam-user|AIDA3K53E73CCCCCCCCCC"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": four_months_ago_string,
-					"lastUsed": {"lastUsedAt": four_months_ago_string},
-				},
-				{
-					"id": "2",
-					"createdAt": today_string,
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
+			"accessKeys": [{
+				"id": "1",
+				"createdAt": four_months_ago_string,
+			}],
 		},
 	]}}]}}
 
@@ -120,34 +72,18 @@ test_whether_all_access_keys_are_rotated_within_90_days if {
 	]) == 1 with input as {"aws": {"accounts": [{"iam": {"users": [
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73AAAAAAAAAA"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": four_months_ago_string},
-				},
-				{
-					"id": "2",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
+			"accessKeys": [{
+				"id": "1",
+				"createdAt": four_months_ago_string,
+			}],
 			"tags": [{"key": "foo", "value": "bar=piyo"}],
 		},
 		{
 			"metadata": {"id": "aws-iam-user|AIDA3K53E73BBBBBBBBBB"},
-			"accessKeys": [
-				{
-					"id": "1",
-					"createdAt": four_months_ago_string,
-					"lastUsed": null,
-				},
-				{
-					"id": "2",
-					"createdAt": "2021-03-17T11:49:31Z",
-					"lastUsed": {"lastUsedAt": today_string},
-				},
-			],
+			"accessKeys": [{
+				"id": "1",
+				"createdAt": four_months_ago_string,
+			}],
 			"tags": [{"key": "foo", "value": "unrelated"}],
 		},
 	]}}]}}

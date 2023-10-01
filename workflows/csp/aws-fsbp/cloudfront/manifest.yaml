@@ -42,7 +42,7 @@ jobs:
           values: []
       input:
         schema: !include origin-transport/decide.graphql
-  - id: "origin-access-control"
+  - id: "origin-access"
     name: Review origin access control configuration
     decide:
       rego: !include origin-access/decide.rego

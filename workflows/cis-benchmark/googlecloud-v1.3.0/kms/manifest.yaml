@@ -1,0 +1,46 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-kms"
+name: "Prebundle: Review Google Cloud KMS posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: key-accessibility
+    name: Review that Cloud KMS cryptokeys are not anonymously or publicly accessible
+    decide:
+      rego: !include key-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include key-accessibility/decide.graphql
+  - id: key-rotation
+    name: Review that KMS encryption keys are rotated within a period of 90 days
+    decide:
+      rego: !include key-rotation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include key-rotation/decide.graphql
+  - id: admin-separation
+    name: Review that separation of duties is enforced while assigning KMS related roles to users
+    decide:
+      rego: !include admin-separation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include admin-separation/decide.graphql

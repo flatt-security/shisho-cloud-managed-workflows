@@ -1,0 +1,265 @@
+version: 0.1.0
+
+id: "prebundle-aws-logmetric"
+name: "Prebundle: Review AWS Log Metric posture"
+
+triggers:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  - id: config-changes
+    name: Review that a log metric filter and alarm exist for AWS Config configuration changes
+    decide:
+      rego: !include config-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include config-changes/decide.graphql
+  - id: cloudtrail-changes
+    name: Review that a log metric filter and alarm exist for CloudTrail configuration changes
+    decide:
+      rego: !include cloudtrail-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cloudtrail-changes/decide.graphql
+  - id: console-signin-mfa
+    name: Review that a log metric filter and alarm exist for Management Console sign-in without MFA
+    decide:
+      rego: !include console-signin-mfa/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include console-signin-mfa/decide.graphql
+  - id: vpc-changes
+    name: Review that a log metric filter and alarm exist for VPC changes
+    decide:
+      rego: !include vpc-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include vpc-changes/decide.graphql
+  - id: security-group-changes
+    name: Review that a log metric filter and alarm exist for security group changes
+    decide:
+      rego: !include security-group-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include security-group-changes/decide.graphql
+  - id: console-auth-failure
+    name: Review that a log metric filter and alarm exist for AWS Management Console authentication failures
+    decide:
+      rego: !include console-auth-failure/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include console-auth-failure/decide.graphql
+  - id: console-root-user-usage
+    name: Review that a log metric filter and alarm exist for usage of the root user
+    decide:
+      rego: !include console-root-user-usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include console-root-user-usage/decide.graphql
+  - id: organizations-changes
+    name: Review that a log metric filter and alarm exist for AWS Organizations changes
+    decide:
+      rego: !include organizations-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include organizations-changes/decide.graphql
+  - id: nacl-changes
+    name: Review that a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)
+    decide:
+      rego: !include nacl-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include nacl-changes/decide.graphql
+  - id: route-table-changes
+    name: Review that a log metric filter and alarm exist for route table changes
+    decide:
+      rego: !include route-table-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include route-table-changes/decide.graphql
+  - id: network-gateway-changes
+    name: Review that a log metric filter and alarm exist for changes to network gateways
+    decide:
+      rego: !include network-gateway-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include network-gateway-changes/decide.graphql
+  - id: unauthorized-api-calls
+    name: Review that a log metric filter and alarm exist for unauthorized API calls
+    decide:
+      rego: !include unauthorized-api-calls/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include unauthorized-api-calls/decide.graphql
+  - id: iam-policy-changes
+    name: Review that a log metric filter and alarm exist for IAM policy changes
+    decide:
+      rego: !include iam-policy-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include iam-policy-changes/decide.graphql
+  - id: bucket-policy-changes
+    name: Review that a log metric filter and alarm exist for S3 bucket policy changes
+    decide:
+      rego: !include bucket-policy-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-policy-changes/decide.graphql
+  - id: cmk-changes
+    name: Review that a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs
+    decide:
+      rego: !include cmk-changes/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cmk-changes/decide.graphql

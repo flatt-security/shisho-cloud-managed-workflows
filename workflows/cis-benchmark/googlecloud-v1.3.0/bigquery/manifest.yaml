@@ -23,18 +23,6 @@ jobs:
   - id: dataset-encryption-cmek
     name: Review the encryption of tables
     decide:
-      rego: !include table-encryption-cmek/decide.rego
-      with:
-        resource_exceptions:
-          type: resource_exception
-          multiple: true
-          description: A special list of resource exceptions
-          values: []
-      input:
-        schema: !include table-encryption-cmek/decide.graphql
-  - id: table-encryption-cmek
-    name: Review the encryption of datasets
-    decide:
       rego: !include dataset-encryption-cmek/decide.rego
       with:
         resource_exceptions:
@@ -44,3 +32,15 @@ jobs:
           values: []
       input:
         schema: !include dataset-encryption-cmek/decide.graphql
+  - id: table-encryption-cmek
+    name: Review the encryption of datasets
+    decide:
+      rego: !include table-encryption-cmek/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include table-encryption-cmek/decide.graphql

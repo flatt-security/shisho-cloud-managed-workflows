@@ -1,0 +1,18 @@
+{
+  googleCloud {
+    projects {
+      kms {
+        keyRings {
+          keys {
+            metadata {
+              id
+              displayName
+            }
+            rotationPeriod
+            nextRotatedAt
+          }
+        }
+      }
+    }
+  }
+}

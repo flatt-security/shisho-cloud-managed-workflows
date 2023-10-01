@@ -1,0 +1,95 @@
+version: 0.1.0
+
+id: "prebundle-aws-cloudtrail"
+name: "Prebundle: Review AWS CloudTrail posture"
+
+triggers:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  - id: usage
+    name: Review CloudTrail is enabled in all regions
+    decide:
+      rego: !include usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include usage/decide.graphql
+  - id: log-bucket-accessibility
+    name: Review the S3 bucket for CloudTrail logs is not publicly accessible
+    decide:
+      rego: !include log-bucket-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include log-bucket-accessibility/decide.graphql
+  - id: log-file-validation
+    name: Review CloudTrail log file validation is enabled
+    decide:
+      rego: !include log-file-validation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include log-file-validation/decide.graphql
+  - id: cmk-encryption
+    name: Review CloudTrail logs are encrypted at rest using KMS CMKs
+    decide:
+      rego: !include cmk-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cmk-encryption/decide.graphql
+  - id: cloudwatch-logs-integration
+    name: Review CloudTrail trails are integrated with CloudWatch Logs
+    decide:
+      rego: !include cloudwatch-logs-integration/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cloudwatch-logs-integration/decide.graphql

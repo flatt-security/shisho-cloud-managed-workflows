@@ -9,7 +9,7 @@ triggers:
 
 jobs:
   - id: credentials-inventory
-    name: Review the credentials
+    name: Review the credential usage to find unused ones
     decide:
       rego: !include credentials-inventory/decide.rego
       with:
@@ -67,7 +67,7 @@ jobs:
       input:
         schema: !include password-reuse/decide.graphql
   - id: permissive-policy-limitation
-    name: Review the policy configuration
+    name: Find permissive IAM policies
     decide:
       rego: !include permissive-policy-limitation/decide.rego
       with:
@@ -131,3 +131,139 @@ jobs:
           values: []
       input:
         schema: !include root-user-usage/decide.graphql
+  - id: account-alternate-contact
+    name: Review that security contact information is registered
+    decide:
+      rego: !include account-alternate-contact/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include account-alternate-contact/decide.graphql
+  - id: user-group-permission-assignment
+    name: Review IAM users receive permissions only through groups
+    decide:
+      rego: !include user-group-permission-assignment/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include user-group-permission-assignment/decide.graphql
+  - id: console-user-keys
+    name: Review access keys during initial user setup for all IAM users with a console password
+    decide:
+      rego: !include console-user-keys/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include console-user-keys/decide.graphql
+  - id: user-mfa
+    name: Review multi-factor authentication (MFA) is enabled for all IAM users that have a console password
+    decide:
+      rego: !include user-mfa/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include user-mfa/decide.graphql
+  - id: server-certificates
+    name: Review that all the expired SSL/TLS certificates stored in AWS IAM are removed
+    decide:
+      rego: !include server-certificates/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include server-certificates/decide.graphql
+  - id: access-analyzers
+    name: Review that IAM Access analyzer is enabled for all regions
+    decide:
+      rego: !include access-analyzers/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include access-analyzers/decide.graphql
+  - id: role-for-support
+    name: Review that a support role has been created to manage incidents with AWS Support
+    decide:
+      rego: !include role-for-support/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include role-for-support/decide.graphql
+  - id: user-available-access-keys
+    name: Review that there is only one active access key available for any single IAM user
+    decide:
+      rego: !include user-available-access-keys/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include user-available-access-keys/decide.graphql

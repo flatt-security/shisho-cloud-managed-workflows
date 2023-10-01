@@ -1,0 +1,27 @@
+version: 0.1.0
+
+id: "prebundle-aws-kms"
+name: "Prebundle: Review AWS KMS posture"
+
+triggers:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  - id: symmetric-cmk-rotation
+    name: Review rotation for customer created symmetric CMKs is enabled
+    decide:
+      rego: !include symmetric-cmk-rotation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include symmetric-cmk-rotation/decide.graphql

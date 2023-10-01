@@ -60,7 +60,7 @@ jobs:
       input:
         schema: !include bucket-mfa-delete/decide.graphql
   - id: bucket-public-access
-    name: Review the public accessibility of buckets
+    name: Review the public access block feature configurations
     decide:
       rego: !include bucket-public-access/decide.rego
       with:
@@ -93,3 +93,37 @@ jobs:
           values: []
       input:
         schema: !include bucket-transport/decide.graphql
+  - id: bucket-write-trail
+    name: Review CloudTrail trails are logging S3 bucket data write events
+    decide:
+      rego: !include bucket-write-trail/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-write-trail/decide.graphql
+  - id: bucket-read-trail
+    name: Review CloudTrail trails are logging S3 bucket read events
+    decide:
+      rego: !include bucket-read-trail/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-read-trail/decide.graphql

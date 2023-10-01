@@ -1,0 +1,22 @@
+{
+  googleCloud {
+    projects {
+      cloudSql {
+        instances {
+          ... on GoogleCloudSQLPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            settings {
+              databaseFlags {
+                name
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

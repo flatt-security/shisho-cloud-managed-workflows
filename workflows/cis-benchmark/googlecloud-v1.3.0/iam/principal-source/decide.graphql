@@ -1,0 +1,33 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+        displayName
+      }
+      iamPolicy {
+        bindings {
+          members {
+            ... on GoogleCloudIAMPrincipalUser {
+              __typename
+              id
+              email
+              deleted
+            }
+            ... on GoogleCloudIAMPrincipalGroup {
+              __typename
+              id
+              email
+              deleted
+            }
+            ... on GoogleCloudIAMPrincipalDomain {
+              __typename
+              id
+              domain
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ triggers:
     - cron: "0 */1 * * *"
 
 jobs:
-  - id: service-account-impersonation
+  - id: service-account-project-impersonation-role
     name: Review the possibility of the service account impersonation
     decide:
       rego: !include service-account-project-impersonation-role/decide.rego
@@ -32,7 +32,7 @@ jobs:
           values: []
       input:
         schema: !include service-account-key/decide.graphql
-  - id: service-account-admin-role
+  - id: service-account-project-admin-role
     name: Review service account project admin roles
     decide:
       rego: !include service-account-project-admin-role/decide.rego
@@ -44,3 +44,49 @@ jobs:
           values: []
       input:
         schema: !include service-account-project-admin-role/decide.graphql
+  - id: principal-source
+    name: Review principal sources
+    decide:
+      rego: !include principal-source/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        allowed_principal_domains:
+          type: string
+          multiple: true
+          description: A list of domain names (e.g. example.com) that are allowed to be used as a principal source
+          values: []
+        allowed_principal_domain_regexes:
+          type: string
+          multiple: true
+          description: A list of domain name regexes (e.g. .*\.example\.com) that are allowed to be used as a principal source
+          values: []
+      input:
+        schema: !include principal-source/decide.graphql
+  - id: service-account-admin-separation
+    name: Review that separation of duties is enforced while assigning service account related roles to users
+    decide:
+      rego: !include service-account-admin-separation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include service-account-admin-separation/decide.graphql
+  - id: service-account-key-rotation
+    name: Review that the user-managed/external keys for service accounts are rotated every 90 days or fewer
+    decide:
+      rego: !include service-account-key-rotation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include service-account-key-rotation/decide.graphql

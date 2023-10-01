@@ -9,7 +9,7 @@ triggers:
 
 jobs:
   - id: acl-ingress
-    name: Review the flow log configuration
+    name: Review the ACL configuration (on inbound traffic from 0.0.0.0/0 to tcp/22 + 3389)
     decide:
       rego: !include acl-ingress/decide.rego
       with:
@@ -26,7 +26,7 @@ jobs:
       input:
         schema: !include acl-ingress/decide.graphql
   - id: sg-ingress-v4
-    name: Review the security group configuration
+    name: Review the security group configuration (on inbound traffic from 0.0.0.0/0 to tcp/22 + 3389)
     decide:
       rego: !include sg-ingress-v4/decide.rego
       with:
@@ -43,7 +43,7 @@ jobs:
       input:
         schema: !include sg-ingress-v4/decide.graphql
   - id: sg-ingress-v6
-    name: Review the default security group configuration
+    name: Review the default security group configuration n (on inbound traffic from ::/0 to tcp/22 + 3389)
     decide:
       rego: !include sg-ingress-v6/decide.rego
       with:
@@ -59,3 +59,37 @@ jobs:
           values: []
       input:
         schema: !include sg-ingress-v6/decide.graphql
+  - id: vpc-flow-logging
+    name: Review AWS VPC flow logging is enabled
+    decide:
+      rego: !include vpc-flow-logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include vpc-flow-logging/decide.graphql
+  - id: sg-baseline
+    name: Review the default security group restricts all traffic
+    decide:
+      rego: !include sg-baseline/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include sg-baseline/decide.graphql

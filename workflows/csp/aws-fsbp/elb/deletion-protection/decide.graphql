@@ -14,6 +14,11 @@ query {
             attributes {
               enabledDeletionProtection
             }
+
+            tags {
+              key
+              value
+            }
           }
         }
       }

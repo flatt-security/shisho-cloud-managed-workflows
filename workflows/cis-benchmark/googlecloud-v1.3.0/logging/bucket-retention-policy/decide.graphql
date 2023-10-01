@@ -1,0 +1,27 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+        displayName
+      }
+      cloudLogging {
+        sinks {
+          metadata {
+            id
+          }
+          destination
+        }
+      }
+      cloudStorage {
+        buckets {
+          name
+          retentionPolicy {
+            isLocked
+            retentionPeriod
+          }
+        }
+      }
+    }
+  }
+}

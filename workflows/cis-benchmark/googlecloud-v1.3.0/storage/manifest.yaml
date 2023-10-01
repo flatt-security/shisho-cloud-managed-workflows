@@ -20,7 +20,7 @@ jobs:
           values: []
       input:
         schema: !include bucket-accessibility/decide.graphql
-  - id: bucket-uniform-access
+  - id: bucket-uniform-bucket-level-access
     name: Review buckets' uniform bucket level access
     decide:
       rego: !include bucket-uniform-bucket-level-access/decide.rego

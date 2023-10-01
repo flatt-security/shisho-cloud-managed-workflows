@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          kmsKeyId
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-support"
+name: "Prebundle: Review Google Cloud support posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: access-approval
+    name: Review Access Approval is enabled
+    decide:
+      rego: !include access-approval/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include access-approval/decide.graphql

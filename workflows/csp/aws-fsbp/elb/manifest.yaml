@@ -8,7 +8,7 @@ triggers:
     - cron: "0 */1 * * *"
 
 jobs:
-  - id: alb-logging
+  - id: logging
     name: Review logging
     decide:
       rego: !include logging/decide.rego
