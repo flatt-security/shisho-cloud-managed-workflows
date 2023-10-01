@@ -24,7 +24,7 @@ triggers:
         - awaiting_review
 
 jobs:
-  - id: triage-status-updation
+  - id: triage
     name: Notify triage status updation
     notify:
       rego: !include triage/notify.rego

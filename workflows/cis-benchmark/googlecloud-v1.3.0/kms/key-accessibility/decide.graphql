@@ -1,0 +1,29 @@
+{
+  googleCloud {
+    projects {
+      kms {
+        keyRings {
+          keys {
+            metadata {
+              id
+              displayName
+            }
+            iamPolicy {
+              bindings {
+                role
+                members {
+                  ... on GoogleCloudIAMPrincipalAllAuthenticatedUsers {
+                    id
+                  }
+                  ... on GoogleCloudIAMPrincipalAllUsers {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

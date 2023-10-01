@@ -1,0 +1,22 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-functions"
+name: "Prebundle: Review Google Cloud Functions posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: environment-variables
+    name: Review Cloud Functions environment variables
+    decide:
+      rego: !include environment-variables/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include environment-variables/decide.graphql

@@ -9,7 +9,7 @@ triggers:
 
 jobs:
   - id: dnssec
-    name: Review the DNSEC configuration
+    name: Review the DNSSEC configuration
     decide:
       rego: !include dnssec/decide.rego
       with:

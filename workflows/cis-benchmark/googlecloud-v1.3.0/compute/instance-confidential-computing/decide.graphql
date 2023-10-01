@@ -1,0 +1,18 @@
+{
+  googleCloud {
+    projects {
+      computeEngine {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          machineType
+          confidentialInstanceConfiguration {
+            enableConfidentialCompute
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+        displayName
+      }
+      accessApproval {
+        settings {
+          name
+        }
+      }
+    }
+  }
+}

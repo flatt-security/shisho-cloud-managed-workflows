@@ -1,0 +1,19 @@
+query {
+  googleCloud {
+    projects {
+      dataproc {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          configuration {
+            encryptionConfiguration {
+              gcePdKmsKeyName
+            }
+          }
+        }
+      }
+    }
+  }
+}

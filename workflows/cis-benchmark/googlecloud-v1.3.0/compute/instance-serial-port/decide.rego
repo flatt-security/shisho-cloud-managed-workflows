@@ -6,8 +6,7 @@ decisions[d] {
 	project := input.googleCloud.projects[_]
 	instance := project.computeEngine.instances[_]
 
-	enabled := is_serial_port_enabled(instance.instanceMetadata)
-
+	enabled := is_serial_port_enabled(project.computeEngine.projectMetadata, instance.instanceMetadata)
 	d := shisho.decision.googlecloud.compute.instance_serial_port({
 		"allowed": enabled == false,
 		"subject": instance.metadata.id,
@@ -15,10 +14,20 @@ decisions[d] {
 	})
 }
 
-is_serial_port_enabled(metadata) {
-	count(metadata.items) > 0
+# The instance-level metadata overrides the project-level metadata, and the default is disabled.
+#
+# Project-level metadata requires compute.projects.get permission on the project, which is not included in the default setup.
+# If you want to use project-level metadata for supressing the metadata, you need to add the permission to the service account.
+is_serial_port_enabled(projectMetadata, instanceMetadata) := x {
+	count(instanceMetadata.items) > 0
 
-	item := metadata.items[_]
+	item := instanceMetadata.items[_]
 	item.key == "serial-port-enable"
-	any([item.value == "1", lower(item.value) == "true"])
+	x := any([item.value == "1", lower(item.value) == "true"])
+} else := x {
+	count(projectMetadata.items) > 0
+
+	item := projectMetadata.items[_]
+	item.key == "serial-port-enable"
+	x := any([item.value == "1", lower(item.value) == "true"])
 } else = false

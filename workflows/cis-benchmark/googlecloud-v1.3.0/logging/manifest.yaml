@@ -20,3 +20,27 @@ jobs:
           values: []
       input:
         schema: !include api-audit/decide.graphql
+  - id: full-export
+    name: Review that at least one sink is configured for all log entries
+    decide:
+      rego: !include full-export/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include full-export/decide.graphql
+  - id: bucket-retention-policy
+    name: Review that Cloud Storage buckets for storing logs are configured using bucket lock
+    decide:
+      rego: !include bucket-retention-policy/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include bucket-retention-policy/decide.graphql

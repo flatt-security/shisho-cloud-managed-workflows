@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+        displayName
+      }
+      cloudTrail {
+        trails {
+          arn
+
+          isMultiRegionTrail
+          status {
+            isLogging
+          }
+          eventSelectors {
+            ... on AWSCloudTrailBasicEventSelector {
+              includeManagementEvents
+              readWriteType
+            }
+          }
+        }
+      }
+    }
+  }
+}

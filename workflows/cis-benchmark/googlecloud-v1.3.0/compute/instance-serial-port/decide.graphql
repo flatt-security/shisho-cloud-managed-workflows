@@ -3,11 +3,18 @@ query {
     projects {
       id
       computeEngine {
+        # requires compute.projects.get permission on the project, which is not included in the default setup
+        projectMetadata {
+          items {
+            key
+            value
+          }
+        }
         instances {
           metadata {
             id
           }
-          metadata {
+          instanceMetadata {
             items {
               key
               value

@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          cloudWatchLogGroup {
+            arn
+          }
+          status {
+            latestCloudWatchLogsDeliveredAt
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

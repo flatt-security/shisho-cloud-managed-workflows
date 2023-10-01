@@ -1,0 +1,21 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+        displayName
+      }
+      cloudLogging {
+        sinks {
+          name
+
+          filter
+          exclusions {
+            filter
+          }
+          destination
+        }
+      }
+    }
+  }
+}

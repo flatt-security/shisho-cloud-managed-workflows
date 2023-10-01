@@ -1,0 +1,15 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+        displayName
+      }
+      alternateContactState {
+        billingContactRegistered
+        securityContactRegistered
+        operationsContactRegistered
+      }
+    }
+  }
+}

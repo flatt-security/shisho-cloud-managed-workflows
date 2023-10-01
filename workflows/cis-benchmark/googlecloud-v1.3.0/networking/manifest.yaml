@@ -45,7 +45,7 @@ jobs:
       input:
         schema: !include proxy-tls-policy/decide.graphql
   - id: rdp-access
-    name: Review the availability of the RDS access
+    name: Review the availability of the RDP access
     decide:
       rego: !include rdp-access/decide.rego
       with:
@@ -80,3 +80,27 @@ jobs:
           values: []
       input:
         schema: !include vpc-flow-log/decide.graphql
+  - id: fw-rule-iap
+    name: Review that Identity Aware Proxy (IAP) allows only traffic from Google IP addresses
+    decide:
+      rego: !include fw-rule-iap/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include fw-rule-iap/decide.graphql
+  - id: legacy-network
+    name: Review that legacy networks do not exist for older Google Cloud projects
+    decide:
+      rego: !include legacy-network/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include legacy-network/decide.graphql

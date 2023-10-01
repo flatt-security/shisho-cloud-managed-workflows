@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      iam {
+        users {
+          metadata {
+            id
+            displayName
+          }
+          policies {
+            ... on AWSIAMUserInlinePolicy {
+              name
+            }
+            ... on AWSIAMUserManagedPolicy {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

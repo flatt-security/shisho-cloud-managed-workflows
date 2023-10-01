@@ -11,7 +11,6 @@ decisions[d] {
 	user := account.iam.users[_]
 
 	keys := keys_requiring_rotation(user.accessKeys)
-	trace(sprintf("name=%v", [keys]))
 	allowed := count(keys) == 0
 
 	d := shisho.decision.aws.iam.key_rotation({
@@ -38,20 +37,11 @@ keys_requiring_rotation(keys) := x {
 
 # the key needs rotation...
 needs_rotation(key) {
-	# (1) if the key has never been used, and `days_of_accepted_age` days have passed since the key was created
-	key.lastUsed == null
 	now := time.now_ns()
 
 	t := time.parse_rfc3339_ns(key.createdAt)
 	now - t > (((1000000000 * 60) * 60) * 24) * days_of_accepted_age
-} else {
-	# (2) if the key has been used so far, and `days_of_accepted_age` days have passed since the key was used last
-	key.lastUsed != null
-	now := time.now_ns()
-
-	t := time.parse_rfc3339_ns(key.lastUsed.lastUsedAt)
-	now - t > (((1000000000 * 60) * 60) * 24) * days_of_accepted_age
-} else = false
+} else := false
 
 allow_if_excluded(allowed, r) {
 	data.params != null

@@ -1,0 +1,32 @@
+{
+  aws {
+    accounts {
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          s3Bucket {
+            name
+            aclGrants {
+              grantee {
+                displayName
+                uri
+              }
+              permission
+            }
+            policy {
+              rawDocument
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

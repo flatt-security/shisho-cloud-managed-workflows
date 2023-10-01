@@ -1,0 +1,21 @@
+{
+  googleCloud {
+    projects {
+      iam {
+        serviceAccounts {
+          metadata {
+            id
+          }
+          name
+          keys {
+            name
+            disabled
+            origin
+            type
+            validAfterAt
+          }
+        }
+      }
+    }
+  }
+}

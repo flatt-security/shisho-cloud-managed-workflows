@@ -1,0 +1,106 @@
+version: 0.1.0
+
+id: "prebundle-googlecloud-logmetric"
+name: "Prebundle: Review Google Cloud log metrics posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: storage-iam-permission
+    name: Review that the log metric filter and alerts exist for Cloud Storage IAM permission changes
+    decide:
+      rego: !include storage-iam-permission/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include storage-iam-permission/decide.graphql
+  - id: custom-role
+    name: Review that the log metric filter and alerts exist for custom role changes
+    decide:
+      rego: !include custom-role/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include custom-role/decide.graphql
+  - id: sql-instance-configuration
+    name: Review that the log metric filter and alerts exist for SQL instance configuration changes
+    decide:
+      rego: !include sql-instance-configuration/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include sql-instance-configuration/decide.graphql
+  - id: vpc-network
+    name: Review that the log metric filter and alerts exist for VPC network changes
+    decide:
+      rego: !include vpc-network/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include vpc-network/decide.graphql
+  - id: audit-configuration
+    name: Review that the log metric filter and alerts exist for audit configuration changes
+    decide:
+      rego: !include audit-configuration/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include audit-configuration/decide.graphql
+  - id: project-ownership
+    name: Review that the log metric filter and alerts exist for project ownership assignments/changes
+    decide:
+      rego: !include project-ownership/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include project-ownership/decide.graphql
+  - id: firewall-rule
+    name: Review that the log metric filter and alerts exist for VPC network firewall rule changes
+    decide:
+      rego: !include firewall-rule/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include firewall-rule/decide.graphql
+  - id: network-route
+    name: Review that the log metric filter and alerts exist for VPC network route changes
+    decide:
+      rego: !include network-route/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include network-route/decide.graphql

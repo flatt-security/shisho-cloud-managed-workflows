@@ -1,0 +1,27 @@
+version: 0.1.0
+
+id: "prebundle-aws-securityhub"
+name: "Prebundle: Review AWS Security Hub posture"
+
+triggers:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  - id: usage
+    name: Review AWS Security Hub is enabled
+    decide:
+      rego: !include usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include usage/decide.graphql

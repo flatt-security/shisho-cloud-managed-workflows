@@ -1,0 +1,30 @@
+{
+  googleCloud {
+    projects {
+      metadata {
+        id
+        displayName
+      }
+      cloudLogging {
+        metrics {
+          metadata {
+            id
+            displayName
+          }
+          filter
+        }
+      }
+      cloudMonitoring {
+        policies {
+          displayName
+          enabled
+          conditions {
+            threshold {
+              filter
+            }
+          }
+        }
+      }
+    }
+  }
+}

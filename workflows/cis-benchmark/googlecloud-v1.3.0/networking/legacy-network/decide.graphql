@@ -1,0 +1,15 @@
+{
+  googleCloud {
+    projects {
+      network {
+        vpcNetworks {
+          metadata {
+            id
+            displayName
+          }
+          subnetworkMode
+        }
+      }
+    }
+  }
+}

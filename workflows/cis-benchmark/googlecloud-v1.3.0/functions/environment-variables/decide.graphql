@@ -1,0 +1,24 @@
+{
+  googleCloud {
+    projects {
+      cloudFunctions {
+        functions {
+          metadata {
+            id
+            displayName
+          }
+          buildConfiguration {
+            environmentVariables {
+              key
+            }
+          }
+          serviceConfiguration {
+            environmentVariables {
+              key
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,10 +8,10 @@ triggers:
     - cron: "0 */1 * * *"
 
 jobs:
-  - id: instance-service-account
-    name: Review service accounts attached to instances
+  - id: disk-encryption-key
+    name: Review disk encryption keys for Compute Engine instances
     decide:
-      rego: !include instance-service-account/decide.rego
+      rego: !include disk-encryption-key/decide.rego
       with:
         resource_exceptions:
           type: resource_exception
@@ -19,7 +19,31 @@ jobs:
           description: A special list of resource exceptions
           values: []
       input:
-        schema: !include instance-service-account/decide.graphql
+        schema: !include disk-encryption-key/decide.graphql
+  - id: instance-confidential-computing
+    name: Review Confidential VM for Compute Engine instances
+    decide:
+      rego: !include instance-confidential-computing/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-confidential-computing/decide.graphql
+  - id: instance-ip-forwarding
+    name: Review IP forwarding for Compute Engine instances
+    decide:
+      rego: !include instance-ip-forwarding/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-ip-forwarding/decide.graphql
   - id: instance-oauth2-scope
     name: Review OAuth2 scopes
     decide:
@@ -32,6 +56,18 @@ jobs:
           values: []
       input:
         schema: !include instance-oauth2-scope/decide.graphql
+  - id: instance-oslogin
+    name: Review OS Login for Compute Engine instances
+    decide:
+      rego: !include instance-oslogin/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-oslogin/decide.graphql
   - id: instance-project-wide-key-management
     name: Review whether "project-wide SSH keys" is not enabled
     decide:
@@ -44,3 +80,51 @@ jobs:
           values: []
       input:
         schema: !include instance-project-wide-key-management/decide.graphql
+  - id: instance-public-ip
+    name: Review IP assignments for Compute Engine instances
+    decide:
+      rego: !include instance-public-ip/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-public-ip/decide.graphql
+  - id: instance-serial-port
+    name: Review serial port status for Compute Engine instances
+    decide:
+      rego: !include instance-serial-port/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-serial-port/decide.graphql
+  - id: instance-service-account
+    name: Review service accounts attached to instances
+    decide:
+      rego: !include instance-service-account/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-service-account/decide.graphql
+  - id: instance-shielded-vm
+    name: Review shielded VM status for Compute Engine instances
+    decide:
+      rego: !include instance-shielded-vm/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include instance-shielded-vm/decide.graphql

@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          metadata {
+            id
+            displayName
+          }
+          flowLogs {
+            id
+          }
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
