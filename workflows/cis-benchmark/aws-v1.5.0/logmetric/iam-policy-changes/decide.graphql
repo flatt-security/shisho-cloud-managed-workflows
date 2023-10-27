@@ -29,6 +29,7 @@
             isLogging
           }
           eventSelectors {
+            __typename
             ... on AWSCloudTrailBasicEventSelector {
               __typename
               includeManagementEvents
@@ -47,6 +48,7 @@
       }
       cloudWatch {
         alarms {
+          __typename
           ... on AWSCloudWatchMetricAlarm {
             metadata {
               id
@@ -54,10 +56,12 @@
             }
             metricName
             alarmActions {
+              __typename
               ... on AWSCloudWatchAlarmActionNotification {
                 __typename
                 arn
                 topic {
+                  __typename
                   ... on AWSSNSTopicFifo {
                     metadata {
                       id

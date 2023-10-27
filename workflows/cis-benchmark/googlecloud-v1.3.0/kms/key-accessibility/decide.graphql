@@ -12,6 +12,7 @@
               bindings {
                 role
                 members {
+                  __typename
                   ... on GoogleCloudIAMPrincipalAllAuthenticatedUsers {
                     id
                   }

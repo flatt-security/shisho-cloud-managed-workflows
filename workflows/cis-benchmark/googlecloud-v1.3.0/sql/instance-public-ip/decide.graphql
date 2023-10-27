@@ -3,6 +3,7 @@
     projects {
       cloudSql {
         instances {
+          __typename
           ... on GoogleCloudSQLMySQLInstance {
             metadata {
               id

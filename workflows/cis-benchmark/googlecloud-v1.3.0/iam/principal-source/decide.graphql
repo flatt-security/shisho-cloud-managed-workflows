@@ -8,6 +8,7 @@
       iamPolicy {
         bindings {
           members {
+            __typename
             ... on GoogleCloudIAMPrincipalUser {
               __typename
               id

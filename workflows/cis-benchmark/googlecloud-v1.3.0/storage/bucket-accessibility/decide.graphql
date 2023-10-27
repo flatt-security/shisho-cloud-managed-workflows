@@ -15,6 +15,7 @@
             bindings {
               role
               members {
+                __typename
                 id
               }
             }
