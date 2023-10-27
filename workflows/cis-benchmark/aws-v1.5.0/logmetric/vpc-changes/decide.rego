@@ -14,7 +14,7 @@ decisions[d] {
 }
 
 # The CloudWatch LogMetric pattern to match the events to notify.
-# This is exactly same as CIS AWS Foundations Benchmark v1.5.0 defines. 
+# This is exactly same as CIS AWS Foundations Benchmark v1.5.0 defines.
 # If you achieve the similar goal with a different pattern, you can replace this pattern with yours or add your pattern to the array to let it pass this policy.
 patterns := ["{ ($.eventName = CreateVpc) || ($.eventName = DeleteVpc) || ($.eventName = ModifyVpcAttribute) || ($.eventName = AcceptVpcPeeringConnection) || ($.eventName = CreateVpcPeeringConnection) || ($.eventName = DeleteVpcPeeringConnection) || ($.eventName = RejectVpcPeeringConnection) || ($.eventName = AttachClassicLinkVpc) || ($.eventName = DetachClassicLinkVpc) || ($.eventName = DisableVpcClassicLink) || ($.eventName = EnableVpcClassicLink) }"]
 

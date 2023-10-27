@@ -39,7 +39,7 @@ has_basic_selector_with_s3_write(selectors) {
 	allowed_types := ["ALL", "WRITE_ONLY"]
 	allowed_types[_] == selector.readWriteType
 
-	# ... for S3 objects.	
+	# ... for S3 objects.
 	resource := selector.dataResources[_]
 	resource.type == "AWS::S3::Object"
 	records_enough(resource)
@@ -49,7 +49,7 @@ has_basic_selector_with_s3_write(selectors) {
 # NOTE:
 # - `values` can include more limited number of values, e.g. `arn:aws:s3:::mybucket/*`.
 # - specifying `"arn:aws:s3"` in `values` selects all S3 objects in all buckets for logging targets.
-# - if your organization chooses to limit the scope of logging to specific buckets, you can comment out the condition on `values` in this policy code.	
+# - if your organization chooses to limit the scope of logging to specific buckets, you can comment out the condition on `values` in this policy code.
 records_enough(resource) {
 	# if `allow_limited_logging` is true, then `values` don't have to cover all S3 buckets.
 	allow_limited_logging

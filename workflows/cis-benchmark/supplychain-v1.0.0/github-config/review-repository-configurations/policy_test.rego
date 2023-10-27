@@ -167,7 +167,7 @@ test_whether_stale_reviews_are_dismissed_for_default_branch if {
 		shisho.decision.is_allowed(d)
 	]) == 1 with input as {"github": {"organizations": [{"repositories": [{
 		"branchProtections": [{
-			"dismissesStaleReviews": true, # = dismiss stale reviews (= stale pull request approvals before the new commmits are pushed) 
+			"dismissesStaleReviews": true, # = dismiss stale reviews (= stale pull request approvals before the new commmits are pushed)
 			"pattern": "test-repo",
 		}],
 		"isArchived": false,

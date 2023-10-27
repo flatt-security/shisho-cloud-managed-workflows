@@ -51,7 +51,7 @@ test_whether_the_port_ranges_are_configured_properly_for_security_groups if {
 		]},
 	]}}]}}
 
-	# check if the port ranges are not configured properly for security groups	
+	# check if the port ranges are not configured properly for security groups
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)

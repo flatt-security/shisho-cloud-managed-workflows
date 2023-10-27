@@ -31,7 +31,7 @@ decisions[d] {
 
 # The last timestamp a user was used
 last_used_at(user) := x {
-	# -> The timestamp will be the max of the following:	
+	# -> The timestamp will be the max of the following:
 	x := max([
 		# The timestamp the user was created
 		timestamp_ns(user.createdAt),

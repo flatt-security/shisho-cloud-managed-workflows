@@ -21,3 +21,18 @@ jobs:
       - name: Run OPA tests
         run: |
           opa test -v .
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [latest]
+    steps:
+      - name: Setup OPA
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: ${{ matrix.version }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Lint Rego codes
+        run: |
+          opa fmt . --fail

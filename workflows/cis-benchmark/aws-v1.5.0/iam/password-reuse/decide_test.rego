@@ -4,7 +4,7 @@ import data.shisho
 import future.keywords
 
 test_whether_the_last_24_passowords_are_remembered if {
-	# check if the last 24 passwords are remembered 
+	# check if the last 24 passwords are remembered
 	count([d |
 		decisions[d]
 		shisho.decision.is_allowed(d)
@@ -19,7 +19,7 @@ test_whether_the_last_24_passowords_are_remembered if {
 		},
 	]}}
 
-	# check if the last 24 passwords are not remembered 
+	# check if the last 24 passwords are not remembered
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
