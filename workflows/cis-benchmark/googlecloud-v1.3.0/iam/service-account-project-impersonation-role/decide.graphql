@@ -8,6 +8,7 @@ query {
       iamPolicy {
         bindings {
           members {
+            __typename
             id
           }
           role

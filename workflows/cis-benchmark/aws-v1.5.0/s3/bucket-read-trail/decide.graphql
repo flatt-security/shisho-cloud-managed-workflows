@@ -12,6 +12,7 @@
             displayName
           }
           eventSelectors {
+            __typename
             ... on AWSCloudTrailBasicEventSelector {
               __typename
               dataResources {

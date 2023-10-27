@@ -9,6 +9,7 @@
         bindings {
           role
           members {
+            __typename
             ... on GoogleCloudIAMPrincipalServiceAccount {
               id
               email

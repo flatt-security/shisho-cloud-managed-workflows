@@ -3,6 +3,7 @@ query {
     accounts {
       elb {
         loadBalancers(condition: { types: [APPLICATION] }) {
+          __typename
           ... on AWSELBApplicationLoadBalancer {
             metadata {
               id

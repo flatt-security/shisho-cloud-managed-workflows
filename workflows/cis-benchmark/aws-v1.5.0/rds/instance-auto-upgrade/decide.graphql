@@ -3,6 +3,7 @@
     accounts {
       rds {
         instances {
+          __typename
           ... on AWSRDSGenericDatabaseInstance {
             metadata {
               id
