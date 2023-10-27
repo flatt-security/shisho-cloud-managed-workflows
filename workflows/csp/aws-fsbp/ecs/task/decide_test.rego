@@ -3,9 +3,6 @@ package policy.aws.ecs.task
 import data.shisho
 import future.keywords
 
-import data.shisho
-import future.keywords
-
 test_task_with_writeable_root_fs_container_denied if {
 	td := {
 		"arn": "arn:aws:ecs:ap-northeast-1:779392188153:task-definition/example-ecs-task-definition:1",

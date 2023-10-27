@@ -11,6 +11,6 @@ decisions[d] {
 	d := shisho.decision.googlecloud.storage.bucket_uniform_bucket_level_access({
 		"allowed": allowed,
 		"subject": bucket.metadata.id,
-		"payload": shisho.decision.googlecloud.storage.bucket_uniform_bucket_level_access_payload({"uniform_access_enabled", bucket.uniformBucketLevelAccess.enabled}),
+		"payload": shisho.decision.googlecloud.storage.bucket_uniform_bucket_level_access_payload({"uniform_access_enabled": bucket.uniformBucketLevelAccess.enabled}),
 	})
 }
