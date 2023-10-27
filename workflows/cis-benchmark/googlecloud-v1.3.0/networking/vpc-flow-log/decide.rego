@@ -28,7 +28,7 @@ is_allowed(subnetworks) {
 	# check whether filter expression is set as empty to include all logs
 	log_config.filterExpression == ""
 
-	# check whether the interval is set as the 5-second interval 
+	# check whether the interval is set as the 5-second interval
 	log_config.aggregationInterval = "INTERVAL_5_SEC"
 
 	# check whether the flow sampling is set as 1

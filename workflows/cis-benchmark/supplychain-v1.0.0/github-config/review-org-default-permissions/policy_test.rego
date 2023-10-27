@@ -34,7 +34,7 @@ test_whether_default_repository_permission_is_properly_configured if {
 	]) == 2 with input as {"github": {"organizations": [
 		{
 			"metadata": {"id": "github|62992581|organization"},
-			"defaultRepositoryPermission": "write", # = accept to provide a `write` permission as default. `write` permissions are carefully provided depending on the members 
+			"defaultRepositoryPermission": "write", # = accept to provide a `write` permission as default. `write` permissions are carefully provided depending on the members
 		},
 		{
 			"metadata": {"id": "github|79221271|organization"},
@@ -122,7 +122,7 @@ test_whether_permissions_of_creating_public_pages_are_properly_configured if {
 	]) == 2 with input as {"github": {"organizations": [
 		{
 			"metadata": {"id": "github|62992581|organization"},
-			"canMembersCreatePublicPages": true, # = creating puclic pages is allowed  
+			"canMembersCreatePublicPages": true, # = creating puclic pages is allowed
 		},
 		{
 			"metadata": {"id": "github|79221271|organization"},

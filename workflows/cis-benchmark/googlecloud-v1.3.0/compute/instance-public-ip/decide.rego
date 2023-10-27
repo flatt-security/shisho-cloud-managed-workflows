@@ -3,10 +3,10 @@ package policy.googlecloud.compute.instance_public_ip
 import data.shisho
 
 # CIS Google Cloud Platform Foundation Benchmark v1.3.0 describes that the GKE nodes should be excluded.
-# 
+#
 # However, there is less logical reason to have exception, and Google Cloud also recommends to set a minimum role:
 # https://cloud.google.com/kubernetes-engine/docs/how-to/service-accounts?hl=ja#default-gke-service-agent
-# 
+#
 # Given this situation, this policy code allows users to choose whether to exclude GKE nodes or not.
 excludes_gke_nodes := data.params.excludes_gke_nodes {
 	data.params != null

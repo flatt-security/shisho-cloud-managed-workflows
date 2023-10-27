@@ -56,7 +56,7 @@ contains_gke_labels(labels) {
 	]) > 0
 } else = false
 
-# return an email of the default service account 
+# return an email of the default service account
 # the format of default service account is '[PROJECT_NUMBER]-compute@developer.gserviceaccount.com'
 default_service_account(project_number) = x {
 	x := sprintf("%d-compute@developer.gserviceaccount.com", [project_number])

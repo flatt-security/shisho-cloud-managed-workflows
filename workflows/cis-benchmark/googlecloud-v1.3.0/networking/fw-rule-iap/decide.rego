@@ -68,7 +68,7 @@ may_affect_restriction_target(allow_rule) {
 	# the rule uses the target protocol ...
 	restriction_target.protocol == allow_rule.ipProtocol
 
-	# and the rule has a port range that includes the target port.	
+	# and the rule has a port range that includes the target port.
 	include_ports(allow_rule.ports, restriction_target.port)
 } else := false
 

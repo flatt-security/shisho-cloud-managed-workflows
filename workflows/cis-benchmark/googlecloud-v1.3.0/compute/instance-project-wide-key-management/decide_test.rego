@@ -5,7 +5,7 @@ import future.keywords
 
 test_whether_proper_service_account_is_used_for_compute_engine_instance if {
 	# check if users with project-wide SSH keys connecting to the Google Cloud Compute Engine instance are blocked
-	# by the value "TRUE" of metadata "block-project-ssh-keys" 
+	# by the value "TRUE" of metadata "block-project-ssh-keys"
 	count([d |
 		decisions[d]
 		shisho.decision.is_allowed(d)
@@ -18,7 +18,7 @@ test_whether_proper_service_account_is_used_for_compute_engine_instance if {
 	}]}}]}}
 
 	# check if users with project-wide SSH keys connecting to the Google Cloud Compute Engine instance are blocked
-	# by the value "true" of metadata "block-project-ssh-keys" 
+	# by the value "true" of metadata "block-project-ssh-keys"
 	count([d |
 		decisions[d]
 		shisho.decision.is_allowed(d)

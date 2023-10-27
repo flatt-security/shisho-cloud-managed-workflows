@@ -20,7 +20,7 @@ decisions[d] {
 # 1. `default` logs the basic error information
 # 2. `terse` excludes the logging of DETAIL, HINT, QUERY, and CONTEXT error information
 # 3. `verbose` output includes the SQLSTATE error code and the source code file name, function name, and line number that generated the error
-# the default value is "default" 
+# the default value is "default"
 log_error_verbosity_state(database_flags) := flag.value {
 	flag := database_flags[_]
 	flag.name == "log_error_verbosity"
