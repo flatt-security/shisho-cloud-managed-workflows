@@ -47,7 +47,7 @@ cis_based_notification_paths(account) := x {
 		path := {
 			"trail_name": trail.metadata.displayName,
 			"metric_name": metric.name,
-			"alarm_name:": alarm.metadata.displayName,
+			"alarm_name": alarm.metadata.displayName,
 			"sns_topic_arn": topic.arn,
 		}
 	]
