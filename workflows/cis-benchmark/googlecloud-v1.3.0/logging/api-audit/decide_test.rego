@@ -8,7 +8,7 @@ test_whether_audit_logging_is_enabled_for_projects if {
 	count([d |
 		decisions[d]
 		shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 2 with input as {"googleCloud": {"organizations": [], "projects": [
 		{
 			"metadata": {"id": "googlecloud-project|514893257777"},
 			"iamPolicy": {"auditConfigurations": [{
@@ -56,7 +56,7 @@ test_whether_audit_logging_is_enabled_for_projects if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 2 with input as {"googleCloud": {"organizations": [], "projects": [
 		{
 			"metadata": {"id": "googlecloud-project|514893257777"},
 			"iamPolicy": {"auditConfigurations": [{
@@ -96,7 +96,7 @@ test_whether_audit_logging_is_enabled_for_projects if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 2 with input as {"googleCloud": {"organizations": [], "projects": [
 		{
 			"metadata": {"id": "googlecloud-project|514893257777"},
 			"iamPolicy": {"auditConfigurations": [{
@@ -144,7 +144,7 @@ test_whether_audit_logging_is_enabled_for_projects if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 2 with input as {"googleCloud": {"organizations": [], "projects": [
 		{
 			"metadata": {"id": "googlecloud-project|514893257777"},
 			"iamPolicy": {"auditConfigurations": [{
@@ -192,7 +192,7 @@ test_whether_audit_logging_is_enabled_for_projects if {
 	count([d |
 		decisions[d]
 		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"googleCloud": {"projects": [
+	]) == 2 with input as {"googleCloud": {"organizations": [], "projects": [
 		{
 			"metadata": {"id": "googlecloud-project|514893257777"},
 			"iamPolicy": {"auditConfigurations": [{
@@ -208,4 +208,84 @@ test_whether_audit_logging_is_enabled_for_projects if {
 			}]},
 		},
 	]}}
+
+	# ensure the org-level iamPolicy is considered
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 2 with input as {"googleCloud": {
+		"organizations": [{
+			"iamPolicy": {"auditConfigurations": [{
+				"service": "allServices",
+				"configurations": [
+					{
+						"type": "ADMIN_READ",
+						"exemptedMembers": [],
+					},
+					{
+						"type": "DATA_WRITE",
+						"exemptedMembers": [],
+					},
+					{
+						"type": "DATA_READ",
+						"exemptedMembers": [],
+					},
+				],
+			}]},
+			"allProjects": [
+				{"metadata": {"id": "googlecloud-project|514893257777"}},
+				{"metadata": {"id": "googlecloud-project|514893258888"}},
+			],
+		}],
+		"projects": [
+			{
+				"metadata": {"id": "googlecloud-project|514893257777"},
+				"iamPolicy": {"auditConfigurations": []},
+			},
+			{
+				"metadata": {"id": "googlecloud-project|514893258888"},
+				"iamPolicy": {"auditConfigurations": []},
+			},
+		],
+	}}
+
+	# ensure that projects out of the organization without logging config are denied even if there is an irrelevant organization
+	count([d |
+		decisions[d]
+		not shisho.decision.is_allowed(d)
+	]) == 1 with input as {"googleCloud": {
+		"organizations": [{
+			"iamPolicy": {"auditConfigurations": [{
+				"service": "allServices",
+				"configurations": [
+					{
+						"type": "ADMIN_READ",
+						"exemptedMembers": [],
+					},
+					{
+						"type": "DATA_WRITE",
+						"exemptedMembers": [],
+					},
+					{
+						"type": "DATA_READ",
+						"exemptedMembers": [],
+					},
+				],
+			}]},
+			"allProjects": [
+				{"metadata": {"id": "googlecloud-project|XXXXXXXXXX"}},
+				{"metadata": {"id": "googlecloud-project|514893258888"}},
+			],
+		}],
+		"projects": [
+			{
+				"metadata": {"id": "googlecloud-project|514893257777"},
+				"iamPolicy": {"auditConfigurations": []},
+			},
+			{
+				"metadata": {"id": "googlecloud-project|514893258888"},
+				"iamPolicy": {"auditConfigurations": []},
+			},
+		],
+	}}
 }
