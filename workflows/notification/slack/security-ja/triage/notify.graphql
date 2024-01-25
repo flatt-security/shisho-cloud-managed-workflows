@@ -28,6 +28,13 @@ query {
             name
             viewer
           }
+
+          triageComment
+          triageInitiator {
+            id
+            type
+            displayName
+          }
         }
       }
     }

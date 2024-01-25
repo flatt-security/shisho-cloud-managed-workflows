@@ -81,6 +81,21 @@ title(explanation, api_version, kind) := explanation.title {
 	concat(":", [api_version, kind])
 }
 
+triage_information(target) := [
+	slack.divider_block,
+	slack.context_block([slack.text_element(concat("", [":mega: トリアージ者: ", target.triageInitiator.displayName]))]),
+	slack.context_block([slack.text_element(concat("", [":memo: コメント: ", target.triageComment]))]),
+] {
+	target.triageInitiator.displayName != ""
+	target.triageComment != ""
+} else := [
+	slack.divider_block,
+	slack.context_block([slack.text_element(concat("", [":mega: トリアージ者: ", target.triageInitiator.displayName]))]),
+] {
+	target.triageInitiator.displayName != ""
+	target.triageComment == ""
+} else := []
+
 notifications[n] {
 	event := input.query.shisho.event
 	event.__typename == "ShishoTriageStatusEvent"
@@ -98,8 +113,8 @@ notifications[n] {
 	n := shisho.notification.to_slack_channel(
 		workspace_id,
 		channel_id,
-		{"blocks": [
-			slack.text_section(
+		{"blocks": array.concat(
+			[slack.text_section(
 				headline(event.type, event.status),
 				{"fields": [
 					# The first row
@@ -113,10 +128,13 @@ notifications[n] {
 					slack.text_element(severity_string(target_severity)),
 					slack.text_element(concat("", ["*", triage_status(event.status), "* に変化しました"])),
 				]},
-			),
-			slack.divider_block,
-			slack.context_block([slack.text_element(concat("", [":shield: *Powered by \"<", event.target.createdBy.viewer, "|", event.target.createdBy.name, ">\" on Shisho Cloud*"]))]),
-			slack.divider_block,
-		]},
+			)],
+			# The footer
+			array.concat(triage_information(event.target), [
+				slack.divider_block,
+				slack.context_block([slack.text_element(concat("", [":shield: *Powered by \"<", event.target.createdBy.viewer, "|", event.target.createdBy.name, ">\" on Shisho Cloud*"]))]),
+				slack.divider_block,
+			]),
+		)},
 	)
 }
