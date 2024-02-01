@@ -2,6 +2,12 @@ package policy.googlecloud.iam.service_account_project_admin_role
 
 import data.shisho
 
+# the list of allowed service account emails using regex
+allowed_service_account_email_regexes := data.params.allowed_service_account_email_regexes {
+	data.params != null
+	data.params.allowed_service_account_email_regexes != null
+} else := []
+
 decisions[d] {
 	project := input.googleCloud.projects[_]
 
@@ -24,6 +30,7 @@ permissive_project_bindings(bindings) := x {
 		member := binding.members[_]
 		member.__typename == "GoogleCloudIAMPrincipalServiceAccount"
 		member.email != null
+		is_allowed_service_account(member.email) == false
 	]
 } else := []
 
@@ -36,3 +43,7 @@ is_suspicious_role(role) {
 } else {
 	role == "roles/owner"
 } else = false
+
+is_allowed_service_account(d) {
+	regex.match(allowed_service_account_email_regexes[_], d)
+} else := false
