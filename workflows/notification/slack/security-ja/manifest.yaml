@@ -33,7 +33,7 @@ jobs:
       with:
         channel:
           type: slack_channel
-          descrition: The Slack channel to send notifications.
+          descrition: The Slack channel to send notifications. The format is `workspace_id:channel_id`.
           value: ""
         minimum_severity:
           type: string
