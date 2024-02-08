@@ -2,6 +2,12 @@ package policy.googlecloud.iam.service_account_project_impersonation_role
 
 import data.shisho
 
+# the list of allowed service account emails using regex
+allowed_service_account_email_regexes := data.params.allowed_service_account_email_regexes {
+	data.params != null
+	data.params.allowed_service_account_email_regexes != null
+} else := []
+
 decisions[d] {
 	project := input.googleCloud.projects[_]
 
@@ -21,6 +27,7 @@ permissive_principals(bindings) := x {
 		can_impersonate_or_attach(binding.role)
 
 		member := binding.members[_]
+		is_allowed_service_account(member) == false
 	]
 } else := []
 
@@ -29,3 +36,9 @@ can_impersonate_or_attach(role) {
 } else {
 	role == "roles/iam.serviceAccountTokenCreator"
 } else = false
+
+is_allowed_service_account(d) {
+	d.__typename == "GoogleCloudIAMPrincipalServiceAccount"
+	d.email != null
+	regex.match(allowed_service_account_email_regexes[_], d.email)
+} else := false

@@ -18,6 +18,11 @@ jobs:
           multiple: true
           description: A special list of resource exceptions
           values: []
+        allowed_service_account_email_regexes:
+          type: string
+          multiple: true
+          description: A list of service account email regexes (e.g. .*@example\.iam\.gserviceaccount\.com) that are allowed to be attached with project impersonation role
+          values: []
       input:
         schema: !include service-account-project-impersonation-role/decide.graphql
   - id: service-account-key
