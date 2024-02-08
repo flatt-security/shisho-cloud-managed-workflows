@@ -87,3 +87,47 @@ test_whether_service_accont_impersonation_is_prevented_for_projects if {
 		},
 	]}}
 }
+
+test_service_account_project_impersonation_role_with_allowed_service_account if {
+	test_input := {"googleCloud": {"projects": [
+		{
+			"id": "test-project-1",
+			"metadata": {"id": "googlecloud-project|5148937777"},
+			"iamPolicy": {"bindings": [{
+				"members": [{"id": "serviceAccount:app@test-project-1.iam.gserviceaccount.com", "__typename": "GoogleCloudIAMPrincipalServiceAccount", "email": "app@test-project-1.iam.gserviceaccount.com"}],
+				"role": "roles/iam.serviceAccountUser",
+			}]},
+		},
+		{
+			"id": "test-project-2",
+			"metadata": {"id": "googlecloud-project|5148938888"},
+			"iamPolicy": {"bindings": [{
+				"members": [{"id": "serviceAccount:serviceAccountTokenCreator@example-organization.iam.gserviceaccount.com", "__typename": "GoogleCloudIAMPrincipalServiceAccount", "email": "serviceAccountTokenCreator@example-organization.iam.gserviceaccount.com"}],
+				"role": "roles/iam.serviceAccountTokenCreator",
+			}]},
+		},
+		{
+			"id": "test-project-3",
+			"metadata": {"id": "googlecloud-project|5148939999"},
+			"iamPolicy": {"bindings": [{
+				"members": [{"id": "serviceAccount:owner@example-organization.iam.gserviceaccount.com", "__typename": "GoogleCloudIAMPrincipalServiceAccount", "email": "owner@example-organization.iam.gserviceaccount.com"}],
+				"role": "roles/owner",
+			}]},
+		},
+	]}}
+
+	count([d |
+		decisions[d]
+		not shisho.decision.is_allowed(d)
+	]) == 2 with input as test_input
+	count([d |
+		decisions[d]
+		not shisho.decision.is_allowed(d)
+	]) == 1 with input as test_input
+		with data.params.allowed_service_account_email_regexes as {"serviceAccountTokenCreator@example-organization.iam.gserviceaccount.com"}
+	count([d |
+		decisions[d]
+		shisho.decision.is_allowed(d)
+	]) == 0 with input as test_input
+		with data.params.allowed_service_account_email_regexes as {"*"}
+}
