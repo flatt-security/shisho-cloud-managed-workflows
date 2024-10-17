@@ -7,7 +7,7 @@ decisions[d] {
 	dist := account.cloudFront.distributions[_]
 
 	behaviors := cache_behaviors(dist)
-	allowed := includes_unallowed_behavior(behaviors)
+	allowed := includes_unallowed_behavior(behaviors) == false
 	d := shisho.decision.aws.cloudfront.transport({
 		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
@@ -17,7 +17,7 @@ decisions[d] {
 
 cache_behaviors(dist) = array.concat(
 	[{
-		"path_pattern": cb.pathPattern,
+		"path_pattern": "",
 		"target_origin_id": cb.targetOriginId,
 		"viewer_protocol_policy": cb.viewerProtocolPolicy,
 	} |
