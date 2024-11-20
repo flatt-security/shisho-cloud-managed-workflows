@@ -18,7 +18,7 @@ decisions[d] {
 
 includes_accepted_encryption_rule(rules) {
 	rule := rules[_]
-	rule.keyEnabled == true
+
 	any([
 		rule.encryptionByDefault.sseAlgorithm == "AES256",
 		rule.encryptionByDefault.sseAlgorithm == "AWS_KMS",

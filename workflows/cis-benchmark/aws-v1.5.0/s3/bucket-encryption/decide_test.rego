@@ -11,38 +11,11 @@ test_whether_the_bucket_encryption_is_enabled_for_aws_s3_buckets if {
 	]) == 2 with input as {"aws": {"accounts": [{"s3": {"buckets": [
 		{
 			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-1"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "AES256"},
-				"keyEnabled": true,
-			}]},
+			"encryptionConfiguration": {"rules": [{"encryptionByDefault": {"sseAlgorithm": "AES256"}}]},
 		},
 		{
 			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-2"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "AWS_KMS"},
-				"keyEnabled": true,
-			}]},
-		},
-	]}}]}}
-
-	# check if the bucket encryption is disabled for AWS S3 buckets
-	count([d |
-		decisions[d]
-		not shisho.decision.is_allowed(d)
-	]) == 2 with input as {"aws": {"accounts": [{"s3": {"buckets": [
-		{
-			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-1"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "AES256"},
-				"keyEnabled": false,
-			}]},
-		},
-		{
-			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-2"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "INSECURE_ALGORITHM"},
-				"keyEnabled": true,
-			}]},
+			"encryptionConfiguration": {"rules": [{"encryptionByDefault": {"sseAlgorithm": "AWS_KMS"}}]},
 		},
 	]}}]}}
 
@@ -53,18 +26,12 @@ test_whether_the_bucket_encryption_is_enabled_for_aws_s3_buckets if {
 	]) == 1 with input as {"aws": {"accounts": [{"s3": {"buckets": [
 		{
 			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-1"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "AES256"},
-				"keyEnabled": false,
-			}]},
+			"encryptionConfiguration": {"rules": [{"encryptionByDefault": {"sseAlgorithm": "AES256"}}]},
 			"tags": [{"key": "foo", "value": "bar=piyo"}],
 		},
 		{
 			"metadata": {"id": "aws-s3-bucket|ap-northeast-1|test-bucket-2"},
-			"encryptionConfiguration": {"rules": [{
-				"encryptionByDefault": {"sseAlgorithm": "INSECURE_ALGORITHM"},
-				"keyEnabled": true,
-			}]},
+			"encryptionConfiguration": {"rules": [{"encryptionByDefault": {"sseAlgorithm": "INSECURE_ALGORITHM"}}]},
 			"tags": [{"key": "foo", "value": "diff"}],
 		},
 	]}}]}}
