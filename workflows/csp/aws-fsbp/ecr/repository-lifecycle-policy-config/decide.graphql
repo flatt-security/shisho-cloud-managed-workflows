@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      ecr {
+        repositories {
+          metadata {
+            id
+            displayName
+          }
+          lifecyclePolicy {
+            policy {
+              rawDocument
+            }
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

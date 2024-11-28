@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          state {
+            state
+          }
+          ssmConfiguration {
+            associationStatus
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

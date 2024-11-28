@@ -1,7 +1,7 @@
 version: 0.1.0
 
-id: "prebundle-aws-ecs"
-name: "Prebundle: Review AWS ECS posture"
+id: "prebundle-aws-fsbp-ecs"
+name: "Prebundle: Review AWS ECS posture (FSBP)"
 
 triggers:
   schedule:
@@ -42,3 +42,88 @@ jobs:
           values: []
       input:
         schema: !include task/decide.graphql
+  - id: task-fargate-version
+    name: Review task fargate version
+    decide:
+      rego: !include task-fargate-version/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include task-fargate-version/decide.graphql
+  - id: task-process-namespace
+    name: Review task process namespace
+    decide:
+      rego: !include task-process-namespace/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include task-process-namespace/decide.graphql
+  - id: container-environment-variables
+    name: Review container environment variables
+    decide:
+      rego: !include container-environment-variables/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include container-environment-variables/decide.graphql
+  - id: task-networking-mode
+    name: Review task networking mode
+    decide:
+      rego: !include task-networking-mode/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include task-networking-mode/decide.graphql
+  - id: cluster-container-insights
+    name: Review cluster container insights
+    decide:
+      rego: !include cluster-container-insights/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-container-insights/decide.graphql

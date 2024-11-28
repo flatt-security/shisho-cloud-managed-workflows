@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          objectLockConfiguration {
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

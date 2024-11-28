@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      lambda {
+        functions {
+          metadata {
+            id
+            displayName
+          }
+          policy {
+            rawPolicy
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

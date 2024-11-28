@@ -1,0 +1,95 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          __typename
+          ... on AWSRDSGenericDatabaseInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            iamDatabaseAuthenticationEnabled
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

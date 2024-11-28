@@ -1,0 +1,28 @@
+{
+  aws {
+    accounts {
+      secretsManager {
+        secrets {
+          metadata {
+            id
+            displayName
+          }
+          region
+          primaryRegion
+          rotationEnabled
+          createdAt
+          lastRotatedAt
+          rotationRules {
+            automaticallyAfterDays
+            scheduleExpression
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

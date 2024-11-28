@@ -20,7 +20,7 @@ jobs:
           submodules: "recursive"
       - name: Run OPA tests
         run: |
-          opa test -v .
+          opa test -v --timeout 30s .
   lint:
     runs-on: ubuntu-latest
     strategy:

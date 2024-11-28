@@ -1,0 +1,112 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-waf"
+name: "Prebundle: Review AWS WAF posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: classic-rule-group-attached-rules
+    name: Review classic rule group attached rules
+    decide:
+      rego: !include classic-rule-group-attached-rules/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include classic-rule-group-attached-rules/decide.graphql
+  - id: web-acl-rules
+    name: Review web acl rules
+    decide:
+      rego: !include web-acl-rules/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include web-acl-rules/decide.graphql
+  - id: web-acl-logging
+    name: Review web acl logging
+    decide:
+      rego: !include web-acl-logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include web-acl-logging/decide.graphql
+  - id: classic-rule-condition
+    name: Review classic rule condition
+    decide:
+      rego: !include classic-rule-condition/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include classic-rule-condition/decide.graphql
+  - id: classic-web-acl-logging
+    name: Review classic web acl logging
+    decide:
+      rego: !include classic-web-acl-logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include classic-web-acl-logging/decide.graphql
+  - id: classic-web-acl-rules
+    name: Review classic web acl rules
+    decide:
+      rego: !include classic-web-acl-rules/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include classic-web-acl-rules/decide.graphql

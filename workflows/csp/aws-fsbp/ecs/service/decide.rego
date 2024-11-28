@@ -44,7 +44,7 @@ service_has_automatic_ip_assignment(s) {
 service_public_assignment(s) := s.networkConfiguration.vpcConfiguration.assignPublicIp {
 	s.networkConfiguration != null
 	s.networkConfiguration.vpcConfiguration != null
-} else := []
+} else := "DISABLED"
 
 service_sgs(s) := [sg.id | sg := s.networkConfiguration.vpcConfiguration.securityGroups[_]] {
 	s.networkConfiguration != null

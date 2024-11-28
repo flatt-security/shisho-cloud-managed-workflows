@@ -1,0 +1,38 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+          }
+          publicAccessBlockConfiguration {
+            blockPublicAcls
+            blockPublicPolicy
+            ignorePublicAcls
+            restrictPublicBuckets
+          }
+
+          aclGrants {
+            grantee {
+              type
+              id
+              emailAddress
+              displayName
+              uri
+            }
+            permission
+          }
+          policy {
+            rawDocument
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

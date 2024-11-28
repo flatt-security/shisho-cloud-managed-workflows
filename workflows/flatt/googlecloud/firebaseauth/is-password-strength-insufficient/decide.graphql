@@ -1,0 +1,32 @@
+query {
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+      firebaseAuthentication {
+        settings {
+          passwordPolicy {
+            passwordPolicyVersions {
+              customStrengthOptions {
+                minimumLength
+              }
+            }
+          }
+        }
+      }
+      identityPlatform {
+        tenants {
+          displayName
+          passwordPolicyConfiguration {
+            versions {
+              customStrengthOptions {
+                minimumPasswordLength
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

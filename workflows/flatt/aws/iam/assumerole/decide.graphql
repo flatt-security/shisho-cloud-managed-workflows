@@ -1,0 +1,18 @@
+{
+  aws {
+    accounts {
+      id
+      iam {
+        roles {
+          metadata {
+            id
+          }
+          assumeRoleRawPolicyDocument
+          policies {
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

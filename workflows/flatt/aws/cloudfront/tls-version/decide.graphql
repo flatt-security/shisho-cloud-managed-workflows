@@ -1,0 +1,18 @@
+{
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+
+          viewerCertificate {
+            minimumProtocolVersion
+            cloudFrontDefaultCertificate
+          }
+        }
+      }
+    }
+  }
+}

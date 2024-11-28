@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      network {
+        vpnConnections {
+          metadata {
+            id
+            displayName
+          }
+          vgwTelemetry {
+            outsideIpAddress
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

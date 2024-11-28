@@ -1,0 +1,56 @@
+{
+  aws {
+    accounts {
+      elb {
+        loadBalancers {
+          __typename
+          ... on AWSELBApplicationLoadBalancer {
+            __typename
+            metadata {
+              id
+              displayName
+            }
+            albAvailabilityZones {
+              name
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSELBNetworkLoadBalancer {
+            __typename
+            metadata {
+              id
+              displayName
+            }
+            nlbAvailabilityZones {
+              name
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSELBGatewayLoadBalancer {
+            __typename
+            metadata {
+              id
+              displayName
+            }
+            glbAvailabilityZones {
+              name
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      efs {
+        fileSystems {
+          metadata {
+            id
+            displayName
+          }
+          accessPoints {
+            posixUser {
+              uid
+              gid
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+          }
+          encryptionConfiguration {
+            rules {
+              encryptionByDefault {
+                sseAlgorithm
+                kmsMasterKeyId
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+            displayName
+          }
+          webAclId
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

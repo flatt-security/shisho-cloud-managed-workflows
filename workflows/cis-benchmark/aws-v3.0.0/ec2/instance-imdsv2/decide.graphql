@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          metadataOptions {
+            httpTokens
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

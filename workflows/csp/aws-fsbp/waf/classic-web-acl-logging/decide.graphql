@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      wafClassic {
+        webAcls(condition: {scopeType: GLOBAL}) {
+          metadata {
+            id
+            displayName
+          }
+          loggingConfiguration {
+            logDestinationConfigurations
+          }
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

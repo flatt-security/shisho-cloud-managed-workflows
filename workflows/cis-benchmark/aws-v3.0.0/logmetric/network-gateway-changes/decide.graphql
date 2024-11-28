@@ -1,0 +1,93 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+        displayName
+      }
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          isMultiRegionTrail
+          cloudWatchLogGroup {
+            metadata {
+              id
+              displayName
+            }
+            arn
+            metricFilters {
+              pattern
+              metricTransformations {
+                name
+              }
+            }
+          }
+          status {
+            isLogging
+          }
+          eventSelectors {
+            __typename
+            ... on AWSCloudTrailBasicEventSelector {
+              __typename
+              includeManagementEvents
+              readWriteType
+            }
+            ... on AWSCloudTrailAdvancedEventSelector {
+              __typename
+              name
+              fieldSelectors {
+                field
+                equals
+              }
+            }
+          }
+        }
+      }
+      cloudWatch {
+        alarms {
+          __typename
+          ... on AWSCloudWatchMetricAlarm {
+            metadata {
+              id
+              displayName
+            }
+            metricName
+            alarmActions {
+              __typename
+              ... on AWSCloudWatchAlarmActionNotification {
+                __typename
+                arn
+                topic {
+                  __typename
+                  ... on AWSSNSTopicFifo {
+                    metadata {
+                      id
+                      displayName
+                    }
+                    arn
+                    subscriptions {
+                      arn
+                    }
+                  }
+                  ... on AWSSNSTopicStandard {
+                    metadata {
+                      id
+                      displayName
+                    }
+                    arn
+                    subscriptions {
+                      arn
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

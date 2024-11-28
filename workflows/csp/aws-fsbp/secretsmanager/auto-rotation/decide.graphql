@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      secretsManager {
+        secrets {
+          metadata {
+            id
+            displayName
+          }
+          rotationEnabled
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

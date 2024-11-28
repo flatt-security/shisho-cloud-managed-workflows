@@ -1,0 +1,17 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+      }
+      s3 {
+        publicAccessBlockConfiguration {
+          blockPublicAcls
+          blockPublicPolicy
+          ignorePublicAcls
+          restrictPublicBuckets
+        }
+      }
+    }
+  }
+}

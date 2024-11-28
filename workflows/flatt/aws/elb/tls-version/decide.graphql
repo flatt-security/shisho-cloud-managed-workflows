@@ -1,0 +1,39 @@
+{
+  aws {
+    accounts {
+      elb {
+        loadBalancers {
+          __typename
+          ... on AWSELBApplicationLoadBalancer {
+            __typename
+            metadata {
+              id
+              displayName
+            }
+
+            listeners {
+              __typename
+
+              ... on AWSElasticLoadBalancerHTTPSListener {
+                arn
+                protocol
+                sslPolicy
+              }
+
+              ... on AWSElasticLoadBalancerTLSListener {
+                arn
+                protocol
+                sslPolicy
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

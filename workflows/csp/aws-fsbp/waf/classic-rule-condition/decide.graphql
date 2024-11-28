@@ -1,0 +1,40 @@
+{
+  aws {
+    accounts {
+      wafClassic {
+        webAcls {
+          metadata {
+            id
+            displayName
+          }
+          activatedRules {
+            details {
+              __typename
+              ... on AWSWAFClassicRule {
+                __typename
+                id
+                name
+                predicates {
+                  dataId
+                }
+              }
+              ... on AWSWAFClassicRateBasedRule {
+                __typename
+                id
+                name
+                predicates {
+                  dataId
+                }
+              }
+            }
+          }
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          lifecycleConfiguration {
+            rules {
+              id
+              status
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

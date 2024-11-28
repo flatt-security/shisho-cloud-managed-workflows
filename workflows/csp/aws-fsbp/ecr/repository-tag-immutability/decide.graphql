@@ -1,0 +1,19 @@
+{
+  aws {
+    accounts {
+      ecr {
+        repositories {
+          metadata {
+            id
+            displayName
+          }
+          imageTagMutability
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

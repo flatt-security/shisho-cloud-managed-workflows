@@ -1,7 +1,7 @@
 version: 0.1.0
 
-id: "prebundle-aws-elb"
-name: "Prebundle: Review AWS ELB posture"
+id: "prebundle-aws-fsbp-elb"
+name: "Prebundle: Review AWS ELB posture (FSBP)"
 
 triggers:
   schedule:
@@ -44,3 +44,20 @@ jobs:
           values: []
       input:
         schema: !include alb-header/decide.graphql
+  - id: availability-zones
+    name: Review availability zones
+    decide:
+      rego: !include availability-zones/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include availability-zones/decide.graphql

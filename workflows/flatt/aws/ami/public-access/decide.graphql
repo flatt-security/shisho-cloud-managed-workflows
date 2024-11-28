@@ -1,0 +1,14 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        images {
+          metadata {
+            id
+          }
+          isPublic
+        }
+      }
+    }
+  }
+}

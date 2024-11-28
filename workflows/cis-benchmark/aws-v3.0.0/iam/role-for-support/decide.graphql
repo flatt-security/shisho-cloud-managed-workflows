@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      metadata {
+        displayName
+        id
+      }
+      iam {
+        policies {
+          name
+          entities {
+            roles {
+              name
+            }
+            users {
+              name
+            }
+            groups {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          region
+          replicationConfiguration {
+            rules {
+              status
+              destination {
+                bucket
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

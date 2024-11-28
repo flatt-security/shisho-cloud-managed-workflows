@@ -3,13 +3,25 @@ query {
     accounts {
       cloudFront {
         distributions {
+          domainName
           metadata {
             id
           }
           config {
             defaultRootObject
           }
-
+          origins {
+            backend {
+              __typename
+              ... on AWSCloudFrontDistributionOriginBackendS3Bucket {
+                bucket {
+                  policy {
+                    rawDocument
+                  }
+                }
+              }
+            }
+          }
           tags {
             key
             value

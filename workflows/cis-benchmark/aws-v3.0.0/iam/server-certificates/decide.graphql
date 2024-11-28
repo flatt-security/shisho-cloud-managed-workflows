@@ -1,0 +1,16 @@
+{
+  aws {
+    accounts {
+      iam {
+        serverCertificates {
+          metadata {
+            id
+            displayName
+          }
+          name
+          expiredAt
+        }
+      }
+    }
+  }
+}

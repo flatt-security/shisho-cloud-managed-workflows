@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          firewalls {
+            metadata {
+              id
+              displayName
+            }
+            firewallPolicy {
+              statelessDefaultActions
+            }
+            
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

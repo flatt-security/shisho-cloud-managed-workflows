@@ -1,0 +1,37 @@
+{
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          services {
+            metadata {
+              id
+            }
+            taskDefinition {
+              containerDefinitions {
+                __typename
+                ... on AWSECSLinuxContainerDefinition {
+                  name
+                  environment {
+                    name
+                  }
+                }
+                ... on AWSECSWindowsContainerDefinition {
+                  name
+                  environment {
+                    name
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

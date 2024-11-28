@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      secretsManager {
+        secrets {
+          metadata {
+            id
+            displayName
+          }
+          lastRotatedAt
+          createdAt
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

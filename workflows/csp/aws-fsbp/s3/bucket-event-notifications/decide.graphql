@@ -1,0 +1,35 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          notificationConfiguration {
+            eventBridgeConfiguration {
+              enabled
+            }
+            lambdaFunctionConfigurations {
+              arn
+            }
+
+            queueConfigurations {
+              arn
+            }
+
+            topicConfigurations {
+              arn
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

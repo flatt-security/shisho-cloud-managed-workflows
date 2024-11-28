@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      acm {
+        certificates {
+          metadata {
+            id
+            displayName
+          }
+          keyAlgorithm
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

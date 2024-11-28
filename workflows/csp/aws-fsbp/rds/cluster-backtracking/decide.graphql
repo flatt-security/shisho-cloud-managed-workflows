@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      rds {
+        clusters {
+          metadata {
+            displayName
+            id
+          }
+          engine
+          backtrackWindow
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

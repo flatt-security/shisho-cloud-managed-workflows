@@ -1,0 +1,29 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+      }
+
+      config {
+        recorders {
+          name
+          region
+          metadata {
+            id
+            displayName
+          }
+          recordingGroup {
+            allSupported
+            includeGlobalResourceTypes
+            resourceTypes
+          }
+          status {
+            lastStatus
+            recording
+          }
+        }
+      }
+    }
+  }
+}

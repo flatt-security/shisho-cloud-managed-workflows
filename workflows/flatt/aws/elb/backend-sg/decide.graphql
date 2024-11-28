@@ -1,0 +1,58 @@
+{
+  aws {
+    accounts {
+      elb {
+        loadBalancers {
+          __typename
+          ... on AWSELBApplicationLoadBalancer {
+            __typename
+            metadata {
+              id
+              displayName
+            }
+            securityGroups {
+              id
+            }
+
+            targetGroups {
+              targetInstances {
+                metadata {
+                  id
+                }
+                securityGroups {
+                  id
+                }
+              }
+            }
+
+            vpc {
+              securityGroups {
+                id
+                ipPermissionsIngress {
+                  toPort
+                  fromPort
+                  ipv4Ranges {
+                    cidrIpv4
+                  }
+                  prefixListIds {
+                    id
+                  }
+                  ipv6Ranges {
+                    cidrIpv6
+                  }
+                  userIdGroupPairs {
+                    id
+                  }
+                }
+              }
+            }
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

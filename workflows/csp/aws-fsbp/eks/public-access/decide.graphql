@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      eks {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          resourcesVpcConfiguration {
+            endpointPublicAccess
+            publicAccessCidrs
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

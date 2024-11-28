@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          policy {
+            rawDocument
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

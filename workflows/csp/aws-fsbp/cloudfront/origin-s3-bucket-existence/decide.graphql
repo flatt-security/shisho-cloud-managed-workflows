@@ -1,0 +1,33 @@
+{
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+            displayName
+          }
+          origins {
+            domainName
+            backend {
+              __typename
+              ... on AWSCloudFrontDistributionOriginBackendS3Bucket {
+                bucket {
+                  metadata {
+                    id
+                    displayName
+                  }
+                }
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

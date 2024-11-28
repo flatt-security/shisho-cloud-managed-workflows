@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      cognito {
+        identityPools {
+          metadata {
+            id
+          }
+
+          cognitoIdentityProviders {
+            clientId
+          }
+
+          roleAssignment {
+            perAuth {
+              authenticatedRoleArn
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+      }
+      iam {
+        passwordPolicy {
+          passwordReusePrevention
+        }
+      }
+    }
+  }
+}

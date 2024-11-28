@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      kinesis {
+        streams {
+          metadata {
+            id
+            displayName
+          }
+          encryptionType
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

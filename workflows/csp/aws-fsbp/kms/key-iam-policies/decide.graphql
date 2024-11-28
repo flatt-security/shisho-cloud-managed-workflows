@@ -1,0 +1,37 @@
+{
+  aws {
+    accounts {
+      id
+      iam {
+        policies {
+          metadata {
+            id
+            displayName
+          }
+          defaultVersion {
+            rawDocument
+          }
+          entities {
+            users {
+              id
+              name
+            }
+            groups {
+              id
+              name
+            }
+            roles {
+              id
+              name
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

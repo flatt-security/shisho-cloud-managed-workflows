@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      efs {
+        fileSystems {
+          metadata {
+            id
+            displayName
+          }
+          accessPoints {
+            rootDirectory {
+              path
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

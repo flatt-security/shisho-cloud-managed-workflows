@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          launchConfiguration {
+            associatePublicIpAddress
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

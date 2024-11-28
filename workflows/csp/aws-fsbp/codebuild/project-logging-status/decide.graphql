@@ -1,0 +1,29 @@
+{
+  aws {
+    accounts {
+      codeBuild {
+        projects {
+          metadata {
+            id
+            displayName
+          }
+          logsConfiguration {
+            cloudWatchLogs {
+              status
+              groupName
+              streamName
+            }
+            s3Logs {
+              location
+              status
+            }
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          __typename
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            deletionProtection
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+              displayName
+            }
+            deletionProtection
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+              displayName
+            }
+            deletionProtection
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            deletionProtection
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+              displayName
+            }
+            deletionProtection
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

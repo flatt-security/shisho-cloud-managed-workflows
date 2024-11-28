@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          metadata {
+            id
+            displayName
+          }
+          acls {
+            id
+            associations {
+              id
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

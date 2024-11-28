@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      apigateway {
+        apis {
+          __typename
+          ... on AWSAPIGatewayRestAPI {
+            metadata {
+              id
+              displayName
+            }
+            stages {
+              name
+              clientCertificateId
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

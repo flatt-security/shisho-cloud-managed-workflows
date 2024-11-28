@@ -1,0 +1,190 @@
+{
+  aws {
+    accounts {
+      rds {
+        instances {
+          __typename
+          ... on AWSRDSGenericDatabaseInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+            }
+            publiclyAccessible
+            subnetGroup {
+              vpc {
+                routeTables {
+                  routes {
+                    gatewayId
+                    destinationCidrBlock
+                  }
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

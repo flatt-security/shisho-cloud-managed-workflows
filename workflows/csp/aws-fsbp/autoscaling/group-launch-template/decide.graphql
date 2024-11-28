@@ -1,0 +1,35 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          mixedInstancesPolicy {
+            launchTemplate {
+              specification {
+                id
+                name
+                number
+              }
+            }
+          }
+          instances {
+            launchTemplate {
+              id
+              name
+              number
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

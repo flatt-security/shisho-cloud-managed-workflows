@@ -1,0 +1,31 @@
+{
+  aws {
+    accounts {
+      network {
+        firewallRuleGroups {
+          __typename
+          ... on AWSVPCFirewallStatelessRuleGroup {
+            metadata {
+              id
+              displayName
+            }
+            rules {
+              source {
+                rulesAndCustomActions {
+                  rules {
+                    priority
+                  }
+                }
+              }
+            }
+            
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

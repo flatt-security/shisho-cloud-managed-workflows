@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+          }
+          versioning {
+            mfaDelete
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

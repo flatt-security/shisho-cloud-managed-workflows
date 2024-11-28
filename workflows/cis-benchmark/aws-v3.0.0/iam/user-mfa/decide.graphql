@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      iam {
+        users {
+          metadata {
+            id
+          }
+          name
+        }
+        credentialReport {
+          contents {
+            user
+            passwordEnabled
+            mfaActive
+          }
+        }
+      }
+    }
+  }
+}

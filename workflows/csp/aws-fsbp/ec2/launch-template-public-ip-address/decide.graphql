@@ -1,0 +1,33 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        launchTemplates {
+          metadata {
+            id
+            displayName
+          }
+          defaultVersion {
+            number
+            details {
+              networkInterfaces {
+                networkInterface {
+                  id
+                  association {
+                    publicIp
+                  }
+                }
+                associatePublicIpAddress
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

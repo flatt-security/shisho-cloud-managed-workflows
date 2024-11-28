@@ -1,0 +1,44 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-dynamodb"
+name: "Prebundle: Review AWS DynamoDB posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: table-point-in-time-recovery
+    name: Review table point in time recovery
+    decide:
+      rego: !include table-point-in-time-recovery/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include table-point-in-time-recovery/decide.graphql
+  - id: table-scale-capacity
+    name: Review table scale capacity
+    decide:
+      rego: !include table-scale-capacity/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include table-scale-capacity/decide.graphql

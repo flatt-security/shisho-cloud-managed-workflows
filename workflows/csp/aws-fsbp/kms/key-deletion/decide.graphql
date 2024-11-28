@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      kms {
+        keys {
+          metadata {
+            id
+            displayName
+          }
+          keyManager
+          keyState
+          daletedAt
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

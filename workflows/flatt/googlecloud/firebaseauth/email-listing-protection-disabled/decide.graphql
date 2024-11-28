@@ -1,0 +1,22 @@
+query {
+  googleCloud {
+    projects {
+      metadata {
+        id
+      }
+      firebaseAuthentication {
+        settings {
+          emailListingProtectionDisabled
+        }
+      }
+      identityPlatform {
+        tenants {
+          displayName
+          emailPrivacyConfiguration {
+            enableImprovedEmailPrivacy
+          }
+        }
+      }
+    }
+  }
+}

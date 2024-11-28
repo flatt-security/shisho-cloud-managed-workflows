@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      dynamoDb {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          sseDescription {
+            status
+          }
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

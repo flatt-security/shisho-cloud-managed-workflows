@@ -1,0 +1,27 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          blockDeviceMappings {
+            ebs {
+              volume {
+                id
+                encrypted
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

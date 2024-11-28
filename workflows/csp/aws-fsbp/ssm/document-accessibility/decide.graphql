@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      ssm {
+        documents {
+          metadata {
+            id
+            displayName
+          }
+          permission {
+            accountIds
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

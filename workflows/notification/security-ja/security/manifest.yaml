@@ -1,0 +1,55 @@
+version: 0.1.0
+
+id: "notification-security"
+name: "Prebundle: Notify important security events"
+
+triggers:
+  triage:
+    # send notifications when...
+    - event: [updated]
+      status_changed_to:
+        # the issue is calling your review.
+        - awaiting_review
+        # the issue is acknowledged, and no further action is not expected.
+        - acknowledged
+        # the issue is marked to need your fix.
+        - action_required
+        # the issue was fixed :tada:
+        - secure
+        # the resource with security issue(s) gets deleted.
+        - deleted
+    # send notifications on a finding needs your action
+    - event: [created]
+      status_changed_to:
+        - awaiting_review
+
+jobs:
+  - id: triage
+    name: Notify triage status updation
+    notify:
+      rego: !include triage/notify.rego
+      input:
+        schema: !include triage/notify.graphql
+      with:
+        slack_channel:
+          type: slack_channel
+          descrition: The Slack channel to send notifications. The format is `workspace_id:channel_id`.
+          value: ""
+        email_address:
+          type: string
+          descrition: The email channel to send notifications.
+          value: ""
+        notification_group:
+          type: notification_target
+          descrition: The notification group to send notifications.
+          value: ""
+        minimum_severity:
+          type: string
+          description: The minimum severity to notify.
+          value: HIGH
+          oneof:
+            - INFO
+            - LOW
+            - MEDIUM
+            - HIGH
+            - CRITICAL

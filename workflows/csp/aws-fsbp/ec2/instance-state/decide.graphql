@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          state {
+            state
+          }
+          stateTransitedAt
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

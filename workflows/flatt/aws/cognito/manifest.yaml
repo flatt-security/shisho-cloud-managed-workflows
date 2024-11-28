@@ -1,0 +1,44 @@
+version: 0.1.0
+
+id: "prebundle-aws-flatt-cognito"
+name: "Prebundle: Review AWS Cognito posture (Flatt)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: cognito-unauth-idp
+    name: Review Unauthenticated Roles
+    decide:
+      rego: !include unauth-idp/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include unauth-idp/decide.graphql
+  - id: cognito-auth-idp
+    name: Review Authenticated Roles
+    decide:
+      rego: !include auth-idp/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include auth-idp/decide.graphql

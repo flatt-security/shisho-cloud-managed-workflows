@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          settings {
+            name
+            value
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

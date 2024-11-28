@@ -3,9 +3,7 @@ package policy.googlecloud.bigquery.table_encryption_cmek
 import data.shisho
 
 decisions[d] {
-	project := input.googleCloud.projects[_]
-	dataset := project.bigQuery.datasets[_]
-	table := dataset.tables[_]
+	table := input # The workflow has iterate_with set to "googleCloud.projects.bigQuery.datasets.tables"
 
 	d := shisho.decision.googlecloud.bigquery.table_encryption_cmek({
 		"allowed": uses_default_key(table.encryptionConfiguration) == false,

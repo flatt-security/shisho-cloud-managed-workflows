@@ -1,0 +1,44 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-acm"
+name: "Prebundle: Review AWS ACM posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: certificate-expiry
+    name: Review certificate expiry
+    decide:
+      rego: !include certificate-expiry/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include certificate-expiry/decide.graphql
+  - id: certificate-key-algorithm
+    name: Review certificate key algorithm
+    decide:
+      rego: !include certificate-key-algorithm/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include certificate-key-algorithm/decide.graphql

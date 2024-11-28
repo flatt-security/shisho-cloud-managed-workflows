@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      efs {
+        fileSystems {
+          metadata {
+            id
+            displayName
+          }
+          backupPolicy {
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

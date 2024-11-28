@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          services {
+            metadata {
+              id
+            }
+            taskDefinition {
+              pidMode
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}
