@@ -1,7 +1,7 @@
 version: 0.1.0
 
-id: "prebundle-aws-cloudfront"
-name: "Prebundle: Review AWS CloudFront posture"
+id: "prebundle-aws-fsbp-cloudfront"
+name: "Prebundle: Review AWS CloudFront posture (FSBP)"
 
 triggers:
   schedule:
@@ -93,3 +93,88 @@ jobs:
           values: []
       input:
         schema: !include transport/decide.graphql
+  - id: origin-failover
+    name: Review origin failover
+    decide:
+      rego: !include origin-failover/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include origin-failover/decide.graphql
+  - id: sni
+    name: Review sni
+    decide:
+      rego: !include sni/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include sni/decide.graphql
+  - id: default-certificate
+    name: Review default certificate
+    decide:
+      rego: !include default-certificate/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include default-certificate/decide.graphql
+  - id: origin-s3-bucket-existence
+    name: Review origin s3 bucket existence
+    decide:
+      rego: !include origin-s3-bucket-existence/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include origin-s3-bucket-existence/decide.graphql
+  - id: waf
+    name: Review waf
+    decide:
+      rego: !include waf/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include waf/decide.graphql

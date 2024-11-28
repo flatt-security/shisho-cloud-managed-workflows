@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      ssm {
+        managedInstances {
+          metadata {
+            id
+            displayName
+          }
+          compliances(condition: {Types: [ASSOCIATION]}) {
+            id
+            title
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

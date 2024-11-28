@@ -1,0 +1,23 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          metadata {
+            id
+            displayName
+          }
+          subnets {
+            id
+            mapPublicIpOnLaunch
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

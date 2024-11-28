@@ -21,7 +21,7 @@ jobs:
       input:
         schema: !include dataset-accessibility/decide.graphql
   - id: dataset-encryption-cmek
-    name: Review the encryption of tables
+    name: Review the encryption of datasets
     decide:
       rego: !include dataset-encryption-cmek/decide.rego
       with:
@@ -33,7 +33,7 @@ jobs:
       input:
         schema: !include dataset-encryption-cmek/decide.graphql
   - id: table-encryption-cmek
-    name: Review the encryption of datasets
+    name: Review the encryption of tables
     decide:
       rego: !include table-encryption-cmek/decide.rego
       with:
@@ -44,3 +44,4 @@ jobs:
           values: []
       input:
         schema: !include table-encryption-cmek/decide.graphql
+        iterate_over: "googleCloud.projects.bigQuery.datasets.tables"

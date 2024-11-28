@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      rds {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          engine
+          deletionProtection
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

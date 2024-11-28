@@ -1,0 +1,22 @@
+query {
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+          }
+          logging {
+            targetBucket
+            targetPrefix
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

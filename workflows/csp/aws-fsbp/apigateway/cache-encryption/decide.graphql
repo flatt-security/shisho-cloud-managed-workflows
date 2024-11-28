@@ -1,0 +1,32 @@
+{
+  aws {
+    accounts {
+      apigateway {
+        apis {
+          __typename
+          ... on AWSAPIGatewayRestAPI {
+            metadata {
+              id
+              displayName
+            }
+            stages {
+              name
+              methodSettings {
+                key
+                value {
+                  cachingEnabled
+                  cacheDataEncrypted
+                }
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

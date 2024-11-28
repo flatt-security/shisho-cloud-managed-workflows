@@ -1,0 +1,54 @@
+query {
+  shisho {
+    event {
+      __typename
+      ... on ShishoTriageStatusEvent {
+        type
+        status
+
+        target {
+          apiVersion
+          kind
+
+          subject {
+            displayName
+            parentDisplayName
+            viewer
+            projectsBelongingTo {
+              id
+              name
+              defaultNotificationChannels {
+                __typename
+                ... on ShishoNotificationChannelSlack {
+                  workspaceId
+                  channelId
+                  name
+                }
+              }
+            }
+          }
+
+          severity
+          viewer
+
+          explanation(locale: JA_JP) {
+            title
+            description
+          }
+
+          createdBy {
+            name
+            viewer
+          }
+
+          triageComment
+          triageInitiator {
+            id
+            type
+            displayName
+          }
+        }
+      }
+    }
+  }
+}

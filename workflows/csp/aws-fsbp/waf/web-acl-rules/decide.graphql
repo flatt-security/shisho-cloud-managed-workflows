@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      waf {
+        webAcls {
+          metadata {
+            id
+            displayName
+          }
+          rules {
+            name
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

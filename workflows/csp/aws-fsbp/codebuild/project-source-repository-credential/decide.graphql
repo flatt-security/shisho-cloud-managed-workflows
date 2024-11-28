@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      codeBuild {
+        projects {
+          metadata {
+            id
+            displayName
+          }
+          source {
+            type
+            auth {
+              type
+              arn
+            }
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

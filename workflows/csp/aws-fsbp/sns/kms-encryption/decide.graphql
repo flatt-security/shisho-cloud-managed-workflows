@@ -1,0 +1,35 @@
+{
+  aws {
+    accounts {
+      sns {
+        topics {
+          __typename
+          ... on AWSSNSTopicFifo {
+            metadata {
+              id
+              displayName
+            }
+            kmsMasterKeyId
+            
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSSNSTopicStandard {
+            metadata {
+              id
+              displayName
+            }
+            kmsMasterKeyId
+            
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

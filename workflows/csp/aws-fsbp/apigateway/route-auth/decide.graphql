@@ -1,0 +1,46 @@
+{
+  aws {
+    accounts {
+      apigateway {
+        apis {
+          __typename
+          ... on AWSAPIGatewayHTTPAPI {
+            metadata {
+              id
+              displayName
+            }
+
+            routes {
+              id
+              routeKey
+              authorizationType
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+
+          ... on AWSAPIGatewayWebSocketAPI {
+            metadata {
+              id
+              displayName
+            }
+
+            routes {
+              id
+              routeKey
+              authorizationType
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

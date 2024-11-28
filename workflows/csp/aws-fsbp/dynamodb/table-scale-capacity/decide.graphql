@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      dynamoDb {
+        tables {
+          metadata {
+            id
+            displayName
+          }
+          billingModeSummary {
+            mode
+          }
+          provisionedThroughput {
+            readCapacityUnits
+            writeCapacityUnits
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

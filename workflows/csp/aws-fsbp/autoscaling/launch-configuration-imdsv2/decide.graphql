@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          launchConfiguration {
+            iamInstanceProfile
+
+            metadataOptions {
+              httpTokens
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

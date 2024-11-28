@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          logFileValidationEnabled
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

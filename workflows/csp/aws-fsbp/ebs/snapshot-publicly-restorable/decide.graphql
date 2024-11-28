@@ -1,0 +1,23 @@
+query {
+  aws {
+    accounts {
+      ec2 {
+        snapshots {
+          id
+
+          metadata {
+            id
+          }
+
+          volumeId
+          attribute {
+            createVolumePermissions {
+              group
+              userId
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-secretsmanager"
+name: "Prebundle: Review AWS Secrets Manager posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: rotation-interval
+    name: Review rotation interval
+    decide:
+      rego: !include rotation-interval/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include rotation-interval/decide.graphql
+  - id: auto-rotation
+    name: Review auto rotation
+    decide:
+      rego: !include auto-rotation/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include auto-rotation/decide.graphql
+  - id: auto-rotation-state
+    name: Review auto rotation state
+    decide:
+      rego: !include auto-rotation-state/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include auto-rotation-state/decide.graphql
+  - id: secret-usage
+    name: Review secret usage
+    decide:
+      rego: !include secret-usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include secret-usage/decide.graphql

@@ -1,0 +1,316 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-rds"
+name: "Prebundle: Review AWS RDS posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: instance-enhanced-monitoring
+    name: Review instance enhanced monitoring
+    decide:
+      rego: !include instance-enhanced-monitoring/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-enhanced-monitoring/decide.graphql
+  - id: instance-copy-tags-to-snapshots
+    name: Review instance copy tags to snapshots
+    decide:
+      rego: !include instance-copy-tags-to-snapshots/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-copy-tags-to-snapshots/decide.graphql
+  - id: cluster-administrator-username
+    name: Review cluster administrator username
+    decide:
+      rego: !include cluster-administrator-username/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-administrator-username/decide.graphql
+  - id: instance-iam-authentication
+    name: Review instance iam authentication
+    decide:
+      rego: !include instance-iam-authentication/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-iam-authentication/decide.graphql
+  - id: cluster-backtracking
+    name: Review cluster backtracking
+    decide:
+      rego: !include cluster-backtracking/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-backtracking/decide.graphql
+  - id: instance-logging
+    name: Review instance logging
+    decide:
+      rego: !include instance-logging/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-logging/decide.graphql
+  - id: instance-deletion-protection
+    name: Review instance deletion protection
+    decide:
+      rego: !include instance-deletion-protection/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-deletion-protection/decide.graphql
+  - id: cluster-copy-tags-to-snapshots
+    name: Review cluster copy tags to snapshots
+    decide:
+      rego: !include cluster-copy-tags-to-snapshots/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-copy-tags-to-snapshots/decide.graphql
+  - id: instance-availability-zone
+    name: Review instance availability zone
+    decide:
+      rego: !include instance-availability-zone/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-availability-zone/decide.graphql
+  - id: cluster-availability-zone
+    name: Review cluster availability zone
+    decide:
+      rego: !include cluster-availability-zone/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-availability-zone/decide.graphql
+  - id: instance-administrator-username
+    name: Review instance administrator username
+    decide:
+      rego: !include instance-administrator-username/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-administrator-username/decide.graphql
+  - id: cluster-iam-authentication
+    name: Review cluster iam authentication
+    decide:
+      rego: !include cluster-iam-authentication/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-iam-authentication/decide.graphql
+  - id: snapshot-accessibility
+    name: Review snapshot accessibility
+    decide:
+      rego: !include snapshot-accessibility/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include snapshot-accessibility/decide.graphql
+  - id: instance-automatic-backup
+    name: Review instance automatic backup
+    decide:
+      rego: !include instance-automatic-backup/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-automatic-backup/decide.graphql
+  - id: snapshot-encryption
+    name: Review snapshot encryption
+    decide:
+      rego: !include snapshot-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include snapshot-encryption/decide.graphql
+  - id: cluster-deletion-protection
+    name: Review cluster deletion protection
+    decide:
+      rego: !include cluster-deletion-protection/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include cluster-deletion-protection/decide.graphql
+  - id: instance-vpc
+    name: Review instance vpc
+    decide:
+      rego: !include instance-vpc/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include instance-vpc/decide.graphql
+  - id: default-port-usage
+    name: Review default port usage
+    decide:
+      rego: !include default-port-usage/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include default-port-usage/decide.graphql

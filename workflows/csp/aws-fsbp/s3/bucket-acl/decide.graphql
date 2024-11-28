@@ -1,0 +1,30 @@
+{
+  aws {
+    accounts {
+      s3 {
+        buckets {
+          metadata {
+            id
+            displayName
+          }
+          aclGrants {
+            grantee {
+              id
+            }
+            permission
+          }
+          ownershipControls {
+            rules {
+              objectOwnership
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

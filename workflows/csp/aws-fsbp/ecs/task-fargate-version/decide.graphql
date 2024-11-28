@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      ecs {
+        clusters {
+          services {
+            metadata {
+              id
+            }
+            launchType
+            capacityProviderStrategy {
+              name
+            }
+            platformVersion
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          loadBalancer {
+            classicLoadBalancers {
+              name
+            }
+          }
+          healthCheckType
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,214 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-s3"
+name: "Prebundle: Review AWS S3 posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: bucket-cross-region-replication
+    name: Review bucket cross region replication
+    decide:
+      rego: !include bucket-cross-region-replication/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-cross-region-replication/decide.graphql
+  - id: bucket-lifecycle-policy
+    name: Review bucket lifecycle policy
+    decide:
+      rego: !include bucket-lifecycle-policy/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-lifecycle-policy/decide.graphql
+  - id: bucket-public-read-access
+    name: Review bucket public read access
+    decide:
+      rego: !include bucket-public-read-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-public-read-access/decide.graphql
+  - id: bucket-event-notifications
+    name: Review bucket event notifications
+    decide:
+      rego: !include bucket-event-notifications/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-event-notifications/decide.graphql
+  - id: bucket-account-permission
+    name: Review bucket account permission
+    decide:
+      rego: !include bucket-account-permission/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-account-permission/decide.graphql
+  - id: bucket-public-write-access
+    name: Review bucket public write access
+    decide:
+      rego: !include bucket-public-write-access/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-public-write-access/decide.graphql
+  - id: bucket-versioning
+    name: Review bucket versioning
+    decide:
+      rego: !include bucket-versioning/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-versioning/decide.graphql
+  - id: bucket-kms-encryption
+    name: Review bucket kms encryption
+    decide:
+      rego: !include bucket-kms-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-kms-encryption/decide.graphql
+  - id: bucket-versioning-lifecycle-policy
+    name: Review bucket versioning lifecycle policy
+    decide:
+      rego: !include bucket-versioning-lifecycle-policy/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-versioning-lifecycle-policy/decide.graphql
+  - id: account-public-access-block
+    name: Review account public access block
+    decide:
+      rego: !include account-public-access-block/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include account-public-access-block/decide.graphql
+  - id: bucket-object-lock
+    name: Review bucket object lock
+    decide:
+      rego: !include bucket-object-lock/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-object-lock/decide.graphql
+  - id: bucket-acl
+    name: Review bucket acl
+    decide:
+      rego: !include bucket-acl/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include bucket-acl/decide.graphql

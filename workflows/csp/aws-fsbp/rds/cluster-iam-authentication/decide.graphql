@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      rds {
+        clusters {
+          metadata {
+            displayName
+            id
+          }
+          iamDatabaseAuthenticationEnabled
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

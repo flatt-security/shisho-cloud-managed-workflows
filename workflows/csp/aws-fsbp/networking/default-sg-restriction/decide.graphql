@@ -1,0 +1,32 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          id
+
+          securityGroups {
+            metadata {
+              id
+              displayName
+            }
+            name
+            ipPermissionsIngress {
+              fromPort
+              toPort
+            }
+            ipPermissionsEgress {
+              fromPort
+              toPort
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

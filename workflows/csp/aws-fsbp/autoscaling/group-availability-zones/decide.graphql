@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          availabilityZones
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

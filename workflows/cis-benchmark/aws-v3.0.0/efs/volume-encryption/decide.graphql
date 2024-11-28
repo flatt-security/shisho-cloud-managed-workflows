@@ -1,0 +1,20 @@
+query {
+  aws {
+    accounts {
+      efs {
+        fileSystems {
+          metadata {
+            id
+          }
+          name
+          encrypted
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

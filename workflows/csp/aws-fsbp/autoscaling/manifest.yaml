@@ -1,0 +1,129 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-autoscaling"
+name: "Prebundle: Review AWS Auto Scaling posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: launch-configuration-public-ip
+    name: Review launch configuration public ip
+    decide:
+      rego: !include launch-configuration-public-ip/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include launch-configuration-public-ip/decide.graphql
+  - id: group-launch-template
+    name: Review group launch template
+    decide:
+      rego: !include group-launch-template/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include group-launch-template/decide.graphql
+  - id: launch-configuration-imdsv2
+    name: Review launch configuration imdsv2
+    decide:
+      rego: !include launch-configuration-imdsv2/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include launch-configuration-imdsv2/decide.graphql
+  - id: group-instance-types
+    name: Review group instance types
+    decide:
+      rego: !include group-instance-types/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include group-instance-types/decide.graphql
+  - id: group-lb-health-check
+    name: Review group lb health check
+    decide:
+      rego: !include group-lb-health-check/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include group-lb-health-check/decide.graphql
+  - id: launch-configuration-response-hop-limit
+    name: Review launch configuration response hop limit
+    decide:
+      rego: !include launch-configuration-response-hop-limit/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include launch-configuration-response-hop-limit/decide.graphql
+  - id: group-availability-zones
+    name: Review group availability zones
+    decide:
+      rego: !include group-availability-zones/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include group-availability-zones/decide.graphql

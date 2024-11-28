@@ -1,0 +1,24 @@
+query {
+  aws {
+    accounts {
+      cloudFront {
+        distributions {
+          metadata {
+            id
+          }
+          originGroups {
+            id
+            members {
+              originId
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

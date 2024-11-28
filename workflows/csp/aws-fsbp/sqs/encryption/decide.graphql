@@ -1,0 +1,43 @@
+{
+  aws {
+    accounts {
+      sqs {
+        queues {
+          __typename
+          ... on AWSSQSFIFOQueue {
+            metadata {
+              id
+              displayName
+            }
+            serverSideEncryption {
+              kmsConfiguration {
+                masterKeyId
+              }
+            }
+            
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSSQSStandardQueue {
+            metadata {
+              id
+              displayName
+            }
+            serverSideEncryption {
+              kmsConfiguration {
+                masterKeyId
+              }
+            }
+            
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      autoScaling {
+        groups {
+          metadata {
+            id
+            displayName
+          }
+          launchConfiguration {
+            metadataOptions {
+              httpPutResponseHopLimit
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

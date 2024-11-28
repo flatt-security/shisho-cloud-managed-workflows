@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      codeBuild {
+        projects {
+          metadata {
+            id
+            displayName
+          }
+          environment {
+            privilegedMode
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

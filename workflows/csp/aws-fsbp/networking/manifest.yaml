@@ -1,0 +1,163 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-networking"
+name: "Prebundle: Review AWS Networking posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: fp-stateless-action
+    name: Review fp stateless action
+    decide:
+      rego: !include fp-stateless-action/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include fp-stateless-action/decide.graphql
+  - id: default-sg-restriction
+    name: Review default sg restriction
+    decide:
+      rego: !include default-sg-restriction/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include default-sg-restriction/decide.graphql
+  - id: subnet-public-ip
+    name: Review subnet public ip
+    decide:
+      rego: !include subnet-public-ip/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include subnet-public-ip/decide.graphql
+  - id: frg-rules
+    name: Review frg rules
+    decide:
+      rego: !include frg-rules/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include frg-rules/decide.graphql
+  - id: fp-stateless-fragment-action
+    name: Review fp stateless fragment action
+    decide:
+      rego: !include fp-stateless-fragment-action/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include fp-stateless-fragment-action/decide.graphql
+  - id: vpn-tunnels-state
+    name: Review vpn tunnels state
+    decide:
+      rego: !include vpn-tunnels-state/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include vpn-tunnels-state/decide.graphql
+  - id: transit-gateway-auto-vpc-attachment
+    name: Review transit gateway auto vpc attachment
+    decide:
+      rego: !include transit-gateway-auto-vpc-attachment/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include transit-gateway-auto-vpc-attachment/decide.graphql
+  - id: acl-assosiations
+    name: Review acl assosiations
+    decide:
+      rego: !include acl-assosiations/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include acl-assosiations/decide.graphql
+  - id: sg-ingress-rules
+    name: Review sg ingress rules
+    decide:
+      rego: !include sg-ingress-rules/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include sg-ingress-rules/decide.graphql

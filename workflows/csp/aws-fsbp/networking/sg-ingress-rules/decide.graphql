@@ -1,0 +1,28 @@
+{
+  aws {
+    accounts {
+      network {
+        vpcs {
+          securityGroups {
+            metadata {
+              id
+            }
+
+            ipPermissionsIngress {
+              fromPort
+              toPort
+              ipv4Ranges {
+                cidrIpv4
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

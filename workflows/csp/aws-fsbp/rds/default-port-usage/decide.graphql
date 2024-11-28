@@ -1,0 +1,128 @@
+{
+  aws {
+    accounts {
+      rds {
+        clusters {
+          metadata {
+            id
+            displayName
+          }
+          engine
+          port
+
+          tags {
+            key
+            value
+          }
+        }
+        instances {
+          __typename
+          ... on AWSRDSMySQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSMariaDBInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSOracleInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSSQLServerInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraMySQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSRDSAuroraPostgreSQLInstance {
+            metadata {
+              id
+              displayName
+            }
+            engine
+            port
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

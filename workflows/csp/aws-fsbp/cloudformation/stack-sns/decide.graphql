@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      cloudFormation {
+        stacks {
+          metadata {
+            id
+            displayName
+          }
+          notificationArns
+          
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

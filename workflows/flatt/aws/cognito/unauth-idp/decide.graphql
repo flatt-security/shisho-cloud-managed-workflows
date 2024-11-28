@@ -1,0 +1,20 @@
+{
+  aws {
+    accounts {
+      cognito {
+        identityPools {
+          metadata {
+            id
+          }
+          allowUnauthenticatedIdentities
+          roleAssignment {
+            perAuth {
+              authenticatedRoleArn
+              unauthenticatedRoleArn
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          vpc {
+            id
+            endpoints {
+              id
+              serviceName
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

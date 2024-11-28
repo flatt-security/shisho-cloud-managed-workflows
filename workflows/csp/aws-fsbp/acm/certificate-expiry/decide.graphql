@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      acm {
+        certificates {
+          metadata {
+            id
+            displayName
+          }
+          renewalEligibility
+          notAfter
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

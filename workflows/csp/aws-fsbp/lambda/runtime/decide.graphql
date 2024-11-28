@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      lambda {
+        functions {
+          metadata {
+            id
+            displayName
+          }
+          packageType
+          runtime
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

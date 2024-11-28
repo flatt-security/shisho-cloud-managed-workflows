@@ -1,0 +1,21 @@
+{
+  aws {
+    accounts {
+      ecr {
+        repositories {
+          metadata {
+            id
+            displayName
+          }
+          imageScanningConfiguration {
+            scanOnPush
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

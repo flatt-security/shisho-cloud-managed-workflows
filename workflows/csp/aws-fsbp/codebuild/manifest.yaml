@@ -1,0 +1,95 @@
+version: 0.1.0
+
+id: "prebundle-aws-fsbp-codebuild"
+name: "Prebundle: Review AWS CodeBuild posture (FSBP)"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: project-logging-status
+    name: Review project logging status
+    decide:
+      rego: !include project-logging-status/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include project-logging-status/decide.graphql
+  - id: project-env-privileged-mode
+    name: Review project env privileged mode
+    decide:
+      rego: !include project-env-privileged-mode/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include project-env-privileged-mode/decide.graphql
+  - id: project-s3-logs-encryption
+    name: Review project s3 logs encryption
+    decide:
+      rego: !include project-s3-logs-encryption/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include project-s3-logs-encryption/decide.graphql
+  - id: project-env-variables
+    name: Review project env variables
+    decide:
+      rego: !include project-env-variables/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include project-env-variables/decide.graphql
+  - id: project-source-repository-credential
+    name: Review project source repository credential
+    decide:
+      rego: !include project-source-repository-credential/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+        tag_exceptions:
+          type: string
+          multiple: true
+          description: A list of AWS tags with which resources can have any settings automatically. For instance, if you include `Environment=production` for this value, all resources with `Environment=production` will be allowed automatically.
+          values: []
+      input:
+        schema: !include project-source-repository-credential/decide.graphql

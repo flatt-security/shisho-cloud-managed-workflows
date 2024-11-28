@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      ssm {
+        managedInstances {
+          metadata {
+            id
+            displayName
+          }
+          compliances(condition: {Types: [PATCH]}) {
+            id
+            title
+            status
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

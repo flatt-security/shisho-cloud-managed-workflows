@@ -1,0 +1,22 @@
+{
+  aws {
+    accounts {
+      network {
+        transitGateways {
+          metadata {
+            id
+            displayName
+          }
+          options {
+            autoAcceptSharedAttachments
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

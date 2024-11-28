@@ -1,0 +1,28 @@
+{
+  aws {
+    accounts {
+      lambda {
+        functions {
+          metadata {
+            id
+            displayName
+          }
+          vpcConfiguration {
+            subnetIds 
+            vpc {
+              metadata {
+                id
+                displayName
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+version: 0.1.0
+
+id: "prebundle-firebase-authentication"
+name: "Prebundle: Review Firebase Authentication posture"
+
+triggers:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  - id: anonymous-login-enabled
+    name: Review the Firebase Authentication anonymous login settings
+    decide:
+      rego: !include anonymous-login-enabled/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include anonymous-login-enabled/decide.graphql
+  - id: accounts-can-be-created-by-end-user
+    name: Review the Firebase Authentication end user accounts creation permission
+    decide:
+      rego: !include accounts-can-be-created-by-end-user/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include accounts-can-be-created-by-end-user/decide.graphql
+  - id: accounts-can-be-deleted-by-end-user
+    name: Review the Firebase Authentication end user accounts deletion permission
+    decide:
+      rego: !include accounts-can-be-deleted-by-end-user/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include accounts-can-be-deleted-by-end-user/decide.graphql
+  - id: email-listing-protection-disabled
+    name: Review the Firebase Authentication email listing protection settings
+    decide:
+      rego: !include email-listing-protection-disabled/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include email-listing-protection-disabled/decide.graphql
+  - id: user-activity-logging-disabled
+    name: Review the Firebase Authentication user activity logging settings
+    decide:
+      rego: !include user-activity-logging-disabled/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include user-activity-logging-disabled/decide.graphql
+  - id: password-policy-disabled
+    name: Review the Firebase Authentication password policy settings
+    decide:
+      rego: !include password-policy-disabled/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include password-policy-disabled/decide.graphql
+  - id: is-password-strength-insufficient
+    name: Review the Firebase Authentication password strength settings
+    decide:
+      rego: !include is-password-strength-insufficient/decide.rego
+      with:
+        resource_exceptions:
+          type: resource_exception
+          multiple: true
+          description: A special list of resource exceptions
+          values: []
+      input:
+        schema: !include is-password-strength-insufficient/decide.graphql

@@ -1,0 +1,47 @@
+{
+  aws {
+    accounts {
+      metadata {
+        id
+        displayName
+      }
+      cloudTrail {
+        trails {
+          metadata {
+            id
+            displayName
+          }
+          eventSelectors {
+            __typename
+            ... on AWSCloudTrailBasicEventSelector {
+              __typename
+              dataResources {
+                type
+                values
+              }
+              readWriteType
+            }
+            ... on AWSCloudTrailAdvancedEventSelector {
+              __typename
+              name
+              fieldSelectors {
+                field
+                endsWith
+                equals
+                notEndsWith
+                notEquals
+                notStartsWith
+                startsWith
+              }
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

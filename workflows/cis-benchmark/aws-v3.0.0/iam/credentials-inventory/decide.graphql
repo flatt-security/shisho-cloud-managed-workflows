@@ -1,0 +1,27 @@
+{
+  aws {
+    accounts {
+      iam {
+        users {
+          metadata {
+            id
+          }
+          createdAt
+          passwordLastUsedAt
+          accessKeys {
+            id
+            createdAt
+            lastUsed {
+              lastUsedAt
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

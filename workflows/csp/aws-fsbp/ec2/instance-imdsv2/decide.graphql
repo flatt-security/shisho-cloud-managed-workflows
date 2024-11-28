@@ -1,0 +1,27 @@
+{
+  aws {
+    accounts {
+      ec2 {
+        instances {
+          metadata {
+            id
+            displayName
+          }
+          iamInstanceProfile {
+            arn
+            role {
+              id
+            }
+          }
+          metadataOptions {
+            httpTokens
+          }
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

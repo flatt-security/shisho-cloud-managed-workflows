@@ -1,0 +1,62 @@
+{
+  aws {
+    accounts {
+      apigateway {
+        apis {
+          __typename
+          ... on AWSAPIGatewayRestAPI {
+            metadata {
+              id
+              displayName
+            }
+            stages {
+              name
+              accessLogSettings {
+                destinationArn
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSAPIGatewayHTTPAPI {
+            metadata {
+              id
+              displayName
+            }
+            stages {
+              name
+              accessLogSettings {
+                destinationArn
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+          ... on AWSAPIGatewayWebSocketAPI {
+            metadata {
+              id
+              displayName
+            }
+            stages {
+              name
+              accessLogSettings {
+                destinationArn
+              }
+            }
+
+            tags {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

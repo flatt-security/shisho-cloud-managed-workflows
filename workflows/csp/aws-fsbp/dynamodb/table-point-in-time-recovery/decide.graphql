@@ -1,0 +1,24 @@
+{
+  aws {
+    accounts {
+      dynamoDb {
+        tables {
+          metadata {
+            id
+            displayName
+          }
+          continuousBackupsDescription {
+            pointInTimeRecoveryDescription {
+              status
+            }
+          }
+
+          tags {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
