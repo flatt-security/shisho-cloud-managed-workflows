@@ -16,7 +16,7 @@ decisions[d] {
 	]
 
 	d := shisho.decision.new({
-		"api_version": "decision.api.shisho.dev/v1",
+		"api_version": "decision.api.shisho.dev/v1beta",
 		"kind": "aws_iam_assumerole_policy",
 		"subject": role.metadata.id,
 		"locator": "",
