@@ -17,7 +17,7 @@ decisions[d] {
 	paths := exceptional_paths(instance_sgs, lb.securityGroups)
 
 	d := shisho.decision.new({
-		"api_version": "decision.api.shisho.dev/v1",
+		"api_version": "decision.api.shisho.dev/v1beta",
 		"kind": "aws_elb_transport_sg",
 		"subject": instance.metadata.id,
 		"locator": "",

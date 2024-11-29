@@ -11,7 +11,7 @@ decisions[d] {
 	has_tls_listener(lb)
 
 	d := shisho.decision.new({
-		"api_version": "decision.api.shisho.dev/v1",
+		"api_version": "decision.api.shisho.dev/v1beta",
 		"kind": "aws_elb_tls_version",
 		"subject": lb.metadata.id,
 		"locator": "",

@@ -7,7 +7,7 @@ decisions[d] {
 	dist := account.cloudFront.distributions[_]
 
 	d := shisho.decision.new({
-		"api_version": "decision.api.shisho.dev/v1",
+		"api_version": "decision.api.shisho.dev/v1beta",
 		"kind": "aws_cloudfront_tls_version",
 		"subject": dist.metadata.id,
 		"locator": "",

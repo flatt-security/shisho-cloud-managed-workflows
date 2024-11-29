@@ -7,7 +7,7 @@ decisions[d] {
 	idp := account.cognito.identityPools[_]
 
 	d := shisho.decision.new({
-		"api_version": "decision.api.shisho.dev/v1",
+		"api_version": "decision.api.shisho.dev/v1beta",
 		"kind": "aws_cognito_unauthenticated_role",
 		"subject": idp.metadata.id,
 		"locator": "",
