@@ -6,7 +6,7 @@ query {
           metadata {
             id
           }
-          instanceMetadata {
+          instanceMetadata(keys: ["block-project-ssh-keys", "ssh-keys"]) {
             items {
               key
               value
