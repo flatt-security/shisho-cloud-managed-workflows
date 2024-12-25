@@ -6,14 +6,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version: [latest]
     steps:
       - name: Setup OPA
         uses: open-policy-agent/setup-opa@v2
         with:
-          version: ${{ matrix.version }}
+          version: v0.70.0
       - name: Checkout code
         uses: actions/checkout@v3
         with:
@@ -23,14 +20,11 @@ jobs:
           opa test -v --timeout 30s .
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version: [latest]
     steps:
       - name: Setup OPA
         uses: open-policy-agent/setup-opa@v2
         with:
-          version: ${{ matrix.version }}
+          version: v0.70.0
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Lint Rego codes

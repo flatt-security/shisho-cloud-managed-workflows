@@ -4,7 +4,7 @@ query {
       id
       computeEngine {
         # requires compute.projects.get permission on the project, which is not included in the default setup
-        projectMetadata {
+        projectMetadata(keys: ["enable-oslogin"]) {
           items {
             key
             value
@@ -14,7 +14,7 @@ query {
           metadata {
             id
           }
-          instanceMetadata {
+          instanceMetadata(keys: ["enable-oslogin"]) {
             items {
               key
               value
