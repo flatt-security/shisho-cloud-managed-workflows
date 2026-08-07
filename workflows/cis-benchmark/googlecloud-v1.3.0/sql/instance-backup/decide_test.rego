@@ -33,4 +33,12 @@ test_whether_proper_backup_is_enabled_for_cloud_sql if {
 			"s1": {"backupConfiguration": {"enabled": false}},
 		},
 	]}}]}}
+
+	count([d |
+		decisions[d]
+		not shisho.decision.is_allowed(d)
+	]) == 2 with input as {"googleCloud": {"projects": [{"cloudSql": {"instances": [
+		{"metadata": {"id": "googlecloud-sql-instance|514893257777|test-mysql-null-settings"}},
+		{"metadata": {"id": "googlecloud-sql-instance|514893257777|test-postgre-null-settings"}},
+	]}}]}}
 }

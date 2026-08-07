@@ -2,6 +2,11 @@
   aws {
     accounts {
       rds {
+        clusters {
+          id
+          region
+          vpcNetworkingEnabled
+        }
         instances {
           __typename
           ... on AWSRDSMySQLInstance {
@@ -9,6 +14,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -28,6 +35,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -47,6 +56,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -66,6 +77,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -85,6 +98,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -104,6 +119,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -123,6 +140,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -142,6 +161,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {
@@ -161,6 +182,8 @@
               id
               displayName
             }
+            clusterId
+            region
             subnetGroup {
               vpc {
                 metadata {

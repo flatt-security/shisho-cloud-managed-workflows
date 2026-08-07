@@ -8,7 +8,6 @@ import future.keywords.every
 # - 443/tcp
 #
 # If you want to restrict the access to other ports as well, you can add them to the `restriction_targets` list.
-# When all ports should be protected, TBD!!!
 restriction_targets := [
 	{
 		"protocol": "tcp",
@@ -26,9 +25,14 @@ google_source_ranges := [
 	"35.191.0.0/16", # Google Health Check
 ]
 
+private_ip_ranges := [
+	"10.0.0.0/8",
+	"172.16.0.0/12",
+	"192.168.0.0/16",
+]
+
 decisions[d] {
-	project := input.googleCloud.projects[_]
-	network := project.network.vpcNetworks[_]
+	network := input # The workflow has iterate_over set to "googleCloud.projects.network.vpcNetworks"
 
 	# List up all ingress rules from the firewall rules that may affect security of restriction targets.
 	related_rules := related_ingress_rules(network.firewallRules)
@@ -91,7 +95,10 @@ include_ports(ports, p) {
 allow_traffic_only_from_google_ranges(rules) {
 	every rule in rules {
 		every range in rule.source_ranges {
-			net.cidr_contains(google_source_ranges[_], range)
+			any([
+				net.cidr_contains(google_source_ranges[_], range),
+				net.cidr_contains(private_ip_ranges[_], range),
+			])
 		}
 	}
 } else = false

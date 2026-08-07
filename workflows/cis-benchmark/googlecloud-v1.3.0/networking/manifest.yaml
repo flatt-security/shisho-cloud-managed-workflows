@@ -20,6 +20,7 @@ jobs:
           values: []
       input:
         schema: !include default-network/decide.graphql
+        iterate_over: "googleCloud.projects"
   - id: dns-log
     name: Review the DNS log configuration
     decide:
@@ -32,6 +33,7 @@ jobs:
           values: []
       input:
         schema: !include dns-log/decide.graphql
+        # cannot use iterate_over here
   - id: proxy-tls-policy
     name: Review proxy TLS policy
     decide:
@@ -44,6 +46,7 @@ jobs:
           values: []
       input:
         schema: !include proxy-tls-policy/decide.graphql
+        # cannot use iterate_over here
   - id: rdp-access
     name: Review the availability of the RDP access
     decide:
@@ -56,6 +59,7 @@ jobs:
           values: []
       input:
         schema: !include rdp-access/decide.graphql
+        iterate_over: "googleCloud.projects.network.vpcNetworks"
   - id: ssh-access
     name: Review the availability of the SSH access
     decide:
@@ -68,6 +72,7 @@ jobs:
           values: []
       input:
         schema: !include ssh-access/decide.graphql
+        iterate_over: "googleCloud.projects.network.vpcNetworks"
   - id: vpc-flow-log
     name: Review the VPC log configuration
     decide:
@@ -80,6 +85,7 @@ jobs:
           values: []
       input:
         schema: !include vpc-flow-log/decide.graphql
+        iterate_over: "googleCloud.projects.network.vpcNetworks"
   - id: fw-rule-iap
     name: Review that Identity Aware Proxy (IAP) allows only traffic from Google IP addresses
     decide:
@@ -92,6 +98,7 @@ jobs:
           values: []
       input:
         schema: !include fw-rule-iap/decide.graphql
+        iterate_over: "googleCloud.projects.network.vpcNetworks"
   - id: legacy-network
     name: Review that legacy networks do not exist for older Google Cloud projects
     decide:
@@ -104,3 +111,4 @@ jobs:
           values: []
       input:
         schema: !include legacy-network/decide.graphql
+        iterate_over: "googleCloud.projects.network.vpcNetworks"

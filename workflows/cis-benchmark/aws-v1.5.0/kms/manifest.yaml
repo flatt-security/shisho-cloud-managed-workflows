@@ -5,7 +5,7 @@ name: "Prebundle: Review AWS KMS posture"
 
 triggers:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "0 */1 * * *"
 
 jobs:
   - id: symmetric-cmk-rotation

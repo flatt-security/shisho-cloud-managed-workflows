@@ -10,9 +10,7 @@ decisions[d] {
 
 	containers := [{"name": container.name, "environment_variables": names} |
 		container := service.taskDefinition.containerDefinitions[_]
-		names := [container.environment[_].name |
-			env_names := container.environment[_]
-		]
+		names := [env.name | env := container.environment[_]]
 	]
 
 	d := shisho.decision.aws.ecs.container_environment_variables({

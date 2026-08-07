@@ -5,7 +5,7 @@ name: "Prebundle: Review AWS Security Hub posture"
 
 triggers:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "0 */1 * * *"
 
 jobs:
   - id: usage
