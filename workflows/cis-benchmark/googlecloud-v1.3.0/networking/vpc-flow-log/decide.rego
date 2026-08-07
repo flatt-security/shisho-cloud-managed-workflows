@@ -3,8 +3,7 @@ package policy.googlecloud.networking.vpc_flow_log
 import data.shisho
 
 decisions[d] {
-	project := input.googleCloud.projects[_]
-	vpc_network := project.network.vpcNetworks[_]
+	vpc_network := input # The workflow has iterate_with set to "googleCloud.projects.network.vpcNetworks"
 
 	allowed := any([
 		count(vpc_network.subnetworks) == 0,

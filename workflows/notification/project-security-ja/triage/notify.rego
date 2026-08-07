@@ -123,7 +123,7 @@ notifications[n] {
 					slack.text_element(concat("", ["<", event.target.viewer, "|", title(event.target.explanation, event.target.apiVersion, event.target.kind), ">"])),
 					slack.text_element(concat("", ["<", event.target.subject.viewer, "|", event.target.subject.displayName, ">"])),
 					# The second row
-					slack.text_element(concat("", [severity_emoji(target_severity), " *深刻度*"])),
+					slack.text_element(concat("", [severity_emoji(target_severity), " *重大度*"])),
 					slack.text_element(concat("", [triage_status_emoji(event.status), " *対応状況*"])),
 					slack.text_element(severity_string(target_severity)),
 					slack.text_element(concat("", ["*", triage_status(event.status), "* に変化しました"])),

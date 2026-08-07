@@ -49,4 +49,15 @@ test_whether_proper_accessibility_is_configured_for_cloud_sql if {
 			}]}},
 		},
 	]}}]}}
+
+	count([d | decisions[d]]) == 0 with input as {"googleCloud": {"projects": [{"cloudSql": {"instances": [
+		{
+			"metadata": {"id": "googlecloud-sql-instance|514893257777|test-mysql-null-settings"},
+			"settings": null,
+		},
+		{
+			"metadata": {"id": "googlecloud-sql-instance|514893257777|test-postgre-null-ipconfig"},
+			"settings": {"ipConfiguration": null},
+		},
+	]}}]}}
 }

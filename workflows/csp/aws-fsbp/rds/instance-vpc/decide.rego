@@ -6,6 +6,8 @@ decisions[d] {
 	account := input.aws.accounts[_]
 	instance := account.rds.instances[_]
 
+	vpc_networking_disabled(account, instance) == false
+
 	id := vpc_id(instance.subnetGroup)
 
 	d := shisho.decision.aws.rds.instance_vpc({
@@ -14,6 +16,13 @@ decisions[d] {
 		"payload": shisho.decision.aws.rds.instance_vpc_payload({"vpc_id": id}),
 	})
 }
+
+vpc_networking_disabled(account, instance) {
+	cluster := account.rds.clusters[_]
+	cluster.id == instance.clusterId
+	cluster.region == instance.region
+	cluster.vpcNetworkingEnabled == false
+} else = false
 
 vpc_id(subnet_group) := subnet_group.vpc.metadata.id {
 	subnet_group.vpc != null

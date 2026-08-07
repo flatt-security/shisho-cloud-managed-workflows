@@ -3,8 +3,7 @@ package policy.googlecloud.networking.ssh_access
 import data.shisho
 
 decisions[d] {
-	project := input.googleCloud.projects[_]
-	network := project.network.vpcNetworks[_]
+	network := input # The workflow has iterate_over set to "googleCloud.projects.network.vpcNetworks"
 
 	surfaces := ssh_access_surfaces(network.firewallRules)
 	d := shisho.decision.googlecloud.networking.ssh_access({

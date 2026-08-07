@@ -3,7 +3,7 @@ package policy.googlecloud.networking.default_network
 import data.shisho
 
 decisions[d] {
-	project := input.googleCloud.projects[_]
+	project := input # The workflow has iterate_over set to "googleCloud.projects"
 	network_exists := exist_default(project.network.vpcNetworks)
 
 	d := shisho.decision.googlecloud.networking.default_network({
