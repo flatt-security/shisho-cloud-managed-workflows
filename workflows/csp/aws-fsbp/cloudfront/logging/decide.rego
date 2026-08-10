@@ -6,7 +6,7 @@ decisions[d] {
 	account := input.aws.accounts[_]
 	dist := account.cloudFront.distributions[_]
 
-	allowed := has_logging_bucket(dist.config)
+	allowed := has_logging(dist.config)
 	d := shisho.decision.aws.cloudfront.logging({
 		"allowed": allow_if_excluded(allowed, dist),
 		"subject": dist.metadata.id,
@@ -14,8 +14,10 @@ decisions[d] {
 	})
 }
 
-has_logging_bucket(cfg) {
+has_logging(cfg) {
 	logging_bucket_id(cfg) != ""
+} else {
+	cfg.standardLoggingV2.enabled == true
 } else := false
 
 logging_bucket_id(cfg) := cfg.logging.bucketId {
