@@ -11,6 +11,10 @@ query {
             logging {
               bucketId
             }
+
+            standardLoggingV2 {
+              enabled
+            }
           }
 
           tags {
